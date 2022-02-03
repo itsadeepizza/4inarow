@@ -1,19 +1,15 @@
 import numpy as np
+import torch
 class Board:
     def __init__(self, nrows=6, ncols=7):
         # 0 no coin, otherwise plaYEr number coin
         self.nrows = nrows
         self.ncols = ncols
-        self.board = np.zeros([nrows, ncols])
-        # row level for each col
-        self.cols = np.zeros([ncols], dtype=int)
-        # player are 1 and -1
-        self.player = 1
-
+        self.reinitialize()
     @property
     def state(self):
         """return board, but coin marked 1 are from current player"""
-        return self.board * self.player
+        return torch.FloatTensor(self.board * self.player)
 
     def __repr__(self):
         def get_symbol(n):
@@ -46,10 +42,10 @@ class Board:
             return False
         # put the coin for current player
         self.board[curr_row][col] = self.player
-        #change player
-        self.player *= -1
         # mark the new row in cols
         self.cols[col] += 1
+        # change player
+        self.player *= -1
         # If no error
         return True
 
@@ -105,26 +101,53 @@ class Board:
                 print(f"Player {player} won !")
                 return False
 
+    def reinitialize(self):
+        """Reinitialise the grid"""
+        self.board = np.zeros([self.nrows, self.ncols])
+        # row level for each col
+        self.cols = np.zeros([self.ncols], dtype=int)
+        # player are 1 and -1
+        self.player = 1
+
+    def get_reward(self, col):
+        """Return the reward associated to the move
+        1 if win
+        -1 if lose
+        -2 invalid play
+        0 otherwise
+
+        and a boolean which is true if a new game is starting
+        """
+        rew_win = 1
+        rew_lose = -1
+        rew_invalid = -2
+        if self.check_win(- self.player):
+            self.reinitialize()
+            return rew_lose, True
+        is_valid = self.play(col)
+        if not is_valid:
+            self.reinitialize()
+            return rew_invalid, True
+        if self.check_win(- self.player):
+            return rew_win, False
+        return 0, False
 
 
+if __name__ == "main":
 
-
-
-
-
-board = Board()
-board.play(1)
-board.play(2)
-board.play(2)
-board.play(3)
-board.play(3)
-board.play(4)
-board.play(3)
-board.play(4)
-board.play(4)
-board.play(6)
-board.play(4)
-print(board)
-print(board.check_win(-1))
-board = Board()
-board.play_hvsh_game()
+    board = Board()
+    board.play(1)
+    board.play(2)
+    board.play(2)
+    board.play(3)
+    board.play(3)
+    board.play(4)
+    board.play(3)
+    board.play(4)
+    board.play(4)
+    board.play(6)
+    board.play(4)
+    print(board)
+    print(board.check_win(-1))
+    board = Board()
+    board.play_hvsh_game()
