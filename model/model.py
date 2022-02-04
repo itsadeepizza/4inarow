@@ -22,7 +22,7 @@ class DQN(nn.Module):
         x = self.l3(x)
         x = torch.sigmoid(x)
         x = self.l4(x)
-        x = torch.sigmoid(x)
+        #x = torch.sigmoid(x)
         # Output a n array
         return x
 
