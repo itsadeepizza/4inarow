@@ -257,6 +257,11 @@ class BatchBoard:
         # return batch with valid move
         return is_valid
 
+
+    def check_draw(self):
+        """return True if the board is full and no move can be played"""
+        return self.cols.min(1).values >= self.nrows
+
     def check_win(self, player):
         """return True if the player `player` has won"""
 
@@ -296,29 +301,39 @@ class BatchBoard:
         return win
 
 
-    def get_reward(self, col):
+    def get_reward(self, cols):
         """Return the reward associated to the move
         1 if win
         -1 if lose
         -2 invalid play
         0 otherwise
 
-        and a boolean which is true if a new game is starting
+        for the player and the opponent, and if it is the final state of the game
         """
-        # TODO
         rew_win = 0.1
         rew_lose = -0.1
         rew_invalid = -0.2
-        if self.check_win(- self.player):
-            self.reinitialize()
-            return rew_lose, True
-        is_valid = self.play(col)
-        if not is_valid:
-            self.reinitialize()
-            return rew_invalid, True
-        if self.check_win(- self.player):
-            return rew_win, False
-        return 0, False
+        rew_draw = 0
+
+        rewards = torch.zeros([self.nbatch], device=self.device)
+        adv_rewards = torch.zeros([self.nbatch], device=self.device)
+        is_valid = self.play(cols)
+        # negative rewards for invalid moves
+        rewards[~ is_valid] = rew_invalid
+        has_win = self.check_win(- self.player)
+        # positive rewards for winner
+        rewards[has_win] = rew_win
+        # negative rewards for loser (the opponent)
+        adv_rewards[has_win] = rew_lose
+        # zero rewards for draw game (player and opponent)
+        is_draw = self.check_draw()
+        rewards[is_draw] = rew_draw
+        adv_rewards[is_draw] = rew_draw
+        is_final = has_win | (~is_valid) | is_draw
+        #reinitialise game if it is a final state
+        self.board[is_final] = 0
+        self.cols[is_final] = 0
+        return is_final, rewards, adv_rewards
 
 
 if __name__ == "__main__":
@@ -326,57 +341,57 @@ if __name__ == "__main__":
 
     board = BatchBoard(nbatch=2, device=device)
     cols = torch.tensor([3, 3]).to(device)
-    print(board.play(cols))
+    print(board.get_reward(cols))
     print(board)
     print(board.check_win(1))
 
     cols = torch.tensor([3, 4]).to(device)
-    print(board.play(cols))
+    print(board.get_reward(cols))
     print(board)
     print(board.check_win(1))
 
     cols = torch.tensor([2, 4]).to(device)
-    print(board.play(cols))
+    print(board.get_reward(cols))
     print(board)
     print(board.check_win(1))
 
     cols = torch.tensor([2, 5]).to(device)
-    print(board.play(cols))
+    print(board.get_reward(cols))
     print(board)
     print(board.check_win(1))
 
     cols = torch.tensor([1, 5]).to(device)
-    print(board.play(cols))
+    print(board.get_reward(cols))
     print(board)
     print(board.check_win(1))
 
     cols = torch.tensor([2, 6]).to(device)
-    print(board.play(cols))
+    print(board.get_reward(cols))
     print(board)
     print(board.check_win(1))
 
     cols = torch.tensor([0, 5]).to(device)
-    print(board.play(cols))
+    print(board.get_reward(cols))
     print(board)
     print(board.check_win(1))
 
     cols = torch.tensor([2, 6]).to(device)
-    print(board.play(cols))
+    print(board.get_reward(cols))
     print(board)
     print(board.check_win(1))
 
     cols = torch.tensor([1, 6]).to(device)
-    print(board.play(cols))
+    print(board.get_reward(cols))
     print(board)
     print(board.check_win(1))
 
     cols = torch.tensor([2, 4]).to(device)
-    print(board.play(cols))
+    print(board.get_reward(cols))
     print(board)
     print(board.check_win(1))
 
     cols = torch.tensor([1, 6]).to(device)
-    print(board.play(cols))
+    print(board.get_reward(cols))
     print(board)
     print(board.check_win(1))
     print(board.check_win(-1))
