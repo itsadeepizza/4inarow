@@ -58,8 +58,8 @@ if __name__ == "__main__":
     #BATCH_SIZE = 128
     GAMMA = 0.99
     EPS_START = 0.9
-    EPS_END = 0.2
-    EPS_DECAY = 200
+    EPS_END = 0.05
+    EPS_DECAY = 100_000
     TARGET_UPDATE = 10
 
     rows = 6
@@ -70,14 +70,16 @@ if __name__ == "__main__":
 
     board = Board()
     old_Q_move = None
+    old_adv_Q_move = None
 
-    for i in range(100_000):
+    for i in range(2_000_000):
 
         # the policy calculate Q associated at each possible move
         eps_threshold = EPS_END + (EPS_START - EPS_END) * math.exp(-1. * i / EPS_DECAY)
         state = board.state.to(device).unsqueeze(0).unsqueeze(0)
+        optimizer.zero_grad()
         new_Q = policy_net.forward(state)
-        #Best move according to the polocy net
+        #Best move according to the policy net
         move = torch.argmax(new_Q)
         # Sometime choose a random move
         if random.random() < eps_threshold:
@@ -97,38 +99,71 @@ if __name__ == "__main__":
 
 
             # Optimize the model
-            optimizer.zero_grad()
+
             loss.backward()
-            for param in policy_net.parameters():
-                param.grad.data.clamp_(-1, 1)
-                optimizer.step()
-
-
-
+            # for param in policy_net.parameters():
+            #     param.grad.data.clamp_(-1, 1)
+            optimizer.step()
 
 
         old_Q_move = new_Q[0][move].detach()
         reward, new_game = board.get_reward(move)
         if i % 100 == 0:
             print(i)
-        if i % 10000 > 9900:
+        if i % 10_000 > 9900:
             print("-" * 30)
             print(i)
             print(move)
             print(reward)
             print(board)
             print(old_Q_move, best_Q, reward, delta)
-
-
+        if i % 50_000 == 0:
+            path = f"runs/model_{i//50_000}.pt"
+            #torch.save(policy_net.state_dict(), path)
+            torch.save(policy_net, path)
 
         if new_game:
             pass
             #old_Q_move = None
         # The opponent play
+
+        # with torch.no_grad():
+        #     Q = policy_net.forward(adv_state)
+        #     adv_move = torch.argmax(Q).detach()
+        #     # Best move according to the policy net
+        #     adv_reward, adv_new_game = board.get_reward(adv_move)
+
         adv_state = board.state.to(device).unsqueeze(0).unsqueeze(0)
-        Q = policy_net.forward(state)
+        new_adv_Q = policy_net.forward(state)
         # Best move according to the policy net
-        move = torch.argmax(new_Q)
-        board.play(move)
+        adv_move = torch.argmax(new_adv_Q)
+        # Sometime choose a random move
+        if random.random() < eps_threshold:
+            adv_move = random.randint(0, cols - 1)
+
+        # Stato N - prima della mossa n
+        # Calcoliamo Qn
+        # Giochiamo la mossa n - reward n
+        # l'avversario gioca
+        # stato N+1
+        # Calcoliamo Q_N+1
+        if old_adv_Q_move is not None:
+            best_move = torch.argmax(new_adv_Q).detach()
+            best_Q = new_adv_Q[0][best_move]
+            delta = old_adv_Q_move - (best_Q * GAMMA) - adv_reward
+            adv_loss = criterion(delta, torch.zeros(1).to(device))
+
+            # Optimize the model
+
+            adv_loss.backward()
+            # for param in policy_net.parameters():
+            #     param.grad.data.clamp_(-1, 1)
+            optimizer.step()
+
+        old_adv_Q_move = new_Q[0][adv_move].detach()
+        adv_reward, new_game = board.get_reward(adv_move)
+
+
+
 
 

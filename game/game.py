@@ -101,6 +101,49 @@ class Board:
                 print(f"Player {player} won !")
                 return False
 
+    def play_hvsm_game(self):
+        """Simulate a game between human player and model"""
+        from model.model import DQN
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        policy_net = DQN()
+        path = "../runs/model_1.pt"
+        #policy_net.load_state_dict(torch.load(path))
+        policy_net = torch.load(path)
+        policy_net.eval()
+
+        while True:
+            print(self)
+            player = self.player
+            while True:
+                print(f"PLAYER {player} - HUMAN")
+                print("Choose a valid column:")
+                col = int(input())
+                if self.play(col):
+                    break
+            if self.check_win(player):
+                print(self)
+                print(f"Player {player} won !")
+                return True
+
+
+            print(self)
+            player = self.player
+
+            print(f"PLAYER {player} - MACHINE")
+
+            adv_state = self.state.unsqueeze(0).unsqueeze(0).to(device)
+
+            with torch.no_grad():
+                Q = policy_net.forward(adv_state)
+                adv_move = torch.argmax(Q).item()
+            if not self.play(adv_move):
+                print("NOT VALID MOVE")
+                break
+            if self.check_win(player):
+                print(self)
+                print(f"Player {player} won !")
+                return False
+
     def reinitialize(self):
         """Reinitialise the grid"""
         self.board = np.zeros([self.nrows, self.ncols])
@@ -118,9 +161,154 @@ class Board:
 
         and a boolean which is true if a new game is starting
         """
-        rew_win = 1
-        rew_lose = -1
-        rew_invalid = -2
+        rew_win = 0.1
+        rew_lose = -0.1
+        rew_invalid = -0.2
+        if self.check_win(- self.player):
+            self.reinitialize()
+            return rew_lose, True
+        is_valid = self.play(col)
+        if not is_valid:
+            self.reinitialize()
+            return rew_invalid, True
+        if self.check_win(- self.player):
+            return rew_win, False
+        return 0, False
+
+class BatchBoard:
+    def __init__(self, nbatch=1, nrows=6, ncols=7, device=torch.device("cpu")):
+        # 0 no coin, otherwise plaYEr number coin
+        self.nrows = nrows
+        self.ncols = ncols
+        self.nbatch = nbatch
+        self.device = device
+        self.reinitialize()
+
+    def reinitialize(self):
+        """Reinitialise the grid"""
+        self.board = torch.zeros([self.nbatch, self.nrows, self.ncols], device=self.device)
+        # row level for each col
+        self.cols = torch.zeros([self.nbatch, self.ncols], dtype=int, device=self.device)
+        # player are 1 and -1
+        self.player = 1
+
+    @property
+    def state(self):
+        """return board, but coin marked 1 are from current player"""
+        return torch.FloatTensor(self.board * self.player)
+
+    def __repr__(self):
+        def get_symbol(n):
+            if n==0:
+                return " "
+            if n==1:
+                return "X"
+            if n==-1:
+                return "O"
+        out = ""
+        for batch in self.board:
+            out_batch = ""
+            for row in batch:
+                out_row = ""
+                for cell in row:
+                    symb = get_symbol(cell)
+                    out_row += f"|{symb}"
+                out_batch = out_row + "|\n" + out_batch
+            for i in range(self.ncols):
+                out_batch += "*" + str(i)
+            out_batch += "*\n"
+            out += out_batch
+        return out
+
+    def play(self, col: torch.Tensor):
+        """Put a coin in the `col` column. Return False if impossible"""
+        # Create a sparse matrix for selecting chosen columns for each batch
+        indx = torch.stack((torch.arange(self.nbatch, device=self.device),
+                           col))
+        vals = torch.ones([self.nbatch], device=self.device)
+        mask = torch.sparse_coo_tensor(indx,
+                                       vals,
+                                       (self.nbatch, self.ncols),
+                                       dtype=bool,
+                                       device = self.device).to_dense()
+        # Check if the chosen columns are out of range
+        # is_valid = (col > 0) & (col < self.ncols)
+        # Check if the chosen columns are already filled
+        curr_row = self.cols[mask]
+        is_valid = curr_row < self.nrows # & is_valid
+        # put the coin for current player
+        #self.board[curr_row][col] = self.player
+        # add 1 to each chosen columns for each batch
+        board_indx = torch.stack((torch.arange(self.nbatch, device=self.device),
+                            curr_row,
+                            col))
+        # keep only valid columns
+        board_indx = board_indx[:, is_valid]
+        board_vals = torch.ones([is_valid.sum()], device=self.device)
+        board_mask = torch.sparse_coo_tensor(board_indx,
+                                       board_vals,
+                                       (self.nbatch, self.nrows, self.ncols),
+                                       dtype=bool,
+                                       device=self.device).to_dense()
+        self.board[board_mask] = self.player
+        self.cols[mask] += 1
+        # change player
+        self.player *= -1
+        # return batch with valid move
+        return is_valid
+
+    def check_win(self, player):
+        """return True if the player `player` has won"""
+
+        def check_win_line(line, player):
+            """Check if player has won in a batch of linearized arrays"""
+            four_adjacent = (line[:, :-3] == player) & \
+                            (line[:, 1:-2] == player) & \
+                            (line[:, 2:-1] == player) & \
+                            (line[:, 3:] == player)
+            player_win = four_adjacent.any(1)
+            return player_win
+
+        def roll_by_gather(mat, sgn):
+            """shift all rows of different batches of incremental value toward left or right according to sgn = 1 or -1"""
+            # assumes 2D array
+            n_batch, n_rows, n_cols = mat.shape
+
+            a1 = torch.arange(n_rows, device=mat.device).view((1, n_rows, 1)).repeat((n_batch, 1, n_cols))
+            a2 = (sgn * (torch.arange(n_cols, device=mat.device) - a1)) % n_cols
+            return torch.gather(mat, 2, a2 )
+
+
+        # add empty rows and columns
+        z1 = torch.zeros([self.nbatch, 1, self.ncols], device=self.device)
+        check_board = torch.cat((self.board, z1), dim=1)
+        z2 = torch.zeros([self.nbatch, self.nrows + 1, 1], device=self.device)
+        check_board = torch.cat((check_board, z2), dim=2)
+
+        # flatten for each possible direction
+        is_hor_win = check_win_line(check_board.flatten(1), player)
+        is_ver_win = check_win_line(check_board.permute((0,2,1)).flatten(1), player)
+        is_diag1_win = check_win_line(roll_by_gather(check_board, 1).permute((0,2,1)).flatten(1), player)
+        is_diag2_win = check_win_line(roll_by_gather(check_board, -1).permute((0,2,1)).flatten(1), player)
+        # has player won?
+        win = is_hor_win | is_ver_win | is_diag1_win | is_diag2_win
+        print(is_hor_win, is_ver_win, is_diag1_win, is_diag2_win)
+        return win
+
+
+    def get_reward(self, col):
+        """Return the reward associated to the move
+        1 if win
+        -1 if lose
+        -2 invalid play
+        0 otherwise
+
+        and a boolean which is true if a new game is starting
+        """
+        # TODO
+        rew_win = 0.1
+        rew_lose = -0.1
+        rew_invalid = -0.2
         if self.check_win(- self.player):
             self.reinitialize()
             return rew_lose, True
@@ -133,21 +321,62 @@ class Board:
         return 0, False
 
 
-if __name__ == "main":
+if __name__ == "__main__":
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-    board = Board()
-    board.play(1)
-    board.play(2)
-    board.play(2)
-    board.play(3)
-    board.play(3)
-    board.play(4)
-    board.play(3)
-    board.play(4)
-    board.play(4)
-    board.play(6)
-    board.play(4)
+    board = BatchBoard(nbatch=2, device=device)
+    cols = torch.tensor([3, 3]).to(device)
+    print(board.play(cols))
     print(board)
+    print(board.check_win(1))
+
+    cols = torch.tensor([3, 4]).to(device)
+    print(board.play(cols))
+    print(board)
+    print(board.check_win(1))
+
+    cols = torch.tensor([2, 4]).to(device)
+    print(board.play(cols))
+    print(board)
+    print(board.check_win(1))
+
+    cols = torch.tensor([2, 5]).to(device)
+    print(board.play(cols))
+    print(board)
+    print(board.check_win(1))
+
+    cols = torch.tensor([1, 5]).to(device)
+    print(board.play(cols))
+    print(board)
+    print(board.check_win(1))
+
+    cols = torch.tensor([2, 6]).to(device)
+    print(board.play(cols))
+    print(board)
+    print(board.check_win(1))
+
+    cols = torch.tensor([0, 5]).to(device)
+    print(board.play(cols))
+    print(board)
+    print(board.check_win(1))
+
+    cols = torch.tensor([2, 6]).to(device)
+    print(board.play(cols))
+    print(board)
+    print(board.check_win(1))
+
+    cols = torch.tensor([1, 6]).to(device)
+    print(board.play(cols))
+    print(board)
+    print(board.check_win(1))
+
+    cols = torch.tensor([2, 4]).to(device)
+    print(board.play(cols))
+    print(board)
+    print(board.check_win(1))
+
+    cols = torch.tensor([1, 6]).to(device)
+    print(board.play(cols))
+    print(board)
+    print(board.check_win(1))
     print(board.check_win(-1))
-    board = Board()
-    board.play_hvsh_game()
