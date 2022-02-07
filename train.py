@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from game.game import Board
+from game.game import BatchBoard
 from model.model import DQN
 import random
 from collections import namedtuple
@@ -64,104 +64,67 @@ if __name__ == "__main__":
 
     rows = 6
     cols = 7
+    batch = 500
     policy_net = DQN(rows, cols).to(device)
     optimizer = optim.RMSprop(policy_net.parameters())
     criterion = nn.SmoothL1Loss()
 
-    board = Board()
+    board = BatchBoard(nbatch=batch, device=device)
     old_Q_move = None
     old_adv_Q_move = None
+
+    list_S = []
+    list_F = []
+    list_R = []
+    list_M = []
 
     for i in range(2_000_000):
 
         # the policy calculate Q associated at each possible move
         eps_threshold = EPS_END + (EPS_START - EPS_END) * math.exp(-1. * i / EPS_DECAY)
-        state = board.state.to(device).unsqueeze(0).unsqueeze(0)
-        optimizer.zero_grad()
-        new_Q = policy_net.forward(state)
-        #Best move according to the policy net
-        move = torch.argmax(new_Q)
+        S = board.state
+        with torch.no_grad():
+            Q = policy_net.forward(S).detach()
+        pi = Q.max(dim=1).values
+        # take the best move
+        M = Q.argmax(dim=1)
         # Sometime choose a random move
         if random.random() < eps_threshold:
-            move = random.randint(0, cols - 1)
+            M = torch.randint(0, cols, [batch], device=device)
+        list_M.append(M)
+        F, R, R_adv = board.get_reward(M)
 
-        # Stato N - prima della mossa n
-        # Calcoliamo Qn
-        # Giochiamo la mossa n - reward n
-        # l'avversario gioca
-        # stato N+1
-        # Calcoliamo Q_N+1
-        if old_Q_move is not None:
-            best_move = torch.argmax(new_Q).detach()
-            best_Q = new_Q[0][best_move]
-            delta = old_Q_move - (best_Q * GAMMA) - reward
-            loss = criterion(delta, torch.zeros(1).to(device))
+        if len(list_S) >= 2:
+            list_R[1] += R_adv
+            F_old = list_F[0]
+            S_old = list_S[0]
+            M_old = list_M[0]
+            R_old = list_R[0]
 
+            pi[F_old] = 0
+            optimizer.zero_grad()
+            Q_old = policy_net.forward(S_old)
+            est = torch.gather(Q_old, 1, M.unsqueeze(0))
 
-            # Optimize the model
+            delta = est - R_old - GAMMA * pi
 
+            loss = criterion(delta, torch.zeros(delta.shape, device=device))
             loss.backward()
             # for param in policy_net.parameters():
             #     param.grad.data.clamp_(-1, 1)
             optimizer.step()
+            if i % 100 == 0:
+                print(i)
+            if i % 10_000 > 9_900:
+                print(board)
+            if i % 100_000 == 0:
+                path = f"runs/model_{i}.pt"
+                torch.save(policy_net.state_dict(), path)
 
+        list_S.append(S)
+        list_R.append(R)
+        list_F.append(F)
 
-        old_Q_move = new_Q[0][move].detach()
-        reward, new_game = board.get_reward(move)
-        if i % 100 == 0:
-            print(i)
-        if i % 10_000 > 9900:
-            print("-" * 30)
-            print(i)
-            print(move)
-            print(reward)
-            print(board)
-            print(old_Q_move, best_Q, reward, delta)
-        if i % 50_000 == 0:
-            path = f"runs/model_{i//50_000}.pt"
-            #torch.save(policy_net.state_dict(), path)
-            torch.save(policy_net, path)
-
-        if new_game:
-            pass
-            #old_Q_move = None
-        # The opponent play
-
-        # with torch.no_grad():
-        #     Q = policy_net.forward(adv_state)
-        #     adv_move = torch.argmax(Q).detach()
-        #     # Best move according to the policy net
-        #     adv_reward, adv_new_game = board.get_reward(adv_move)
-
-        adv_state = board.state.to(device).unsqueeze(0).unsqueeze(0)
-        new_adv_Q = policy_net.forward(state)
-        # Best move according to the policy net
-        adv_move = torch.argmax(new_adv_Q)
-        # Sometime choose a random move
-        if random.random() < eps_threshold:
-            adv_move = random.randint(0, cols - 1)
-
-        # Stato N - prima della mossa n
-        # Calcoliamo Qn
-        # Giochiamo la mossa n - reward n
-        # l'avversario gioca
-        # stato N+1
-        # Calcoliamo Q_N+1
-        if old_adv_Q_move is not None:
-            best_move = torch.argmax(new_adv_Q).detach()
-            best_Q = new_adv_Q[0][best_move]
-            delta = old_adv_Q_move - (best_Q * GAMMA) - adv_reward
-            adv_loss = criterion(delta, torch.zeros(1).to(device))
-
-            # Optimize the model
-
-            adv_loss.backward()
-            # for param in policy_net.parameters():
-            #     param.grad.data.clamp_(-1, 1)
-            optimizer.step()
-
-        old_adv_Q_move = new_Q[0][adv_move].detach()
-        adv_reward, new_game = board.get_reward(adv_move)
 
 
 

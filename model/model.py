@@ -15,7 +15,7 @@ class DQN(nn.Module):
 
     def forward(self, grid):
         # Input a grid m x n
-        x = self.l1(grid.view(1, -1))
+        x = self.l1(grid.flatten(1))
         x = torch.sigmoid(x)
         x = self.l2(x)
         x = torch.sigmoid(x)

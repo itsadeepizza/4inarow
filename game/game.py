@@ -195,7 +195,7 @@ class BatchBoard:
     @property
     def state(self):
         """return board, but coin marked 1 are from current player"""
-        return torch.FloatTensor(self.board * self.player)
+        return self.board * self.player
 
     def __repr__(self):
         def get_symbol(n):
@@ -297,7 +297,7 @@ class BatchBoard:
         is_diag2_win = check_win_line(roll_by_gather(check_board, -1).permute((0,2,1)).flatten(1), player)
         # has player won?
         win = is_hor_win | is_ver_win | is_diag1_win | is_diag2_win
-        print(is_hor_win, is_ver_win, is_diag1_win, is_diag2_win)
+        #print(is_hor_win, is_ver_win, is_diag1_win, is_diag2_win)
         return win
 
 
