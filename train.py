@@ -57,15 +57,18 @@ if __name__ == "__main__":
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     #BATCH_SIZE = 128
     GAMMA = 0.99
-    EPS_START = 0.9
+    EPS_START = 0.3
     EPS_END = 0.05
     EPS_DECAY = 100_000
     TARGET_UPDATE = 10
 
     rows = 6
     cols = 7
-    batch = 500
+    batch = 200
     policy_net = DQN(rows, cols).to(device)
+    target_net = DQN(rows, cols).to(device)
+    target_net.load_state_dict(policy_net.state_dict())
+    target_net.eval()
     optimizer = optim.RMSprop(policy_net.parameters())
     criterion = nn.SmoothL1Loss()
 
@@ -84,7 +87,7 @@ if __name__ == "__main__":
         eps_threshold = EPS_END + (EPS_START - EPS_END) * math.exp(-1. * i / EPS_DECAY)
         S = board.state
         with torch.no_grad():
-            Q = policy_net.forward(S).detach()
+            Q = target_net.forward(S).detach()
         pi = Q.max(dim=1).values
         # take the best move
         M = Q.argmax(dim=1)
@@ -96,30 +99,44 @@ if __name__ == "__main__":
 
         if len(list_S) >= 2:
             list_R[1] += R_adv
-            F_old = list_F[0]
-            S_old = list_S[0]
-            M_old = list_M[0]
-            R_old = list_R[0]
+            list_F[1][F] = True
+            F_old = list_F.pop(0)
+            S_old = list_S.pop(0)
+            M_old = list_M.pop(0)
+            R_old = list_R.pop(0)
 
             pi[F_old] = 0
-            optimizer.zero_grad()
+
             Q_old = policy_net.forward(S_old)
-            est = torch.gather(Q_old, 1, M.unsqueeze(0))
+            est = torch.gather(Q_old, 1, M_old.unsqueeze(0))
 
             delta = est - R_old - GAMMA * pi
 
-            loss = criterion(delta, torch.zeros(delta.shape, device=device))
+            #loss = criterion(delta, torch.zeros(delta.shape, device=device))
+            loss = torch.abs(delta).sum() / (10 * batch)
+            optimizer.zero_grad()
             loss.backward()
             # for param in policy_net.parameters():
             #     param.grad.data.clamp_(-1, 1)
             optimizer.step()
-            if i % 100 == 0:
+            if i % 100 ==0:
+                target_net.load_state_dict(policy_net.state_dict())
+            if i % 1000 == 0:
                 print(i)
+                print(Q)
+                print(board.state[0:2])
+                print("R:", R_old)
+                print("F:", F_old)
+                print("PI:", pi)
+                print('est:', est)
             if i % 10_000 > 9_900:
-                print(board)
-            if i % 100_000 == 0:
+                pass
+                print(board.state[0])
+            if i % 30_000 == 0:
                 path = f"runs/model_{i}.pt"
                 torch.save(policy_net.state_dict(), path)
+            if i % 1_000 == 0:
+                torch.cuda.empty_cache()
 
         list_S.append(S)
         list_R.append(R)

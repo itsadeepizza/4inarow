@@ -104,11 +104,11 @@ class Board:
     def play_hvsm_game(self):
         """Simulate a game between human player and model"""
         from model.model import DQN
-        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
         policy_net = DQN()
-        path = "../runs/model_1.pt"
-        #policy_net.load_state_dict(torch.load(path))
-        policy_net = torch.load(path)
+        path = "../runs/model_60000.pt"
+        policy_net.load_state_dict(torch.load(path))
+        #policy_net = torch.load(path)
         policy_net.eval()
 
         while True:
@@ -131,10 +131,11 @@ class Board:
 
             print(f"PLAYER {player} - MACHINE")
 
-            adv_state = self.state.unsqueeze(0).unsqueeze(0).to(device)
+            adv_state = self.state.unsqueeze(0)
 
             with torch.no_grad():
                 Q = policy_net.forward(adv_state)
+                print(Q)
                 adv_move = torch.argmax(Q).item()
             if not self.play(adv_move):
                 print("NOT VALID MOVE")
@@ -161,9 +162,9 @@ class Board:
 
         and a boolean which is true if a new game is starting
         """
-        rew_win = 0.1
-        rew_lose = -0.1
-        rew_invalid = -0.2
+        rew_win = 1
+        rew_lose = -1
+        rew_invalid = -2
         if self.check_win(- self.player):
             self.reinitialize()
             return rew_lose, True
@@ -310,9 +311,9 @@ class BatchBoard:
 
         for the player and the opponent, and if it is the final state of the game
         """
-        rew_win = 0.1
-        rew_lose = -0.1
-        rew_invalid = -0.2
+        rew_win = 1
+        rew_lose = -1
+        rew_invalid = -2
         rew_draw = 0
 
         rewards = torch.zeros([self.nbatch], device=self.device)
@@ -395,3 +396,6 @@ if __name__ == "__main__":
     print(board)
     print(board.check_win(1))
     print(board.check_win(-1))
+
+    board = Board()
+    board.play_hvsm_game()

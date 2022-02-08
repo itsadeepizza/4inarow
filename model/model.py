@@ -8,8 +8,8 @@ class DQN(nn.Module):
 
     def __init__(self, rows=6, cols=7):
         super(DQN, self).__init__()
-        self.l1 = nn.Linear(rows * cols, 50)
-        self.l2 = nn.Linear(50, 50)
+        self.l1 = nn.Linear(rows * cols, 300)
+        self.l2 = nn.Linear(300, 50)
         self.l3 = nn.Linear(50, 25)
         self.l4 = nn.Linear(25, cols)
 
@@ -22,7 +22,7 @@ class DQN(nn.Module):
         x = self.l3(x)
         x = torch.sigmoid(x)
         x = self.l4(x)
-        x = torch.sigmoid(x)
+        #x = torch.sigmoid(x)
         # Output a n array
         return x
 
