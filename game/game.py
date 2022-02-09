@@ -106,7 +106,7 @@ class Board:
         from model.model import DQN
 
         policy_net = DQN()
-        path = "../runs/model_60000.pt"
+        path = "../runs/model_180000.pt"
         policy_net.load_state_dict(torch.load(path))
         #policy_net = torch.load(path)
         policy_net.eval()

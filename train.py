@@ -4,10 +4,7 @@ import torch.optim as optim
 from game.game import BatchBoard
 from model.model import DQN
 import random
-from collections import namedtuple
 import math
-
-
 
 # def optimize_model():
 #     transitions = memory.sample(BATCH_SIZE)
@@ -55,7 +52,7 @@ import math
 if __name__ == "__main__":
     # if gpu is to be used
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    #BATCH_SIZE = 128
+    # BATCH_SIZE = 128
     GAMMA = 0.99
     EPS_START = 0.3
     EPS_END = 0.05
@@ -64,7 +61,7 @@ if __name__ == "__main__":
 
     rows = 6
     cols = 7
-    batch = 200
+    batch = 1_000
     policy_net = DQN(rows, cols).to(device)
     target_net = DQN(rows, cols).to(device)
     target_net.load_state_dict(policy_net.state_dict())
@@ -73,15 +70,13 @@ if __name__ == "__main__":
     criterion = nn.SmoothL1Loss()
 
     board = BatchBoard(nbatch=batch, device=device)
-    old_Q_move = None
-    old_adv_Q_move = None
 
     list_S = []
     list_F = []
     list_R = []
     list_M = []
 
-    for i in range(2_000_000):
+    for i in range(10_000_000):
 
         # the policy calculate Q associated at each possible move
         eps_threshold = EPS_END + (EPS_START - EPS_END) * math.exp(-1. * i / EPS_DECAY)
@@ -91,15 +86,19 @@ if __name__ == "__main__":
         pi = Q.max(dim=1).values
         # take the best move
         M = Q.argmax(dim=1)
-        # Sometime choose a random move
-        if random.random() < eps_threshold:
-            M = torch.randint(0, cols, [batch], device=device)
+        # Sometime choose a random move, using eps_threshold as threshold
+        rand_M = torch.randint(0, cols, [batch], device=device)
+        rand_choice = torch.rand([batch], device=device)
+        M[rand_choice < eps_threshold] = rand_M[rand_choice < eps_threshold]
+
         list_M.append(M)
         F, R, R_adv = board.get_reward(M)
 
         if len(list_S) >= 2:
+            # update rewards and final state using data from opponent play
             list_R[1] += R_adv
             list_F[1][F] = True
+
             F_old = list_F.pop(0)
             S_old = list_S.pop(0)
             M_old = list_M.pop(0)
@@ -108,27 +107,26 @@ if __name__ == "__main__":
             pi[F_old] = 0
 
             Q_old = policy_net.forward(S_old)
-            est = torch.gather(Q_old, 1, M_old.unsqueeze(0))
+            state_action_values = torch.gather(Q_old, 1, M_old.unsqueeze(0))
+            expected_state_action_values = R_old + GAMMA * pi
 
-            delta = est - R_old - GAMMA * pi
-
-            #loss = criterion(delta, torch.zeros(delta.shape, device=device))
-            loss = torch.abs(delta).sum() / (10 * batch)
+            loss = criterion(state_action_values, expected_state_action_values.unsqueeze(0))
+            # loss = torch.abs(delta).sum() / (10 * batch)
             optimizer.zero_grad()
             loss.backward()
-            # for param in policy_net.parameters():
-            #     param.grad.data.clamp_(-1, 1)
+            for param in policy_net.parameters():
+                param.grad.data.clamp_(-1, 1)
             optimizer.step()
-            if i % 100 ==0:
+            if i % 100 == 0:
                 target_net.load_state_dict(policy_net.state_dict())
             if i % 1000 == 0:
                 print(i)
-                print(Q)
+                print("Q:", Q)
                 print(board.state[0:2])
-                print("R:", R_old)
+                print("R:", R)
                 print("F:", F_old)
                 print("PI:", pi)
-                print('est:', est)
+                print('est:', state_action_values)
             if i % 10_000 > 9_900:
                 pass
                 print(board.state[0])
@@ -141,9 +139,3 @@ if __name__ == "__main__":
         list_S.append(S)
         list_R.append(R)
         list_F.append(F)
-
-
-
-
-
-
