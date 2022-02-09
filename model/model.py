@@ -9,19 +9,26 @@ class DQN(nn.Module):
     def __init__(self, rows=6, cols=7):
         super(DQN, self).__init__()
         self.l1 = nn.Linear(rows * cols, 300)
-        self.l2 = nn.Linear(300, 50)
-        self.l3 = nn.Linear(50, 25)
-        self.l4 = nn.Linear(25, cols)
+        self.l2 = nn.Linear(300, 500)
+        self.l3 = nn.Linear(500, 50)
+        self.l4 = nn.Linear(50, 25)
+        self.l5 = nn.Linear(25, cols)
+
+        # Define proportion or neurons to dropout
+        self.dropout = nn.Dropout(0.5)
 
     def forward(self, grid):
         # Input a grid m x n
         x = self.l1(grid.flatten(1))
         x = torch.sigmoid(x)
         x = self.l2(x)
+        x = self.dropout(x)
         x = torch.sigmoid(x)
         x = self.l3(x)
+        x = self.dropout(x)
         x = torch.sigmoid(x)
         x = self.l4(x)
+        x = self.l5(x)
         #x = torch.sigmoid(x)
         # Output a n array
         return x

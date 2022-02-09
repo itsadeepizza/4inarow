@@ -5,7 +5,8 @@ from game.game import BatchBoard
 from model.model import DQN
 import random
 import math
-
+import os, datetime
+from torch.utils.tensorboard import SummaryWriter
 # def optimize_model():
 #     transitions = memory.sample(BATCH_SIZE)
 #     # Transpose the batch (see https://stackoverflow.com/a/19343/3343043 for
@@ -54,7 +55,7 @@ if __name__ == "__main__":
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     # BATCH_SIZE = 128
     GAMMA = 0.99
-    EPS_START = 0.3
+    EPS_START = 0.9
     EPS_END = 0.05
     EPS_DECAY = 100_000
     TARGET_UPDATE = 10
@@ -69,6 +70,21 @@ if __name__ == "__main__":
     optimizer = optim.RMSprop(policy_net.parameters())
     criterion = nn.SmoothL1Loss()
 
+    # Create directories for logs
+    now_str = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+    log_dir = "runs/fit/" + now_str
+    summary_dir = log_dir + "/summary"
+    models_dir = log_dir + "/models"
+    test_dir = log_dir + "/test"
+    os.makedirs(log_dir, exist_ok=True)
+    # os.mkdir(summary_dir)
+    os.makedirs(models_dir, exist_ok=True)
+    os.makedirs(test_dir, exist_ok=True)
+    writer = SummaryWriter(summary_dir)
+    # variable to store the ratio of case used in the grid
+    mean_ratio_board = 0
+    # variable to store the mean number of invalid moves
+    mean_lost_game = 0
     board = BatchBoard(nbatch=batch, device=device)
 
     list_S = []
@@ -119,23 +135,42 @@ if __name__ == "__main__":
             optimizer.step()
             if i % 100 == 0:
                 target_net.load_state_dict(policy_net.state_dict())
-            if i % 1000 == 0:
+
+            mean_ratio_board += torch.abs(board.state).mean()
+            mean_lost_game = ((R==-2)/(-2)).mean()
+            interval = 1000
+            if i % interval == 0:
                 print(i)
                 print("Q:", Q)
-                print(board.state[0:2])
-                print("R:", R)
-                print("F:", F_old)
-                print("PI:", pi)
-                print('est:', state_action_values)
+                #print(board.state[0:2])
+                #print("R:", R)
+                #print("F:", F_old)
+                #print("PI:", pi)
+                #print('est:', state_action_values)
+                print(mean_ratio_board.item())
+                print(mean_lost_game.item())
+                writer.add_scalar("mean_ratio_board",
+                                  mean_ratio_board.item() / interval,
+                                  i)
+                writer.add_scalar("mean_lost_game",
+                                  mean_lost_game.item() / interval,
+                                  i)
+                mean_ratio_board = 0
+                mean_lost_game = 0
             if i % 10_000 > 9_900:
-                pass
-                print(board.state[0])
+                    pass
+                    print(board.state[0])
             if i % 30_000 == 0:
-                path = f"runs/model_{i}.pt"
+                path = f"{models_dir}/model_{i}.pth"
                 torch.save(policy_net.state_dict(), path)
             if i % 1_000 == 0:
                 torch.cuda.empty_cache()
 
+
+
         list_S.append(S)
         list_R.append(R)
         list_F.append(F)
+
+
+#type "tensorboard --logdir=runs" in terminal
