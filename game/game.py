@@ -103,10 +103,10 @@ class Board:
 
     def play_hvsm_game(self):
         """Simulate a game between human player and model"""
-        from model.model import DQN
+        from model.model import DQN, smallDQN
 
-        policy_net = DQN()
-        path = "../runs/model_180000.pt"
+        policy_net = smallDQN()
+        path = "../runs/fit/20220211-010412/models/model_1800000.pth"
         policy_net.load_state_dict(torch.load(path))
         #policy_net = torch.load(path)
         policy_net.eval()
@@ -315,8 +315,9 @@ class BatchBoard:
         rew_lose = -1
         rew_invalid = -2
         rew_draw = 0
+        rew_none = 0.05
 
-        rewards = torch.zeros([self.nbatch], device=self.device)
+        rewards = torch.ones([self.nbatch], device=self.device) * rew_none
         adv_rewards = torch.zeros([self.nbatch], device=self.device)
         is_valid = self.play(cols)
         # negative rewards for invalid moves

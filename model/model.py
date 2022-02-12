@@ -4,6 +4,37 @@ import torch.optim as optim
 import torch.nn.functional as F
 
 
+class smallDQN(nn.Module):
+
+    def __init__(self, rows=6, cols=7):
+        super(smallDQN, self).__init__()
+        self.l1 = nn.Linear(rows * cols, 30)
+        self.l2 = nn.Linear(30, 30)
+        self.l3 = nn.Linear(30, 30)
+        self.l4 = nn.Linear(30, cols)
+
+
+        # Define proportion or neurons to dropout
+        self.dropout = nn.Dropout(0.5)
+
+    def forward(self, grid):
+        # Input a grid m x n
+        x = self.l1(grid.flatten(1))
+        x = torch.sigmoid(x)
+        x = self.l2(x)
+        x = self.dropout(x)
+        x = torch.sigmoid(x)
+        x = self.l3(x)
+        x = torch.sigmoid(x)
+        x = self.l4(x)
+
+
+
+        #x = torch.sigmoid(x)
+        # Output a n array
+        return x
+
+
 class DQN(nn.Module):
 
     def __init__(self, rows=6, cols=7):
@@ -28,10 +59,39 @@ class DQN(nn.Module):
         x = self.dropout(x)
         x = torch.sigmoid(x)
         x = self.l4(x)
+        x = torch.sigmoid(x)
         x = self.l5(x)
         #x = torch.sigmoid(x)
         # Output a n array
         return x
+
+
+class conv_DQN(nn.Module):
+
+    def __init__(self, rows=6, cols=7):
+        ch1 = 50
+        super(conv_DQN, self).__init__()
+        self.l1 = nn.Conv2d(1, out_channels=ch1, kernel_size=4, padding=2)
+        self.l2 = nn.Linear(7 * 8 * ch1, 100)
+        self.l3 = nn.Linear(100, cols)
+
+
+        # Define proportion or neurons to dropout
+        self.dropout = nn.Dropout(0.5)
+
+    def forward(self, grid):
+        # Input a grid m x n
+        x = self.l1(grid.unsqueeze(1))
+        x = torch.sigmoid(x)
+        x = self.dropout(x)
+        x = self.l2(x.flatten(1))
+        #x = self.dropout(x)
+        x = torch.sigmoid(x)
+        x = self.l3(x)
+        #x = torch.sigmoid(x)
+        # Output a n array
+        return x
+
 
 """
 if __name__ == "__main__":
