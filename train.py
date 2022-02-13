@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 from game.game import BatchBoard
-from model.model import DQN, smallDQN, conv_DQN
+from model.model import DQN, smallDQN, conv_DQN, channel_DQN, full_channel_DQN
 import random
 import math
 import os, datetime
@@ -62,11 +62,11 @@ if __name__ == "__main__":
 
     rows = 6
     cols = 7
-    batch = 64
-    policy_net1 = conv_DQN(rows, cols).to(device)
-    target_net1 = conv_DQN(rows, cols).to(device)
-    policy_net2 = conv_DQN(rows, cols).to(device)
-    target_net2 = conv_DQN(rows, cols).to(device)
+    batch = 512
+    policy_net1 = full_channel_DQN(rows, cols).to(device)
+    target_net1 = full_channel_DQN(rows, cols).to(device)
+    policy_net2 = full_channel_DQN(rows, cols).to(device)
+    target_net2 = full_channel_DQN(rows, cols).to(device)
     target_net1.load_state_dict(policy_net1.state_dict())
     target_net1.eval()
     target_net2.load_state_dict(policy_net2.state_dict())
@@ -92,6 +92,8 @@ if __name__ == "__main__":
     mean_ratio_board = torch.zeros([1], device=device)
     # variable to store the mean number of invalid moves (this value need to reduce)
     mean_error_game = torch.zeros([1], device=device)
+    mean_loss = 0
+
     board = BatchBoard(nbatch=batch, device=device)
 
     list_S = []
@@ -139,21 +141,24 @@ if __name__ == "__main__":
                 optimizer2.zero_grad()
                 Q_old = policy_net2.forward(S_old)
 
-            state_action_values = torch.gather(Q_old, 1, M_old.unsqueeze(0))
-            expected_state_action_values = R_old + GAMMA * pi
+            # PAY ATTENTION to gather method, it is a bit tricky !
+            state_action_values = Q_old.gather(1, M_old.unsqueeze(1))
 
-            loss = criterion(state_action_values, expected_state_action_values.unsqueeze(0))
+            expected_state_action_values = R_old #+ GAMMA * pi
+            expected_state_action_values = expected_state_action_values.unsqueeze(1)
+
+            loss = criterion(state_action_values, expected_state_action_values)
             # loss = torch.abs(delta).sum() / (10 * batch)
 
             loss.backward()
 
             if board.player == -1:
-                for param in policy_net1.parameters():
-                    param.grad.data.clamp_(-1, 1)
+                #for param in policy_net1.parameters():
+                 #   param.grad.data.clamp_(-1, 1)
                 optimizer1.step()
             else:
-                for param in policy_net2.parameters():
-                    param.grad.data.clamp_(-1, 1)
+                #for param in policy_net2.parameters():
+                #    param.grad.data.clamp_(-1, 1)
                 optimizer2.step()
 
             if i % TARGET_UPDATE == 0:
@@ -164,25 +169,34 @@ if __name__ == "__main__":
 
             mean_ratio_board += torch.abs(board.state).mean()
             mean_error_game += (1.0 * (R==-2)).mean()
+            mean_loss += loss.item()
 
             if i % interval_tensorboard == 0:
                 print(i)
-                print("Q:", Q)
+                print("Q_old:", Q_old)
                 #print(board.state[0:2])
-                #print("R:", R)
+                print("M_old:", M_old)
+                print("R_old:", R_old)
                 #print("F:", F_old)
                 #print("PI:", pi)
-                #print('est:', state_action_values)
-                print(mean_ratio_board.item())
-                print(mean_error_game.item())
+                print('est:', state_action_values)
+                print("Mean Ratio Board: ", mean_ratio_board.item())
+                print(" Mean error ratio : ", mean_error_game.item())
+                print("Loss: ", loss)
+
+                # TENSOR BOARD
                 writer.add_scalar("mean_ratio_board",
                                   mean_ratio_board.item() / interval_tensorboard,
                                   i)
-                writer.add_scalar("mean_lost_game",
+                writer.add_scalar("mean_error_game",
                                   mean_error_game.item() / interval_tensorboard,
+                                  i)
+                writer.add_scalar("loss",
+                                  mean_loss / interval_tensorboard,
                                   i)
                 mean_ratio_board *= 0
                 mean_error_game *= 0
+                mean_loss = 0
             if i % 10_000 > 9_900:
                     pass
                     print(board.state[0])

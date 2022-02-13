@@ -66,6 +66,74 @@ class DQN(nn.Module):
         return x
 
 
+class channel_DQN(nn.Module):
+    """Model with coins separated in 2 channels (one for each player)"""
+    def __init__(self, rows=6, cols=7):
+        ch1 = 50
+        super(channel_DQN, self).__init__()
+        self.l1 = nn.Conv2d(2, out_channels=ch1, kernel_size=4, padding=2)
+        self.l2 = nn.Linear(7 * 8 * ch1, 100)
+        self.l3 = nn.Linear(100, 100)
+        self.l4 = nn.Linear(100, cols)
+
+
+        # Define proportion or neurons to dropout
+        self.dropout = nn.Dropout(0.5)
+
+    def forward(self, grid):
+        # Input a grid m x n
+        double_channel = torch.zeros(grid.shape, device=grid.device).unsqueeze(1).repeat(1, 2, 1, 1)
+        double_channel[:, 0, :, :][grid > 0] = 1
+        double_channel[:, 1, :, :][grid < 0] = 1
+        x = self.l1(double_channel)
+        x = torch.sigmoid(x)
+        x = self.dropout(x)
+        x = self.l2(x.flatten(1))
+        x = self.dropout(x)
+        x = torch.sigmoid(x)
+        x = self.l3(x)
+        x = self.dropout(x)
+        x = torch.sigmoid(x)
+        x = self.l4(x) - 3
+        #x = torch.sigmoid(x)
+        # Output a n array
+        return x
+
+class full_channel_DQN(nn.Module):
+    """Model with coins separated in 2 channels (one for each player)"""
+    def __init__(self, rows=6, cols=7):
+        ch1 = 50
+        super(full_channel_DQN, self).__init__()
+        self.l1 = nn.Linear(rows * cols * 2, 300)
+        self.l2 = nn.Linear(300, 500)
+        self.l3 = nn.Linear(500, 100)
+        self.l4 = nn.Linear(100, cols)
+
+
+        # Define proportion or neurons to dropout
+        self.dropout = nn.Dropout(0.5)
+
+    def forward(self, grid):
+        # Input a grid m x n
+        double_channel = torch.zeros(grid.shape, device=grid.device).unsqueeze(1).repeat(1, 2, 1, 1)
+        double_channel[:, 0, :, :][grid > 0] = 1
+        double_channel[:, 1, :, :][grid < 0] = 1
+        x = self.l1(double_channel.flatten(1))
+        x = torch.sigmoid(x)
+        x = self.dropout(x)
+        x = self.l2(x)
+        x = self.dropout(x)
+        x = torch.sigmoid(x)
+        x = self.l3(x)
+        x = self.dropout(x)
+        x = torch.sigmoid(x)
+        x = self.l4(x) - 3
+        #x = torch.sigmoid(x)
+        # Output a n array
+        return x
+
+
+
 class conv_DQN(nn.Module):
 
     def __init__(self, rows=6, cols=7):
