@@ -144,7 +144,7 @@ if __name__ == "__main__":
             # PAY ATTENTION to gather method, it is a bit tricky !
             state_action_values = Q_old.gather(1, M_old.unsqueeze(1))
 
-            expected_state_action_values = R_old #+ GAMMA * pi
+            expected_state_action_values = R_old + GAMMA * pi
             expected_state_action_values = expected_state_action_values.unsqueeze(1)
 
             loss = criterion(state_action_values, expected_state_action_values)
@@ -179,7 +179,7 @@ if __name__ == "__main__":
                 print("R_old:", R_old)
                 #print("F:", F_old)
                 #print("PI:", pi)
-                print('est:', state_action_values)
+                #print('est:', state_action_values)
                 print("Mean Ratio Board: ", mean_ratio_board.item())
                 print(" Mean error ratio : ", mean_error_game.item())
                 print("Loss: ", loss)

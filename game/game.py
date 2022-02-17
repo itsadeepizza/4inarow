@@ -103,10 +103,10 @@ class Board:
 
     def play_hvsm_game(self):
         """Simulate a game between human player and model"""
-        from model.model import DQN, smallDQN, channel_DQN
+        from model.model import DQN, smallDQN, channel_DQN, full_channel_DQN
 
-        policy_net = channel_DQN()
-        path = "../runs/fit/20220213-101351/models/model_2400000.pth"
+        policy_net = full_channel_DQN()
+        path = "../runs/fit/20220213-154417/models/model_2760000.pth"
         policy_net.load_state_dict(torch.load(path))
         #policy_net = torch.load(path)
         policy_net.eval()
@@ -137,6 +137,7 @@ class Board:
                 Q = policy_net.forward(adv_state)
                 print(Q)
                 adv_move = torch.argmax(Q).item()
+            print(f"Player {player} played {adv_move}")
             if not self.play(adv_move):
                 print("NOT VALID MOVE")
                 break

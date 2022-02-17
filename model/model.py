@@ -72,9 +72,9 @@ class channel_DQN(nn.Module):
         ch1 = 50
         super(channel_DQN, self).__init__()
         self.l1 = nn.Conv2d(2, out_channels=ch1, kernel_size=4, padding=2)
-        self.l2 = nn.Linear(7 * 8 * ch1, 100)
-        self.l3 = nn.Linear(100, 100)
-        self.l4 = nn.Linear(100, cols)
+        self.l2 = nn.Linear(7 * 8 * ch1, 300)
+        self.l3 = nn.Linear(300, 300)
+        self.l4 = nn.Linear(300, cols)
 
 
         # Define proportion or neurons to dropout
@@ -127,8 +127,8 @@ class full_channel_DQN(nn.Module):
         x = self.l3(x)
         x = self.dropout(x)
         x = torch.sigmoid(x)
-        x = self.l4(x) - 3
-        #x = torch.sigmoid(x)
+        x = self.l4(x)
+        x = torch.sigmoid(x) * 6 - 3
         # Output a n array
         return x
 
