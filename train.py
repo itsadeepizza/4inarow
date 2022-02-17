@@ -50,6 +50,7 @@ from torch.utils.tensorboard import SummaryWriter
 #         param.grad.data.clamp_(-1, 1)
 #     optimizer.step()
 
+print("hello world")
 if __name__ == "__main__":
     # if gpu is to be used
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -62,7 +63,7 @@ if __name__ == "__main__":
 
     rows = 6
     cols = 7
-    batch = 512
+    batch = 512 * 4 * 3 * 10 * 2
     policy_net1 = full_channel_DQN(rows, cols).to(device)
     target_net1 = full_channel_DQN(rows, cols).to(device)
     policy_net2 = full_channel_DQN(rows, cols).to(device)
@@ -87,7 +88,7 @@ if __name__ == "__main__":
     os.makedirs(models_dir, exist_ok=True)
     os.makedirs(test_dir, exist_ok=True)
     writer = SummaryWriter(summary_dir)
-    interval_tensorboard = 1000
+    interval_tensorboard = 50
     # variable to store the ratio of board filled with coins (this values need to increase)
     mean_ratio_board = torch.zeros([1], device=device)
     # variable to store the mean number of invalid moves (this value need to reduce)
