@@ -99,6 +99,10 @@ class channel_DQN(nn.Module):
         # Output a n array
         return x
 
+
+
+
+
 class full_channel_DQN(nn.Module):
     """Model with coins separated in 2 channels (one for each player)"""
     def __init__(self, rows=6, cols=7):
@@ -132,6 +136,52 @@ class full_channel_DQN(nn.Module):
         # Output a n array
         return x
 
+
+class Bottleneck(nn.Module):
+    def __init__(self, in_chans, expansion, act=torch.relu):
+        super().__init__()
+        mid = in_chans * expansion
+        self.l1 = nn.Linear(in_chans, mid)
+        self.l2 = nn.Linear(mid, mid)
+        self.l3 = nn.Linear(mid, in_chans)
+        self.act = act
+        self.drop = nn.Dropout(0.5)
+
+    def forward(self, x):
+        in_x = x
+        x = self.l1(x)
+        x = self.act(x)
+        x = self.l2(x)
+        x = self.act(x)
+        x = self.l3(x)
+        x = self.act(x)
+        x = in_x + x
+        return self.drop(x)
+
+
+class full_channel_DQN_v2(nn.Module):
+    """Model with coins separated in 2 channels (one for each player)"""
+    def __init__(self, rows=6, cols=7):
+        ch1 = 50
+        super().__init__()
+
+        chans = 150
+        self.l1 = nn.Linear(rows * cols, chans)
+        self.b1 = Bottleneck(chans, 2)
+        self.b2 = Bottleneck(chans, 2)
+        self.l2 = nn.Linear(chans, cols)
+        # Define proportion or neurons to dropout
+
+    def forward(self, x):
+        # Input a grid m x n
+        x = self.l1(x.flatten(1))
+        x = torch.sigmoid(x)
+        x = self.b1(x)
+        x = self.b2(x)
+        x = self.l2(x)
+        x = torch.sigmoid(x) * 6 - 3
+        # Output a n array
+        return x
 
 
 class conv_DQN(nn.Module):

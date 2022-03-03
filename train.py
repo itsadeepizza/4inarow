@@ -2,55 +2,16 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 from game.game import BatchBoard
-from model.model import DQN, smallDQN, conv_DQN, channel_DQN, full_channel_DQN
+from model.model import DQN, smallDQN, conv_DQN, channel_DQN, full_channel_DQN, full_channel_DQN_v2
 import random
 import math
 import os, datetime
 from torch.utils.tensorboard import SummaryWriter
-# def optimize_model():
-#     transitions = memory.sample(BATCH_SIZE)
-#     # Transpose the batch (see https://stackoverflow.com/a/19343/3343043 for
-#     # detailed explanation). This converts batch-array of Transitions
-#     # to Transition of batch-arrays.
-#     batch = Transition(*zip(*transitions))
-#
-#     # Compute a mask of non-final states and concatenate the batch elements
-#     # (a final state would've been the one after which simulation ended)
-#     non_final_mask = torch.tensor(tuple(map(lambda s: s is not None,
-#                                           batch.next_state)), device=device, dtype=torch.bool)
-#     non_final_next_states = torch.cat([s for s in batch.next_state
-#                                                 if s is not None])
-#     state_batch = torch.cat(batch.state)
-#     action_batch = torch.cat(batch.action)
-#     reward_batch = torch.cat(batch.reward)
-#
-#     # Compute Q(s_t, a) - the model computes Q(s_t), then we select the
-#     # columns of actions taken. These are the actions which would've been taken
-#     # for each batch state according to policy_net
-#     state_action_values = policy_net(state_batch).gather(1, action_batch)
-#
-#     # Compute V(s_{t+1}) for all next states.
-#     # Expected values of actions for non_final_next_states are computed based
-#     # on the "older" target_net; selecting their best reward with max(1)[0].
-#     # This is merged based on the mask, such that we'll have either the expected
-#     # state value or 0 in case the state was final.
-#     next_state_values = torch.zeros(BATCH_SIZE, device=device)
-#     next_state_values[non_final_mask] = target_net(non_final_next_states).max(1)[0].detach()
-#     # Compute the expected Q values
-#     expected_state_action_values = (next_state_values * GAMMA) + reward_batch
-#
-#     # Compute Huber loss
-#     criterion = nn.SmoothL1Loss()
-#     loss = criterion(state_action_values, expected_state_action_values.unsqueeze(1))
-#
-#     # Optimize the model
-#     optimizer.zero_grad()
-#     loss.backward()
-#     for param in policy_net.parameters():
-#         param.grad.data.clamp_(-1, 1)
-#     optimizer.step()
+from torchsummary import summary
 
-print("hello world")
+
+savefreq = 1000
+
 if __name__ == "__main__":
     # if gpu is to be used
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -64,14 +25,16 @@ if __name__ == "__main__":
     rows = 6
     cols = 7
     batch = 512 * 4 * 3 * 10 * 2
-    policy_net1 = full_channel_DQN(rows, cols).to(device)
-    target_net1 = full_channel_DQN(rows, cols).to(device)
-    policy_net2 = full_channel_DQN(rows, cols).to(device)
-    target_net2 = full_channel_DQN(rows, cols).to(device)
+    policy_net1 = full_channel_DQN_v2(rows, cols).to(device)
+    target_net1 = full_channel_DQN_v2(rows, cols).to(device)
+    policy_net2 = full_channel_DQN_v2(rows, cols).to(device)
+    target_net2 = full_channel_DQN_v2(rows, cols).to(device)
     target_net1.load_state_dict(policy_net1.state_dict())
     target_net1.eval()
     target_net2.load_state_dict(policy_net2.state_dict())
     target_net2.eval()
+
+    summary(policy_net1)
     # optimizer = optim.RMSprop(policy_net.parameters())
     optimizer1 = optim.Adam(policy_net1.parameters(), lr=0.001)
     optimizer2 = optim.Adam(policy_net2.parameters(), lr=0.001)
@@ -118,7 +81,15 @@ if __name__ == "__main__":
         # Sometime choose a random move, using eps_threshold as threshold
         rand_M = torch.randint(0, cols, [batch], device=device)
         rand_choice = torch.rand([batch], device=device)
-        M[rand_choice < eps_threshold] = rand_M[rand_choice < eps_threshold]
+        # Add more randomness at the beginning of the game
+        start_random = 0.9
+        end_random = 0.5
+        decay_random = 10
+        randomness_multiplier = end_random + (start_random - end_random) * torch.exp(-1. * board.n_moves / decay_random)
+        threshold_multiplied = 1 - (1 - eps_threshold) * (1 - randomness_multiplier)
+        # where_play_random = rand_choice < threshold_multiplied
+        where_play_random = rand_choice < eps_threshold
+        M[where_play_random] = rand_M[where_play_random]
 
         list_M.append(M)
         F, R, R_adv = board.get_reward(M)
@@ -144,7 +115,7 @@ if __name__ == "__main__":
 
             # PAY ATTENTION to gather method, it is a bit tricky !
             state_action_values = Q_old.gather(1, M_old.unsqueeze(1))
-
+            #Bellman formula
             expected_state_action_values = R_old + GAMMA * pi
             expected_state_action_values = expected_state_action_values.unsqueeze(1)
 
@@ -168,7 +139,7 @@ if __name__ == "__main__":
                 target_net2.load_state_dict(policy_net2.state_dict())
 
 
-            mean_ratio_board += torch.abs(board.state).mean()
+            mean_ratio_board += (board.n_moves.float().mean() / 42.0)
             mean_error_game += (1.0 * (R==-2)).mean()
             mean_loss += loss.item()
 
@@ -181,9 +152,9 @@ if __name__ == "__main__":
                 #print("F:", F_old)
                 #print("PI:", pi)
                 #print('est:', state_action_values)
-                print("Mean Ratio Board: ", mean_ratio_board.item())
-                print(" Mean error ratio : ", mean_error_game.item())
-                print("Loss: ", loss)
+                print("Mean Ratio Board: ", mean_ratio_board.item() / interval_tensorboard)
+                print(" Mean error ratio : ", mean_error_game.item() / interval_tensorboard)
+                print("Loss: ", loss / interval_tensorboard)
 
                 # TENSOR BOARD
                 writer.add_scalar("mean_ratio_board",
@@ -199,9 +170,8 @@ if __name__ == "__main__":
                 mean_error_game *= 0
                 mean_loss = 0
             if i % 10_000 > 9_900:
-                    pass
                     print(board.state[0])
-            if i % 30_000 == 0:
+            if i % savefreq == 0:
                 path1 = f"{models_dir}/model_{i}.pth"
                 path2 = f"{models_dir}/model-adv_{i}.pth"
                 torch.save(policy_net1.state_dict(), path1)

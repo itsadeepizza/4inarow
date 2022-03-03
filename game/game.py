@@ -104,10 +104,11 @@ class Board:
 
     def play_hvsm_game(self):
         """Simulate a game between human player and model"""
-        from model.model import DQN, smallDQN, channel_DQN, full_channel_DQN
+        from model.model import DQN, smallDQN, channel_DQN, full_channel_DQN_v2
 
-        policy_net = full_channel_DQN()
-        path = "../runs/fit/20220217-215126/models/model_30000.pth"
+        policy_net = full_channel_DQN_v2()
+        #path = "../runs/fit/20220303-234532/models/model_6000.pth"
+        path = f"../runs/fit/20220303-235330/models/model_1000.pth"
         policy_net.load_state_dict(torch.load(path))
         #policy_net = torch.load(path)
         policy_net.eval()
@@ -187,6 +188,7 @@ class BatchBoard:
         self.device = device
         self.reinitialize()
 
+
     def reinitialize(self):
         """Reinitialise the grid"""
         self.board = torch.zeros([self.nbatch, self.nrows, self.ncols], device=self.device)
@@ -194,6 +196,10 @@ class BatchBoard:
         self.cols = torch.zeros([self.nbatch, self.ncols], dtype=int, device=self.device)
         # player are 1 and -1
         self.player = 1
+        # number og moves already played
+        self.n_moves = torch.zeros([self.nbatch], dtype=int, device=self.device)
+
+
 
     @property
     def state(self):
@@ -225,11 +231,13 @@ class BatchBoard:
 
     def play(self, col: torch.Tensor):
         """Put a coin in the `col` column. Return False if impossible"""
+        # increment counter number of moves
+        self.n_moves += 1
         # Create a sparse matrix for selecting chosen columns for each batch
         indx = torch.stack((torch.arange(self.nbatch, device=self.device),
                            col))
         vals = torch.ones([self.nbatch], device=self.device)
-        mask = torch.sparse_coo_tensor(indx,
+        mask = torch.sparse_coo_tensor(indx, # RuntimeError: "coalesce" not implemented for 'Bool' <- samas triste :(
                                        vals,
                                        (self.nbatch, self.ncols),
                                        dtype=bool,
