@@ -104,11 +104,11 @@ class Board:
 
     def play_hvsm_game(self):
         """Simulate a game between human player and model"""
-        from model.model import DQN, smallDQN, channel_DQN, full_channel_DQN_v2
+        from model.model import DQN, smallDQN, channel_DQN, full_channel_DQN_v2, ConvNet
 
-        policy_net = full_channel_DQN_v2()
+        policy_net = ConvNet()
         #path = "../runs/fit/20220303-234532/models/model_6000.pth"
-        path = f"../runs/fit/20220303-235330/models/model_1000.pth"
+        path = f"../runs/fit/20220310-234844/models/model_870000.pth"
         policy_net.load_state_dict(torch.load(path))
         #policy_net = torch.load(path)
         policy_net.eval()
@@ -386,6 +386,7 @@ class BatchBoard:
         #reinitialise game if it is a final state
         self.board[is_final] = 0
         self.cols[is_final] = 0
+        self.n_moves[is_final] = 0
         return is_final, rewards, adv_rewards
 
     def get_reward_v2(self, cols):

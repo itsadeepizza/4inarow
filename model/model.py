@@ -4,6 +4,28 @@ import torch.optim as optim
 import torch.nn.functional as F
 
 
+class ConvNet(nn.Module):
+    def __init__(self, rows=6, cols=7):
+        ch1 = 50
+        super(ConvNet, self).__init__()
+        self.l1 = nn.Conv2d(3, out_channels=ch1, kernel_size=3, padding=1)
+        self.l2 = nn.Conv2d(ch1, out_channels=100, kernel_size=3, padding=1)
+        self.l3 = nn.Linear(100 * rows * cols, cols)
+
+        # Define proportion or neurons to dropout
+        self.dropout = nn.Dropout(0.5)
+
+    def forward(self, x):
+        x = torch.stack([x < 0, x == 0, x > 0], dim=1).float()
+        x = self.l1(x)
+        x = torch.sigmoid(x)
+        x = self.l2(x)
+        x = self.dropout(x)
+        x = torch.sigmoid(x)
+        x = self.l3(x.flatten(1))
+        return x
+
+
 class smallDQN(nn.Module):
 
     def __init__(self, rows=6, cols=7):
@@ -12,7 +34,6 @@ class smallDQN(nn.Module):
         self.l2 = nn.Linear(30, 30)
         self.l3 = nn.Linear(30, 30)
         self.l4 = nn.Linear(30, cols)
-
 
         # Define proportion or neurons to dropout
         self.dropout = nn.Dropout(0.5)
@@ -27,9 +48,6 @@ class smallDQN(nn.Module):
         x = self.l3(x)
         x = torch.sigmoid(x)
         x = self.l4(x)
-
-
-
         #x = torch.sigmoid(x)
         # Output a n array
         return x
@@ -166,6 +184,7 @@ class full_channel_DQN_v2(nn.Module):
         super().__init__()
 
         chans = 150
+
         self.l1 = nn.Linear(rows * cols, chans)
         self.b1 = Bottleneck(chans, 2)
         self.b2 = Bottleneck(chans, 2)

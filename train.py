@@ -2,7 +2,8 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 from game.game import BatchBoard
-from model.model import DQN, smallDQN, conv_DQN, channel_DQN, full_channel_DQN, full_channel_DQN_v2
+from model.model import DQN, smallDQN, conv_DQN, channel_DQN, full_channel_DQN, full_channel_DQN_v2, ConvNet
+from model.greedy_model import greedy_player
 import random
 import math
 import os, datetime
@@ -10,7 +11,10 @@ from torch.utils.tensorboard import SummaryWriter
 from torchsummary import summary
 
 
-savefreq = 1000
+savefreq = 10000
+
+
+model = ConvNet
 
 if __name__ == "__main__":
     # if gpu is to be used
@@ -24,11 +28,12 @@ if __name__ == "__main__":
 
     rows = 6
     cols = 7
-    batch = 512 * 4 * 3 * 10 * 2
-    policy_net1 = full_channel_DQN_v2(rows, cols).to(device)
-    target_net1 = full_channel_DQN_v2(rows, cols).to(device)
-    policy_net2 = full_channel_DQN_v2(rows, cols).to(device)
-    target_net2 = full_channel_DQN_v2(rows, cols).to(device)
+    batch = 512
+    print("BATCH SIZE:", batch)
+    policy_net1 = model(rows, cols).to(device)
+    target_net1 = model(rows, cols).to(device)
+    policy_net2 = model(rows, cols).to(device)
+    target_net2 = model(rows, cols).to(device)
     target_net1.load_state_dict(policy_net1.state_dict())
     target_net1.eval()
     target_net2.load_state_dict(policy_net2.state_dict())
@@ -80,6 +85,9 @@ if __name__ == "__main__":
         M = Q.argmax(dim=1)
         # Sometime choose a random move, using eps_threshold as threshold
         rand_M = torch.randint(0, cols, [batch], device=device)
+        # Choose a move using a greedy algorithm
+        greedy_M = greedy_player(board)
+        # When choosing a random move (or a greedy move)
         rand_choice = torch.rand([batch], device=device)
         # Add more randomness at the beginning of the game
         start_random = 0.9
@@ -88,8 +96,11 @@ if __name__ == "__main__":
         randomness_multiplier = end_random + (start_random - end_random) * torch.exp(-1. * board.n_moves / decay_random)
         threshold_multiplied = 1 - (1 - eps_threshold) * (1 - randomness_multiplier)
         # where_play_random = rand_choice < threshold_multiplied
-        where_play_random = rand_choice < eps_threshold
+        ratio_greedy = 0.8
+        where_play_random = eps_threshold * ratio_greedy < rand_choice < eps_threshold
+        where_play_greedy = rand_choice <= eps_threshold * ratio_greedy
         M[where_play_random] = rand_M[where_play_random]
+        M[where_play_greedy] = greedy_M[where_play_greedy]
 
         list_M.append(M)
         F, R, R_adv = board.get_reward(M)
@@ -138,7 +149,7 @@ if __name__ == "__main__":
                 target_net1.load_state_dict(policy_net1.state_dict())
                 target_net2.load_state_dict(policy_net2.state_dict())
 
-
+            #print(board.n_moves)
             mean_ratio_board += (board.n_moves.float().mean() / 42.0)
             mean_error_game += (1.0 * (R==-2)).mean()
             mean_loss += loss.item()
@@ -146,15 +157,15 @@ if __name__ == "__main__":
             if i % interval_tensorboard == 0:
                 print(i)
                 print("Q_old:", Q_old)
-                #print(board.state[0:2])
+                print(torch.flip(board.state[0:2], dims=(1,)))
                 print("M_old:", M_old)
                 print("R_old:", R_old)
-                #print("F:", F_old)
-                #print("PI:", pi)
-                #print('est:', state_action_values)
+                print("F:", F_old)
+                print("PI:", pi)
+                print('est:', state_action_values)
                 print("Mean Ratio Board: ", mean_ratio_board.item() / interval_tensorboard)
                 print(" Mean error ratio : ", mean_error_game.item() / interval_tensorboard)
-                print("Loss: ", loss / interval_tensorboard)
+                print("Current Loss: ", loss)
 
                 # TENSOR BOARD
                 writer.add_scalar("mean_ratio_board",
