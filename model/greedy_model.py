@@ -1,11 +1,11 @@
-from game.board import BatchBoard
+from board import BatchBoard
+from model.model import AIPlayer
 import torch
 from copy import deepcopy
 
-class GreedyModel():
+class GreedyModel(AIPlayer):
 
-
-    def play(self, batch_board: BatchBoard):
+    def get_scores(self, batch_board: BatchBoard):
         """An algorithm which maximise short term reward"""
         # Step 1: Test all columns
         # Step 2: For each column, calculate the reward
@@ -23,9 +23,12 @@ class GreedyModel():
         all_rewards = torch.stack(all_rewards)
         random_modifier = torch.rand_like(all_rewards, device=device) * 0.0001
         all_rewards += random_modifier
-        # 1 axis -> batch, 0 axis -> column played
-        best_rewards = all_rewards.argmax(axis=0)
-        return best_rewards
+
+        all_rewards = torch.swapaxes(all_rewards, 0, 1)
+        return all_rewards
+
+
+
 
 
 if __name__ == "__main__":

@@ -4,6 +4,28 @@ import torch.optim as optim
 import torch.nn.functional as F
 
 
+class AIPlayer():
+
+    def get_scores(self, batchboard):
+        return None
+
+    def play(self, batchboard):
+        Q = self.get_scores(batchboard)
+        move = Q.argmax(dim=1)
+        return move
+
+
+class NNPlayer(AIPlayer):
+    def __init__(self, model: nn.Module):
+        self.model = model
+
+    def get_scores(self, batchboard):
+        with torch.no_grad():
+            Q = self.model.forward(batchboard.state)
+        return Q
+
+
+
 class ConvNet(nn.Module):
     def __init__(self, rows=6, cols=7):
         ch1 = 50

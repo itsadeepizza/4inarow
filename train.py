@@ -40,7 +40,7 @@ if __name__ == "__main__":
     target_net2.load_state_dict(policy_net2.state_dict())
     target_net2.eval()
 
-    summary(policy_net1)
+    #summary(policy_net1)
     # optimizer = optim.RMSprop(policy_net.parameters())
     optimizer1 = optim.Adam(policy_net1.parameters(), lr=0.001)
     optimizer2 = optim.Adam(policy_net2.parameters(), lr=0.001)
