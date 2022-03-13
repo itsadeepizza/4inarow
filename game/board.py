@@ -62,8 +62,7 @@ class BatchBoard:
         mask = torch.sparse_coo_tensor(indx, # RuntimeError: "coalesce" not implemented for 'Bool' <- samas triste :(
                                        vals,
                                        (self.nbatch, self.ncols),
-                                       dtype=bool,
-                                       device = self.device).to_dense()
+                                       device = self.device).to_dense().bool() # Error fixed adding .bool() at the end
         # Check if the chosen columns are out of range
         # is_valid = (col > 0) & (col < self.ncols)
         # Check if the chosen columns are already filled
@@ -81,8 +80,7 @@ class BatchBoard:
         board_mask = torch.sparse_coo_tensor(board_indx,
                                        board_vals,
                                        (self.nbatch, self.nrows, self.ncols),
-                                       dtype=bool,
-                                       device=self.device).to_dense()
+                                       device=self.device).to_dense().bool()
         self.board[board_mask] = self.player
         self.cols[mask] += 1
         # change player
@@ -209,7 +207,7 @@ class BatchBoard:
         self.board[is_final] = 0
         self.cols[is_final] = 0
         self.n_moves[is_final] = 0
-        return is_final, rewards, adv_rewards
+        return is_final, rewards, adv_rewards, has_win, is_valid
 
     def get_reward_v2(self, cols):
         """Return the reward associated to the move
@@ -254,4 +252,4 @@ class BatchBoard:
         #reinitialise game if it is a final state
         self.board[is_final] = 0
         self.cols[is_final] = 0
-        return is_final, rewards + player_triplet * 0.2, adv_rewards - player_triplet * 0.2
+        return is_final, rewards + player_triplet * 0.2, adv_rewards - player_triplet * 0.2, has_win, is_valid

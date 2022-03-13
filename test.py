@@ -4,7 +4,7 @@ import torch
 
 def play_hvsm_game(AIplayer):
     """Simulate a game between human player and model"""
-    from board import BatchBoard
+    from game.board import BatchBoard
     batchboard = BatchBoard()
 
     while True:
@@ -51,8 +51,8 @@ if __name__ == "__main__":
 
 
 
-    model = full_channel_DQN()
-    path = f"../runs/fit/20220227-104623/models/model-adv_2040000.pth"
+    model = ConvNet()
+    path = f"../runs/models/model_200000.pth"
     model.load_state_dict(torch.load(path))
     model.eval()
     AIplayer = NNPlayer(model)

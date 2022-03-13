@@ -104,7 +104,7 @@ if __name__ == "__main__":
         M[where_play_greedy] = greedy_M[where_play_greedy]
 
         list_M.append(M)
-        F, R, R_adv = board.get_reward(M)
+        F, R, R_adv, _, _ = board.get_reward(M)
 
         if len(list_S) >= 2:
             # update rewards and final state using data from opponent play
