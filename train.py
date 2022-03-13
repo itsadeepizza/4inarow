@@ -1,9 +1,9 @@
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from game.game import BatchBoard
+from game.board import BatchBoard
 from model.model import DQN, smallDQN, conv_DQN, channel_DQN, full_channel_DQN, full_channel_DQN_v2, ConvNet
-from model.greedy_model import greedy_player
+from model.greedy_model import GreedyModel
 import random
 import math
 import os, datetime
@@ -15,6 +15,7 @@ savefreq = 10000
 
 
 model = ConvNet
+greedy_player = GreedyModel()
 
 if __name__ == "__main__":
     # if gpu is to be used
@@ -86,7 +87,7 @@ if __name__ == "__main__":
         # Sometime choose a random move, using eps_threshold as threshold
         rand_M = torch.randint(0, cols, [batch], device=device)
         # Choose a move using a greedy algorithm
-        greedy_M = greedy_player(board)
+        greedy_M = greedy_player.play(board)
         # When choosing a random move (or a greedy move)
         rand_choice = torch.rand([batch], device=device)
         # Add more randomness at the beginning of the game
@@ -97,7 +98,7 @@ if __name__ == "__main__":
         threshold_multiplied = 1 - (1 - eps_threshold) * (1 - randomness_multiplier)
         # where_play_random = rand_choice < threshold_multiplied
         ratio_greedy = 0.8
-        where_play_random = eps_threshold * ratio_greedy < rand_choice < eps_threshold
+        where_play_random = (eps_threshold * ratio_greedy < rand_choice) & (rand_choice < eps_threshold)
         where_play_greedy = rand_choice <= eps_threshold * ratio_greedy
         M[where_play_random] = rand_M[where_play_random]
         M[where_play_greedy] = greedy_M[where_play_greedy]

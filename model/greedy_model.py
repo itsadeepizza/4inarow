@@ -1,29 +1,31 @@
-from game.game import BatchBoard
+from game.board import BatchBoard
 import torch
 from copy import deepcopy
 
+class GreedyModel():
 
-def greedy_player(batch_board: BatchBoard):
-    """An algorithm which maximise short term reward"""
-    # Step 1: Test all columns
-    # Step 2: For each column, calculate the reward
-    # Step 3: Keep the move with the highest reward
-    # Make a board for each possibility
-    device = batch_board.device
-    all_test = [deepcopy(batch_board) for i in range(batch_board.ncols)]
-    # play a different column for each copy of the board
-    all_rewards = []
-    for i, batch_board in enumerate(all_test):
-        played_cols = torch.ones([batch_board.nbatch], device=device) * i
-        _, rewards, _ = batch_board.get_reward_v2(played_cols)
-        all_rewards.append(rewards)
-    # For each board in the batch, keep the column associated to the best reward
-    all_rewards = torch.stack(all_rewards)
-    random_modifier = torch.rand_like(all_rewards, device=device) * 0.0001
-    all_rewards += random_modifier
-    # 1 axis -> batch, 0 axis -> column played
-    best_rewards = all_rewards.argmax(axis=0)
-    return best_rewards
+
+    def play(self, batch_board: BatchBoard):
+        """An algorithm which maximise short term reward"""
+        # Step 1: Test all columns
+        # Step 2: For each column, calculate the reward
+        # Step 3: Keep the move with the highest reward
+        # Make a board for each possibility
+        device = batch_board.device
+        all_test = [deepcopy(batch_board) for i in range(batch_board.ncols)]
+        # play a different column for each copy of the board
+        all_rewards = []
+        for i, batch_board in enumerate(all_test):
+            played_cols = torch.ones([batch_board.nbatch], device=device) * i
+            _, rewards, _ = batch_board.get_reward_v2(played_cols)
+            all_rewards.append(rewards)
+        # For each board in the batch, keep the column associated to the best reward
+        all_rewards = torch.stack(all_rewards)
+        random_modifier = torch.rand_like(all_rewards, device=device) * 0.0001
+        all_rewards += random_modifier
+        # 1 axis -> batch, 0 axis -> column played
+        best_rewards = all_rewards.argmax(axis=0)
+        return best_rewards
 
 
 if __name__ == "__main__":
