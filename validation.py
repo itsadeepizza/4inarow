@@ -2,8 +2,9 @@ from model.model import AIPlayer
 from game.board import BatchBoard
 import torch
 
+
 def mirror_score(player: AIPlayer, nbatch=1, n_iter=200, rand_ratio=0.2, cols=7, device=torch.device("cpu")):
-    """Make the model play aginst a randomized version of itself"""
+    """Make the model play against a randomized version of itself"""
     batch_board = BatchBoard(nbatch=nbatch, device=device)
     n_match = win = lost = error = 0
     for i in range(n_iter):

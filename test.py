@@ -52,7 +52,7 @@ if __name__ == "__main__":
 
 
     model = ConvNet()
-    path = f"../runs/models/model_200000.pth"
+    path = f"runs/fit/20220317-232822/models/model_14000.pth"
     model.load_state_dict(torch.load(path))
     model.eval()
     AIplayer = NNPlayer(model)

@@ -9,11 +9,13 @@ import math
 import os, datetime
 from torch.utils.tensorboard import SummaryWriter
 from torchsummary import summary
+from validation import mirror_score
+from model.model import NNPlayer
 
-
-savefreq = 10000
-
-
+savefreq = 1000
+validation_interval = 500
+max_score1 = 0
+max_score2 = 0
 model = ConvNet
 greedy_player = GreedyModel()
 
@@ -72,7 +74,8 @@ if __name__ == "__main__":
     list_M = []
 
     for i in range(10_000_000):
-
+        policy_net1.train()
+        policy_net2.train()
         # the policy calculate Q associated at each possible move
         eps_threshold = EPS_END + (EPS_START - EPS_END) * math.exp(-1. * i / EPS_DECAY)
         S = board.state
@@ -145,53 +148,65 @@ if __name__ == "__main__":
                 #    param.grad.data.clamp_(-1, 1)
                 optimizer2.step()
 
-            if i % TARGET_UPDATE == 0:
+            #if i % TARGET_UPDATE == 0:
 
-                target_net1.load_state_dict(policy_net1.state_dict())
-                target_net2.load_state_dict(policy_net2.state_dict())
+                #target_net1.load_state_dict(policy_net1.state_dict())
+                #target_net2.load_state_dict(policy_net2.state_dict())
 
-            #print(board.n_moves)
-            mean_ratio_board += (board.n_moves.float().mean() / 42.0)
-            mean_error_game += (1.0 * (R==-2)).mean()
-            mean_loss += loss.item()
+            # VALIDATION
 
-            if i % interval_tensorboard == 0:
-                print(i)
-                print("Q_old:", Q_old)
-                print(torch.flip(board.state[0:2], dims=(1,)))
-                print("M_old:", M_old)
-                print("R_old:", R_old)
-                print("F:", F_old)
-                print("PI:", pi)
-                print('est:', state_action_values)
-                print("Mean Ratio Board: ", mean_ratio_board.item() / interval_tensorboard)
-                print(" Mean error ratio : ", mean_error_game.item() / interval_tensorboard)
-                print("Current Loss: ", loss)
+            if i % validation_interval == 0:
+            # Quale modello volete in eval? policynet
+                for j, policy, target, max_score in zip([1,2], [policy_net1, policy_net2], [target_net1, target_net2], [max_score1, max_score2]):
+                    policy.eval()
+                    player = NNPlayer(policy)
+                    summary = mirror_score(player, nbatch=batch, n_iter=200, device=device)
+                    print(i, j, summary)
+                    for key, value in summary.items():
+                        writer.add_scalar(f"{key}_{j}", value, i)
+                    if summary["score"] > max_score:
+                        target.load_state_dict(policy.state_dict())
+                    max_score = max(summary["score"], max_score)
 
-                # TENSOR BOARD
-                writer.add_scalar("mean_ratio_board",
-                                  mean_ratio_board.item() / interval_tensorboard,
-                                  i)
-                writer.add_scalar("mean_error_game",
-                                  mean_error_game.item() / interval_tensorboard,
-                                  i)
-                writer.add_scalar("loss",
-                                  mean_loss / interval_tensorboard,
-                                  i)
-                mean_ratio_board *= 0
-                mean_error_game *= 0
-                mean_loss = 0
-            if i % 10_000 > 9_900:
-                    print(board.state[0])
+            # print(board.n_moves)
+            # mean_ratio_board += (board.n_moves.float().mean() / 42.0)
+            # mean_error_game += (1.0 * (R==-2)).mean()
+            # mean_loss += loss.item()
+            # if i % interval_tensorboard == 0:
+            #     print(i)
+            #     print("Q_old:", Q_old)
+            #     print(torch.flip(board.state[0:2], dims=(1,)))
+            #     print("M_old:", M_old)
+            #     print("R_old:", R_old)
+            #     print("F:", F_old)
+            #     print("PI:", pi)
+            #     print('est:', state_action_values)
+            #     print("Mean Ratio Board: ", mean_ratio_board.item() / interval_tensorboard)
+            #     print(" Mean error ratio : ", mean_error_game.item() / interval_tensorboard)
+            #     print("Current Loss: ", loss)
+            #
+            #     # TENSOR BOARD
+            #     writer.add_scalar("mean_ratio_board",
+            #                       mean_ratio_board.item() / interval_tensorboard,
+            #                       i)
+            #     writer.add_scalar("mean_error_game",
+            #                       mean_error_game.item() / interval_tensorboard,
+            #                       i)
+            #     writer.add_scalar("loss",
+            #                       mean_loss / interval_tensorboard,
+            #                       i)
+            #     mean_ratio_board *= 0
+            #     mean_error_game *= 0
+            #     mean_loss = 0
+            # if i % 10_000 > 9_900:
+            #         print(board.state[0])
             if i % savefreq == 0:
                 path1 = f"{models_dir}/model_{i}.pth"
                 path2 = f"{models_dir}/model-adv_{i}.pth"
                 torch.save(policy_net1.state_dict(), path1)
                 torch.save(policy_net1.state_dict(), path2)
-            if i % 1_000 == 0:
-                torch.cuda.empty_cache()
-
-
+            # if i % 1_000 == 0:
+            #     torch.cuda.empty_cache()
 
         list_S.append(S)
         list_R.append(R)

@@ -28,23 +28,23 @@ class NNPlayer(AIPlayer):
 
 class ConvNet(nn.Module):
     def __init__(self, rows=6, cols=7):
-        ch1 = 50
+        ch1 = 60
         super(ConvNet, self).__init__()
-        self.l1 = nn.Conv2d(3, out_channels=ch1, kernel_size=3, padding=1)
-        self.l2 = nn.Conv2d(ch1, out_channels=100, kernel_size=3, padding=1)
-        self.l3 = nn.Linear(100 * rows * cols, cols)
+        self.l1 = nn.Conv2d(3, out_channels=ch1, kernel_size=5, groups=3, padding=2)
+        self.l2 = nn.Conv2d(ch1, out_channels=120, kernel_size=3, padding=1)
+        self.l3 = nn.Conv2d(120, 60, kernel_size=1)
+        self.l4 = nn.Linear(60 * rows * cols, cols)
 
-        # Define proportion or neurons to dropout
-        self.dropout = nn.Dropout(0.5)
 
     def forward(self, x):
         x = torch.stack([x < 0, x == 0, x > 0], dim=1).float()
         x = self.l1(x)
-        x = torch.sigmoid(x)
+        x = torch.relu(x)
         x = self.l2(x)
-        x = self.dropout(x)
-        x = torch.sigmoid(x)
-        x = self.l3(x.flatten(1))
+        x = torch.relu(x)
+        x = self.l3(x)
+        x = torch.relu(x)
+        x = self.l4(x.flatten(1))
         return x
 
 
