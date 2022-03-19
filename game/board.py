@@ -236,6 +236,7 @@ class BatchBoard:
         # Check if we have blocked an enemy win
         #enemy_triplet = self.count_triplet(self.player)
         player_triplet = self.count_triplet(- self.player)
+        adv_player_triplet = self.count_triplet(self.player)
 
         # negative rewards for invalid moves
         rewards[~ is_valid] = rew_invalid
@@ -252,4 +253,4 @@ class BatchBoard:
         #reinitialise game if it is a final state
         self.board[is_final] = 0
         self.cols[is_final] = 0
-        return is_final, rewards + player_triplet * 0.2, adv_rewards - player_triplet * 0.2, has_win, is_valid
+        return is_final, rewards + player_triplet * 0.2 - adv_player_triplet * 0.3, adv_rewards - player_triplet * 0.2, has_win, is_valid

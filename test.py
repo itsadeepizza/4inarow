@@ -2,7 +2,7 @@ import numpy as np
 import torch
 
 
-def play_hvsm_game(AIplayer):
+def play_hvsm_game(AIplayer, verbose=False):
     """Simulate a game between human player and model"""
     from game.board import BatchBoard
     batchboard = BatchBoard()
@@ -27,7 +27,7 @@ def play_hvsm_game(AIplayer):
 
         print(f"PLAYER {player} - MACHINE")
 
-        adv_move = AIplayer.play(batchboard)
+        adv_move = AIplayer.play(batchboard, verbose)
 
         print(f"Player {player} played {adv_move}")
         if not batchboard.play(adv_move):
@@ -52,13 +52,13 @@ if __name__ == "__main__":
 
 
     model = ConvNet()
-    path = f"runs/fit/20220317-232822/models/model_14000.pth"
-    model.load_state_dict(torch.load(path))
-    model.eval()
+    #path = f"runs/fit/20220317-232822/models/model_14000.pth"
+    #model.load_state_dict(torch.load(path))
+    #model.eval()
     AIplayer = NNPlayer(model)
 
     AIplayer = GreedyModel()
     # policy_net = torch.load(path)
 
 
-    play_hvsm_game(AIplayer)
+    play_hvsm_game(AIplayer, verbose=True)

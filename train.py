@@ -171,8 +171,8 @@ if __name__ == "__main__":
             # print(board.n_moves)
             # mean_ratio_board += (board.n_moves.float().mean() / 42.0)
             # mean_error_game += (1.0 * (R==-2)).mean()
-            # mean_loss += loss.item()
-            # if i % interval_tensorboard == 0:
+            mean_loss += loss.item()
+            if i % interval_tensorboard == 0:
             #     print(i)
             #     print("Q_old:", Q_old)
             #     print(torch.flip(board.state[0:2], dims=(1,)))
@@ -197,7 +197,7 @@ if __name__ == "__main__":
             #                       i)
             #     mean_ratio_board *= 0
             #     mean_error_game *= 0
-            #     mean_loss = 0
+                mean_loss = 0
             # if i % 10_000 > 9_900:
             #         print(board.state[0])
             if i % savefreq == 0:

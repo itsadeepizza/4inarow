@@ -9,8 +9,10 @@ class AIPlayer():
     def get_scores(self, batchboard):
         return None
 
-    def play(self, batchboard):
+    def play(self, batchboard, verbose=False):
         Q = self.get_scores(batchboard)
+        if verbose:
+            print(Q)
         move = Q.argmax(dim=1)
         return move
 
