@@ -51,14 +51,15 @@ if __name__ == "__main__":
     import glob
     model = full_channel_DQN()
     path = f"runs/fit/20220227-104623/models/model-adv_2040000.pth"
-    model = ConvNet()
-    path = f"runs/models/model_50000.pth"
+    #model = ConvNet()
+    #path = f"runs/models/model_50000.pth"
     dir = "runs/models"
     for path in glob.glob(dir + "/*.pth"):
-        model.load_state_dict(torch.load(path))
-        model.eval()
-        model.to(device)
-        player = NNPlayer(model)
+        #model.load_state_dict(torch.load(path))
+        #model.eval()
+        #model.to(device)
+        #player = NNPlayer(model)
+        player = GreedyModel()
 
     #player = GreedyModel()
         summary = mirror_score(player, nbatch=1000, device=device, rand_ratio=0.2)
