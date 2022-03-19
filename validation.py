@@ -1,4 +1,5 @@
 from model.model import AIPlayer
+from model.greedy_model import GreedyModel
 from game.board import BatchBoard
 import torch
 
@@ -7,6 +8,7 @@ def mirror_score(player: AIPlayer, nbatch=1, n_iter=200, rand_ratio=0.2, cols=7,
     """Make the model play against a randomized version of itself"""
     batch_board = BatchBoard(nbatch=nbatch, device=device)
     n_match = win = lost = error = 0
+    greedy_player = GreedyModel()
     for i in range(n_iter):
         # Not randomized player
         move = player.play(batch_board)
@@ -18,11 +20,13 @@ def mirror_score(player: AIPlayer, nbatch=1, n_iter=200, rand_ratio=0.2, cols=7,
         # Randomized player
 
         move = player.play(batch_board)
-        # Choose a random move with rand_ratio probability
-        rand_move = torch.randint(0, cols, [nbatch], device=device)
+        # Choose a random move or a greedy move with rand_ratio probability
+        #rand_move = torch.randint(0, cols, [nbatch], device=device)
+        greedy_move = greedy_player.play(batch_board)
         # When choosing a random move (or a greedy move)
         rand_choice = torch.rand([nbatch], device=device)
-        move[rand_choice < rand_ratio] = rand_move[rand_choice < rand_ratio]
+
+        move[rand_choice < rand_ratio] = greedy_move[rand_choice < rand_ratio]
         # play the move
         is_final, rewards, adv_rewards, has_win, is_valid = batch_board.get_reward(move)
         n_match += is_final.sum().item()

@@ -98,8 +98,10 @@ class Trainer():
         randomness_multiplier = self.end_random + (self.start_random - self.end_random) * torch.exp(-1. * self.board.n_moves / self.decay_random)
         threshold_multiplied = 1 - (1 - eps_threshold) * (1 - randomness_multiplier)
         # where_play_random = rand_choice < threshold_multiplied
-        where_play_random = (eps_threshold * self.ratio_greedy < rand_choice) & (rand_choice < eps_threshold)
-        where_play_greedy = rand_choice <= eps_threshold * self.ratio_greedy
+        #where_play_random = (eps_threshold * self.ratio_greedy < rand_choice) & (rand_choice < eps_threshold)
+        #where_play_greedy = rand_choice <= eps_threshold * self.ratio_greedy
+        where_play_random = (threshold_multiplied * self.ratio_greedy < rand_choice) & (rand_choice < threshold_multiplied)
+        where_play_greedy = rand_choice <= threshold_multiplied * self.ratio_greedy
         M[where_play_random] = rand_M[where_play_random]
         M[where_play_greedy] = greedy_M[where_play_greedy]
         # The move is played
@@ -225,8 +227,13 @@ class Trainer():
             for key, value in summary.items():
                 self.writer.add_scalar(f"{key}_{j}", value, i)
             if summary["score"] > max_score:
+                print("Target model updated for ", j)
                 target.load_state_dict(policy.state_dict())
-            max_score = max(summary["score"], max_score)
+            if j == 1:
+                self.max_score1 = max(summary["score"], max_score)
+            else:
+                self.max_score1 = max(summary["score"], max_score)
+
 
 
 
@@ -234,8 +241,8 @@ if __name__ == "__main__":
     hyperparams = {
         "GAMMA": 0.9,
         "EPS_START": 0.9,
-        "EPS_END": 0.05,
-        "EPS_DECAY": 100_000,
+        "EPS_END": 0.2,
+        "EPS_DECAY": 600_000,
         "TARGET_UPDATE": 10,
         "start_random": 0.9,
         "end_random": 0.5,
@@ -247,7 +254,7 @@ if __name__ == "__main__":
         "validation_interval": 500
     }
     model = ConvNet
-    trainer = Trainer(batch_size=10, hyperparams=hyperparams, model=model)
+    trainer = Trainer(batch_size=2048, hyperparams=hyperparams, model=model)
     trainer.train()
 
 
