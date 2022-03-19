@@ -96,10 +96,10 @@ class Trainer():
         rand_choice = torch.rand([self.batch_size], device=self.device)
         # Add more randomness at the beginning of the game
         randomness_multiplier = self.end_random + (self.start_random - self.end_random) * torch.exp(-1. * self.board.n_moves / self.decay_random)
-        threshold_multiplied = 1 - (1 - self.eps_threshold) * (1 - randomness_multiplier)
+        threshold_multiplied = 1 - (1 - eps_threshold) * (1 - randomness_multiplier)
         # where_play_random = rand_choice < threshold_multiplied
-        where_play_random = (self.eps_threshold * self.ratio_greedy < rand_choice) & (rand_choice < self.eps_threshold)
-        where_play_greedy = rand_choice <= self.eps_threshold * self.ratio_greedy
+        where_play_random = (eps_threshold * self.ratio_greedy < rand_choice) & (rand_choice < eps_threshold)
+        where_play_greedy = rand_choice <= eps_threshold * self.ratio_greedy
         M[where_play_random] = rand_M[where_play_random]
         M[where_play_greedy] = greedy_M[where_play_greedy]
         # The move is played
@@ -154,7 +154,7 @@ class Trainer():
 
             if i % self.validation_interval == 0:
                 # Quale modello volete in eval? policynet
-                self.update_target()
+                self.update_target(i)
 
             # print(board.n_moves)
             # mean_ratio_board += (board.n_moves.float().mean() / 42.0)
@@ -201,9 +201,13 @@ class Trainer():
         #     writer.add_scalar("mean_error_game",
         #                       mean_error_game.item() / interval_tensorboard,
         #                       i)
-        self.writer.add_scalar("loss",
-                          self.mean_loss / self.interval_tensorboard,
+        eps_threshold = self.EPS_END + (self.EPS_START - self.EPS_END) * math.exp(-1. * i / self.EPS_DECAY)
+        self.writer.add_scalar("eps_threshold",
+                          eps_threshold,
                           i)
+        self.writer.add_scalar("loss",
+                               self.mean_loss / self.interval_tensorboard,
+                               i)
         #     mean_ratio_board *= 0
         #     mean_error_game *= 0
         self.mean_loss = 0
@@ -243,7 +247,7 @@ if __name__ == "__main__":
         "validation_interval": 500
     }
     model = ConvNet
-    trainer = Trainer(batch_size=512, hyperparams=hyperparams, model=model)
+    trainer = Trainer(batch_size=10, hyperparams=hyperparams, model=model)
     trainer.train()
 
 
