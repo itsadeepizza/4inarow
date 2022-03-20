@@ -207,7 +207,15 @@ class BatchBoard:
         self.board[is_final] = 0
         self.cols[is_final] = 0
         self.n_moves[is_final] = 0
-        return is_final, rewards, adv_rewards, has_win, is_valid
+        summary = {
+            "is_final": is_final,
+            "rewards": rewards,
+            "adv_rewards": adv_rewards,
+            "has_win": has_win,
+            "is_valid": is_valid,
+            "is_draw": is_draw
+        }
+        return summary
 
     def get_reward_v2(self, cols):
         """Return the reward associated to the move
@@ -253,4 +261,11 @@ class BatchBoard:
         #reinitialise game if it is a final state
         self.board[is_final] = 0
         self.cols[is_final] = 0
-        return is_final, rewards + player_triplet * 0.2 - adv_player_triplet * 0.3, adv_rewards - player_triplet * 0.2, has_win, is_valid
+        summary = {
+            "is_final": is_final,
+            "rewards": rewards + player_triplet * 0.2 - adv_player_triplet * 0.3,
+            "adv_rewards": adv_rewards - player_triplet * 0.2,
+            "has_win": has_win,
+            "is_valid": is_valid
+        }
+        return summary

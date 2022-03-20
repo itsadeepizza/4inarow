@@ -1,0 +1,1018 @@
+C:\Users\p.menegatti\Anaconda3\envs\ml\python.exe C:/Users/p.menegatti/PycharmProjects/4inarow/train.py
+BATCH SIZE: 2048
+500 1 {'n_match': 70976, 'average_len': 5.770964833183048, 'ratio_error': 0.0, 'ratio_win': 0.48791140667267807, 'ratio_lost': 0.5119054328223624, 'score': 0.9531280103487187}
+Target model updated for  1
+500 2 {'n_match': 67013, 'average_len': 6.112246877471535, 'ratio_error': 0.0001343022995538179, 'ratio_win': 0.508796800620775, 'ratio_lost': 0.48993478877232777, 'score': 1.038214427088091}
+Target model updated for  2
+1000 1 {'n_match': 55044, 'average_len': 7.441319671535499, 'ratio_error': 0.0, 'ratio_win': 0.5081752779594506, 'ratio_lost': 0.4916793837657147, 'score': 1.0335501034584689}
+1000 2 {'n_match': 45491, 'average_len': 9.003978808995186, 'ratio_error': 0.0, 'ratio_win': 0.5047811655052648, 'ratio_lost': 0.49315249170165526, 'score': 1.0235802799322458}
+Target model updated for  2
+1500 1 {'n_match': 49341, 'average_len': 8.301412618309318, 'ratio_error': 0.0, 'ratio_win': 0.5811191504023023, 'ratio_lost': 0.4188403153563973, 'score': 1.387447982192974}
+Target model updated for  1
+1500 2 {'n_match': 42292, 'average_len': 9.685046817364986, 'ratio_error': 0.0, 'ratio_win': 0.6373309372931051, 'ratio_lost': 0.3622434502979287, 'score': 1.7593994778067885}
+Target model updated for  2
+2000 1 {'n_match': 37943, 'average_len': 10.79514007853886, 'ratio_error': 0.0, 'ratio_win': 0.5044408718340669, 'ratio_lost': 0.4908942360909786, 'score': 1.0275958337807367}
+2000 2 {'n_match': 43037, 'average_len': 9.517392011524967, 'ratio_error': 0.0, 'ratio_win': 0.5241303994237516, 'ratio_lost': 0.47463810209819457, 'score': 1.1042737553238362}
+Target model updated for  2
+2500 1 {'n_match': 40230, 'average_len': 10.181456624409645, 'ratio_error': 0.0, 'ratio_win': 0.5194630872483221, 'ratio_lost': 0.4791697738006463, 'score': 1.084089848005395}
+2500 2 {'n_match': 41668, 'average_len': 9.830085437266007, 'ratio_error': 0.0, 'ratio_win': 0.5275991168282615, 'ratio_lost': 0.4713689161946818, 'score': 1.1192912784481441}
+Target model updated for  2
+3000 1 {'n_match': 44509, 'average_len': 9.202633175312858, 'ratio_error': 0.0, 'ratio_win': 0.5286795928913254, 'ratio_lost': 0.46691680334314406, 'score': 1.1322779328264845}
+Target model updated for  1
+3000 2 {'n_match': 37417, 'average_len': 10.946895796028544, 'ratio_error': 0.0, 'ratio_win': 0.43723441216559317, 'ratio_lost': 0.557767859529091, 'score': 0.783900335409679}
+Target model updated for  2
+3500 1 {'n_match': 43543, 'average_len': 9.406793284798935, 'ratio_error': 0.0, 'ratio_win': 0.4955331511379556, 'ratio_lost': 0.5014583285487908, 'score': 0.9881841080833524}
+Target model updated for  1
+3500 2 {'n_match': 30878, 'average_len': 13.265107843772265, 'ratio_error': 0.0, 'ratio_win': 0.529341278580219, 'ratio_lost': 0.4677440248720772, 'score': 1.1316900920861317}
+Target model updated for  2
+4000 1 {'n_match': 33634, 'average_len': 12.178153059404174, 'ratio_error': 0.0, 'ratio_win': 0.5786406612356544, 'ratio_lost': 0.41960516144377713, 'score': 1.379012258201658}
+Target model updated for  1
+4000 2 {'n_match': 31002, 'average_len': 13.212050835429972, 'ratio_error': 0.0, 'ratio_win': 0.5491581188310432, 'ratio_lost': 0.4447132443068189, 'score': 1.2348589250743454}
+Target model updated for  2
+4500 1 {'n_match': 40875, 'average_len': 10.020795107033639, 'ratio_error': 0.0, 'ratio_win': 0.5225688073394495, 'ratio_lost': 0.4747400611620795, 'score': 1.1007472300953363}
+4500 2 {'n_match': 31585, 'average_len': 12.968181098622765, 'ratio_error': 0.0, 'ratio_win': 0.4521450055406047, 'ratio_lost': 0.5389583663131233, 'score': 0.8389238089643424}
+Target model updated for  2
+5000 1 {'n_match': 36677, 'average_len': 11.16776181258009, 'ratio_error': 0.0, 'ratio_win': 0.4778744172096954, 'ratio_lost': 0.5140005998309567, 'score': 0.9297156800339487}
+Target model updated for  1
+5000 2 {'n_match': 35909, 'average_len': 11.40661115597761, 'ratio_error': 2.784817176752346e-05, 'ratio_win': 0.5833078058425465, 'ratio_lost': 0.38853769250048736, 'score': 1.5011825413889486}
+Target model updated for  2
+5500 1 {'n_match': 35271, 'average_len': 11.612939808908168, 'ratio_error': 0.0, 'ratio_win': 0.6472739644467126, 'ratio_lost': 0.34487255819228263, 'score': 1.876849720486682}
+Target model updated for  1
+5500 2 {'n_match': 27154, 'average_len': 15.0843337998085, 'ratio_error': 0.0, 'ratio_win': 0.6013846947042792, 'ratio_lost': 0.36804890623849157, 'score': 1.6339803882329398}
+Target model updated for  2
+6000 1 {'n_match': 39342, 'average_len': 10.411265314422247, 'ratio_error': 0.0, 'ratio_win': 0.6099334045040923, 'ratio_lost': 0.3885415078033654, 'score': 1.5698024335993719}
+6000 2 {'n_match': 29655, 'average_len': 13.812173326589107, 'ratio_error': 0.0, 'ratio_win': 0.5471589951104366, 'ratio_lost': 0.4366885853987523, 'score': 1.252972972972973}
+Target model updated for  2
+6500 1 {'n_match': 32184, 'average_len': 12.726820780512055, 'ratio_error': 3.107133979617201e-05, 'ratio_win': 0.6748073576932637, 'ratio_lost': 0.30288342033308474, 'score': 2.227715663144938}
+Target model updated for  1
+6500 2 {'n_match': 32968, 'average_len': 12.424168891045863, 'ratio_error': 0.0, 'ratio_win': 0.56891531181752, 'ratio_lost': 0.4124302353797622, 'score': 1.3794219313083769}
+Target model updated for  2
+7000 1 {'n_match': 37980, 'average_len': 10.784623486045287, 'ratio_error': 5.2659294365455505e-05, 'ratio_win': 0.6704844655081622, 'ratio_lost': 0.3271458662453923, 'score': 2.049167136074676}
+Target model updated for  1
+7000 2 {'n_match': 32170, 'average_len': 12.732359341000933, 'ratio_error': 6.216972334473111e-05, 'ratio_win': 0.43235934100093254, 'ratio_lost': 0.5520982281628847, 'score': 0.7830321454709227}
+Target model updated for  2
+7500 1 {'n_match': 30772, 'average_len': 13.310802027817497, 'ratio_error': 0.0, 'ratio_win': 0.7011893929546341, 'ratio_lost': 0.27625763681268684, 'score': 2.5381719797670863}
+Target model updated for  1
+7500 2 {'n_match': 26332, 'average_len': 15.555217985720796, 'ratio_error': 0.0, 'ratio_win': 0.5517241379310345, 'ratio_lost': 0.4346042837612031, 'score': 1.269486193638588}
+Target model updated for  2
+8000 1 {'n_match': 28845, 'average_len': 14.200034668053389, 'ratio_error': 0.0, 'ratio_win': 0.5916449991332987, 'ratio_lost': 0.37562835846767206, 'score': 1.5750807568066452}
+Target model updated for  1
+8000 2 {'n_match': 26218, 'average_len': 15.622854527423907, 'ratio_error': 0.0001525669387443741, 'ratio_win': 0.6347166069112823, 'ratio_lost': 0.3386986040125105, 'score': 1.8731427285006754}
+Target model updated for  2
+8500 1 {'n_match': 33658, 'average_len': 12.16946936835225, 'ratio_error': 0.00014855309287539365, 'ratio_win': 0.6422247311189019, 'ratio_lost': 0.34259314278923286, 'score': 1.8737864077669903}
+Target model updated for  1
+8500 2 {'n_match': 33717, 'average_len': 12.148174511374084, 'ratio_error': 0.0003559035501379126, 'ratio_win': 0.5877153957944063, 'ratio_lost': 0.3946377198445888, 'score': 1.4879110977624268}
+Target model updated for  2
+9000 1 {'n_match': 28594, 'average_len': 14.324683500034972, 'ratio_error': 0.0, 'ratio_win': 0.6058963418899069, 'ratio_lost': 0.3793103448275862, 'score': 1.5973630831643002}
+Target model updated for  1
+9000 2 {'n_match': 30727, 'average_len': 13.330295831028087, 'ratio_error': 0.0, 'ratio_win': 0.5519901064210629, 'ratio_lost': 0.4160184853711719, 'score': 1.3268403348196824}
+Target model updated for  2
+9500 1 {'n_match': 32587, 'average_len': 12.569429527112039, 'ratio_error': 0.0, 'ratio_win': 0.7717801577316108, 'ratio_lost': 0.21932058796452572, 'score': 3.518959003777809}
+Target model updated for  1
+9500 2 {'n_match': 36599, 'average_len': 11.1915626110003, 'ratio_error': 0.0, 'ratio_win': 0.6978332741331731, 'ratio_lost': 0.28702970026503455, 'score': 2.4312232270347454}
+Target model updated for  2
+10000 1 {'n_match': 28193, 'average_len': 14.528429042670167, 'ratio_error': 0.0, 'ratio_win': 0.5031036072784024, 'ratio_lost': 0.4422019650267797, 'score': 1.1377235902783347}
+10000 2 {'n_match': 28368, 'average_len': 14.438804286520023, 'ratio_error': 0.00010575296108291032, 'ratio_win': 0.5187887760857304, 'ratio_lost': 0.41042724196277497, 'score': 1.263695689507127}
+Target model updated for  2
+10500 1 {'n_match': 26483, 'average_len': 15.466525695729336, 'ratio_error': 0.00033984065249405277, 'ratio_win': 0.5693463731450364, 'ratio_lost': 0.41823056300268097, 'score': 1.36021650879567}
+Target model updated for  1
+10500 2 {'n_match': 32678, 'average_len': 12.534426831507437, 'ratio_error': 0.0, 'ratio_win': 0.6251912601750413, 'ratio_lost': 0.3447579411224677, 'score': 1.8134209124800285}
+Target model updated for  2
+11000 1 {'n_match': 27253, 'average_len': 15.029538032510182, 'ratio_error': 0.00022015924852309839, 'ratio_win': 0.5978424393644737, 'ratio_lost': 0.3747110409863134, 'score': 1.594539048737522}
+11000 2 {'n_match': 27486, 'average_len': 14.902131994469912, 'ratio_error': 7.276431637924761e-05, 'ratio_win': 0.5860074219602707, 'ratio_lost': 0.3430473695699629, 'score': 1.7078782737779663}
+Target model updated for  2
+11500 1 {'n_match': 28073, 'average_len': 14.590531827734834, 'ratio_error': 0.0, 'ratio_win': 0.6138282335340006, 'ratio_lost': 0.3643002172906351, 'score': 1.684951598709299}
+11500 2 {'n_match': 30639, 'average_len': 13.368582525539345, 'ratio_error': 3.2638140931492545e-05, 'ratio_win': 0.5540650804530174, 'ratio_lost': 0.3322236365416626, 'score': 1.6675834970530452}
+Target model updated for  2
+12000 1 {'n_match': 28400, 'average_len': 14.422535211267606, 'ratio_error': 3.5211267605633805e-05, 'ratio_win': 0.6535915492957747, 'ratio_lost': 0.3124295774647887, 'score': 2.0917286454811808}
+Target model updated for  1
+12000 2 {'n_match': 33783, 'average_len': 12.12444128703786, 'ratio_error': 0.00029600686735932274, 'ratio_win': 0.7441908652280733, 'ratio_lost': 0.24379125595713821, 'score': 3.0488721804511276}
+Target model updated for  2
+12500 1 {'n_match': 36158, 'average_len': 11.328060180319708, 'ratio_error': 0.0, 'ratio_win': 0.7513136788539189, 'ratio_lost': 0.2346645279053045, 'score': 3.2016499705362405}
+Target model updated for  1
+12500 2 {'n_match': 37323, 'average_len': 10.97446614687994, 'ratio_error': 0.0, 'ratio_win': 0.6042654663344319, 'ratio_lost': 0.3651367789298824, 'score': 1.6549016730261228}
+Target model updated for  2
+13000 1 {'n_match': 32079, 'average_len': 12.768477820380934, 'ratio_error': 6.234608310732879e-05, 'ratio_win': 0.5994264160354126, 'ratio_lost': 0.38043579912092024, 'score': 1.5753727674913978}
+13000 2 {'n_match': 29442, 'average_len': 13.912098362882956, 'ratio_error': 0.00013586033557502888, 'ratio_win': 0.6292371442157462, 'ratio_lost': 0.29230351198967464, 'score': 2.1516840882694543}
+Target model updated for  2
+13500 1 {'n_match': 27201, 'average_len': 15.058269916547186, 'ratio_error': 0.0, 'ratio_win': 0.6204183669718025, 'ratio_lost': 0.35715598691224587, 'score': 1.737107565620175}
+13500 2 {'n_match': 31561, 'average_len': 12.978042520832673, 'ratio_error': 6.336934824625328e-05, 'ratio_win': 0.7147428788694908, 'ratio_lost': 0.2624758404359811, 'score': 2.722423364711562}
+Target model updated for  2
+14000 1 {'n_match': 28616, 'average_len': 14.313670673748952, 'ratio_error': 3.49454850433324e-05, 'ratio_win': 0.7446183953033269, 'ratio_lost': 0.23762929829466034, 'score': 3.1330686663725924}
+Target model updated for  1
+14000 2 {'n_match': 32552, 'average_len': 12.582944212337184, 'ratio_error': 0.0004608011796510199, 'ratio_win': 0.6332637011550749, 'ratio_lost': 0.3474748095355124, 'score': 1.8200600388486667}
+Target model updated for  2
+14500 1 {'n_match': 35631, 'average_len': 11.495607757290001, 'ratio_error': 8.419634587858886e-05, 'ratio_win': 0.7723611461929218, 'ratio_lost': 0.21703011422637591, 'score': 3.557394002068252}
+Target model updated for  1
+14500 2 {'n_match': 31564, 'average_len': 12.976809022937523, 'ratio_error': 0.0, 'ratio_win': 0.7971739956912939, 'ratio_lost': 0.183310100114054, 'score': 4.3487729001036985}
+Target model updated for  2
+15000 1 {'n_match': 35505, 'average_len': 11.536403323475566, 'ratio_error': 5.633009435290804e-05, 'ratio_win': 0.6309815518940994, 'ratio_lost': 0.336290663286861, 'score': 1.8759839222910735}
+15000 2 {'n_match': 27745, 'average_len': 14.763020364029554, 'ratio_error': 0.0009371057848260948, 'ratio_win': 0.6471796720129753, 'ratio_lost': 0.25348711479545866, 'score': 2.5437030740898146}
+Target model updated for  2
+15500 1 {'n_match': 40513, 'average_len': 10.110334954212227, 'ratio_error': 0.0, 'ratio_win': 0.6226396465332116, 'ratio_lost': 0.3645249672944487, 'score': 1.7080850487540629}
+15500 2 {'n_match': 32164, 'average_len': 12.734734485760477, 'ratio_error': 0.000186543962193757, 'ratio_win': 0.6962442482278324, 'ratio_lost': 0.2869667951747295, 'score': 2.424642702468601}
+Target model updated for  2
+16000 1 {'n_match': 33514, 'average_len': 12.221758071253804, 'ratio_error': 0.0, 'ratio_win': 0.633585964074715, 'ratio_lost': 0.34200632571462675, 'score': 1.8525562729017624}
+16000 2 {'n_match': 26737, 'average_len': 15.31959456932341, 'ratio_error': 0.0009350338482253058, 'ratio_win': 0.6034334442906834, 'ratio_lost': 0.36683247933575197, 'score': 1.6408013830977322}
+Target model updated for  2
+16500 1 {'n_match': 31568, 'average_len': 12.975164723770908, 'ratio_error': 0.0, 'ratio_win': 0.6746388748099341, 'ratio_lost': 0.30983907754688295, 'score': 2.1773847254881913}
+Target model updated for  1
+16500 2 {'n_match': 31573, 'average_len': 12.973109935704558, 'ratio_error': 6.334526335793241e-05, 'ratio_win': 0.7476007981503183, 'ratio_lost': 0.2326354796820068, 'score': 3.212739893834218}
+Target model updated for  2
+17000 1 {'n_match': 30813, 'average_len': 13.293090578651867, 'ratio_error': 0.00016226917210268393, 'ratio_win': 0.6124038555155291, 'ratio_lost': 0.27387790867490996, 'score': 2.234722880151587}
+17000 2 {'n_match': 37958, 'average_len': 10.790874124031825, 'ratio_error': 0.00034248379788186944, 'ratio_win': 0.7686653669845619, 'ratio_lost': 0.21255071394699404, 'score': 3.6105679990100237}
+Target model updated for  2
+17500 1 {'n_match': 33700, 'average_len': 12.154302670623146, 'ratio_error': 0.0, 'ratio_win': 0.7708308605341246, 'ratio_lost': 0.2116320474777448, 'score': 3.6423163208076277}
+Target model updated for  1
+17500 2 {'n_match': 36343, 'average_len': 11.270395949701456, 'ratio_error': 0.00019260930578103073, 'ratio_win': 0.7137550559942768, 'ratio_lost': 0.2479432077704097, 'score': 2.8764692836549126}
+Target model updated for  2
+18000 1 {'n_match': 32161, 'average_len': 12.735922390472933, 'ratio_error': 3.109356052361556e-05, 'ratio_win': 0.6795186716830944, 'ratio_lost': 0.2886726159012469, 'score': 2.3536887452880992}
+18000 2 {'n_match': 30400, 'average_len': 13.473684210526315, 'ratio_error': 0.0002631578947368421, 'ratio_win': 0.6512171052631579, 'ratio_lost': 0.3210197368421053, 'score': 2.026927408620866}
+Target model updated for  2
+18500 1 {'n_match': 31144, 'average_len': 13.151810942717699, 'ratio_error': 6.421782686873876e-05, 'ratio_win': 0.655599794502954, 'ratio_lost': 0.31954790649884407, 'score': 2.0512356841470765}
+Target model updated for  1
+18500 2 {'n_match': 30589, 'average_len': 13.390434469907483, 'ratio_error': 0.0005557553368858086, 'ratio_win': 0.5873026251266795, 'ratio_lost': 0.3802674163915133, 'score': 1.5421924628723496}
+Target model updated for  2
+19000 1 {'n_match': 38529, 'average_len': 10.630953307897947, 'ratio_error': 0.00018168133094552155, 'ratio_win': 0.5929559552544836, 'ratio_lost': 0.38814918632718215, 'score': 1.5269349017511027}
+19000 2 {'n_match': 36839, 'average_len': 11.118651429191889, 'ratio_error': 0.00010858058036320204, 'ratio_win': 0.6996932598604739, 'ratio_lost': 0.2762561415890768, 'score': 2.531774874766722}
+Target model updated for  2
+19500 1 {'n_match': 29430, 'average_len': 13.917770981991165, 'ratio_error': 6.795786612300373e-05, 'ratio_win': 0.6541624193000339, 'ratio_lost': 0.3200475705062861, 'score': 2.0435197961999787}
+19500 2 {'n_match': 31102, 'average_len': 13.16957108867597, 'ratio_error': 6.430454633142563e-05, 'ratio_win': 0.7198572439071442, 'ratio_lost': 0.2395987396308919, 'score': 3.003622216259726}
+Target model updated for  2
+20000 1 {'n_match': 30658, 'average_len': 13.360297475373475, 'ratio_error': 0.0, 'ratio_win': 0.7236936525539827, 'ratio_lost': 0.19782764694370147, 'score': 3.6582028029678484}
+Target model updated for  1
+20000 2 {'n_match': 32681, 'average_len': 12.53327621553808, 'ratio_error': 0.0, 'ratio_win': 0.7202961965668125, 'ratio_lost': 0.25522474832471465, 'score': 2.822203572713104}
+Target model updated for  2
+20500 1 {'n_match': 33741, 'average_len': 12.139533505231025, 'ratio_error': 2.963753297175543e-05, 'ratio_win': 0.6521739130434783, 'ratio_lost': 0.3064224533949794, 'score': 2.1281431334622822}
+20500 2 {'n_match': 31809, 'average_len': 12.87685875066805, 'ratio_error': 3.143764343424817e-05, 'ratio_win': 0.6592159451727498, 'ratio_lost': 0.31648275645257634, 'score': 2.0827373857767184}
+Target model updated for  2
+21000 1 {'n_match': 31982, 'average_len': 12.807204052279408, 'ratio_error': 0.0, 'ratio_win': 0.7928522293790257, 'ratio_lost': 0.17822525170408354, 'score': 4.44859649122807}
+Target model updated for  1
+21000 2 {'n_match': 34024, 'average_len': 12.038561015753587, 'ratio_error': 2.9391018104867154e-05, 'ratio_win': 0.7673113096637667, 'ratio_lost': 0.20941100399717846, 'score': 3.663626157732248}
+Target model updated for  2
+21500 1 {'n_match': 37384, 'average_len': 10.956558955702974, 'ratio_error': 0.00032099293815536056, 'ratio_win': 0.755002139952921, 'ratio_lost': 0.22678151080676226, 'score': 3.3244994110718493}
+21500 2 {'n_match': 36221, 'average_len': 11.308357030451948, 'ratio_error': 5.521658706275365e-05, 'ratio_win': 0.7423041881781287, 'ratio_lost': 0.2091880400872422, 'score': 3.5475656419052646}
+Target model updated for  2
+22000 1 {'n_match': 29880, 'average_len': 13.708165997322624, 'ratio_error': 0.0006693440428380187, 'ratio_win': 0.6513721552878179, 'ratio_lost': 0.25468540829986613, 'score': 2.5508519003931847}
+22000 2 {'n_match': 34442, 'average_len': 11.892456884036932, 'ratio_error': 0.0, 'ratio_win': 0.6377968759073225, 'ratio_lost': 0.3361303060217177, 'score': 1.897469119806513}
+Target model updated for  2
+22500 1 {'n_match': 36830, 'average_len': 11.12136844963345, 'ratio_error': 2.7151778441487917e-05, 'ratio_win': 0.6935107249524843, 'ratio_lost': 0.279799076839533, 'score': 2.478362119153891}
+Target model updated for  1
+22500 2 {'n_match': 36630, 'average_len': 11.182091182091183, 'ratio_error': 8.19000819000819e-05, 'ratio_win': 0.7074256074256075, 'ratio_lost': 0.26895986895986895, 'score': 2.6294266869609335}
+Target model updated for  2
+23000 1 {'n_match': 38885, 'average_len': 10.533624791050533, 'ratio_error': 0.00020573485920020573, 'ratio_win': 0.687025845441687, 'ratio_lost': 0.29566670952809565, 'score': 2.3220338983050848}
+23000 2 {'n_match': 38211, 'average_len': 10.719426343199602, 'ratio_error': 7.851142341210646e-05, 'ratio_win': 0.6343984716442909, 'ratio_lost': 0.3446651487791474, 'score': 1.8402034464434829}
+Target model updated for  2
+23500 1 {'n_match': 30303, 'average_len': 13.516813516813517, 'ratio_error': 0.000165000165000165, 'ratio_win': 0.6378576378576378, 'ratio_lost': 0.2985512985512985, 'score': 2.1353292090145826}
+Target model updated for  1
+23500 2 {'n_match': 32402, 'average_len': 12.641194987963706, 'ratio_error': 0.0, 'ratio_win': 0.6919017344608358, 'ratio_lost': 0.2640577742114684, 'score': 2.6202664796633943}
+Target model updated for  2
+24000 1 {'n_match': 33698, 'average_len': 12.155024037034838, 'ratio_error': 0.0, 'ratio_win': 0.7371950857617663, 'ratio_lost': 0.24212119413615052, 'score': 3.0447358744944233}
+Target model updated for  1
+24000 2 {'n_match': 27944, 'average_len': 14.657887202977383, 'ratio_error': 0.000143143429716576, 'ratio_win': 0.6816847981677641, 'ratio_lost': 0.2684655024334383, 'score': 2.5378363975486278}
+Target model updated for  2
+24500 1 {'n_match': 36693, 'average_len': 11.162892104761125, 'ratio_error': 0.0, 'ratio_win': 0.7721363747853814, 'ratio_lost': 0.20954950535524486, 'score': 3.684744440109247}
+Target model updated for  1
+24500 2 {'n_match': 32437, 'average_len': 12.627554952677498, 'ratio_error': 0.00012331596633474118, 'ratio_win': 0.751949933717668, 'ratio_lost': 0.22067392175601935, 'score': 3.405612957274504}
+Target model updated for  2
+25000 1 {'n_match': 36433, 'average_len': 11.24255482666813, 'ratio_error': 0.0, 'ratio_win': 0.7658990475667664, 'ratio_lost': 0.22482364888974282, 'score': 3.4066658527652303}
+Target model updated for  1
+25000 2 {'n_match': 32565, 'average_len': 12.577921080915093, 'ratio_error': 9.212344541685859e-05, 'ratio_win': 0.7212958697988638, 'ratio_lost': 0.2631352679256871, 'score': 2.7402006532897807}
+Target model updated for  2
+25500 1 {'n_match': 31043, 'average_len': 13.194601037270882, 'ratio_error': 6.442676287729922e-05, 'ratio_win': 0.7556937151692813, 'ratio_lost': 0.22433398833875592, 'score': 3.367642836635085}
+Target model updated for  1
+25500 2 {'n_match': 31599, 'average_len': 12.962435520111397, 'ratio_error': 0.0, 'ratio_win': 0.8046457166366024, 'ratio_lost': 0.17367638216399253, 'score': 4.63301749271137}
+Target model updated for  2
+26000 1 {'n_match': 30887, 'average_len': 13.261242593971573, 'ratio_error': 6.475216110337682e-05, 'ratio_win': 0.7550425745459255, 'ratio_lost': 0.20973224981383753, 'score': 3.59891975308642}
+26000 2 {'n_match': 35719, 'average_len': 11.467286318205996, 'ratio_error': 0.0, 'ratio_win': 0.7301996136509981, 'ratio_lost': 0.2545424004031468, 'score': 2.868675758908931}
+Target model updated for  2
+26500 1 {'n_match': 30552, 'average_len': 13.406650955747578, 'ratio_error': 3.273108143493061e-05, 'ratio_win': 0.6866326263419743, 'ratio_lost': 0.26161953390940035, 'score': 2.624218163622717}
+26500 2 {'n_match': 36186, 'average_len': 11.319294754877577, 'ratio_error': 0.0, 'ratio_win': 0.5950091195489968, 'ratio_lost': 0.3633449400320566, 'score': 1.6375874657742622}
+Target model updated for  2
+27000 1 {'n_match': 31077, 'average_len': 13.180165395630208, 'ratio_error': 0.00012871255269170125, 'ratio_win': 0.7125848698394311, 'ratio_lost': 0.2689770569874827, 'score': 2.647973215353342}
+Target model updated for  1
+27000 2 {'n_match': 32245, 'average_len': 12.702744611567685, 'ratio_error': 0.0, 'ratio_win': 0.7629089781361451, 'ratio_lost': 0.21395565203907582, 'score': 3.5657341643716483}
+Target model updated for  2
+27500 1 {'n_match': 30831, 'average_len': 13.285329700625994, 'ratio_error': 6.486977392883786e-05, 'ratio_win': 0.7402289903019688, 'ratio_lost': 0.22733612273361228, 'score': 3.2551704464413067}
+27500 2 {'n_match': 36290, 'average_len': 11.286855883163406, 'ratio_error': 0.0, 'ratio_win': 0.5956737393221273, 'ratio_lost': 0.368972168641499, 'score': 1.6144137415982076}
+Target model updated for  2
+28000 1 {'n_match': 35030, 'average_len': 11.692834713103055, 'ratio_error': 0.0, 'ratio_win': 0.815929203539823, 'ratio_lost': 0.16525834998572653, 'score': 4.9372948695802386}
+Target model updated for  1
+28000 2 {'n_match': 33259, 'average_len': 12.315463483568358, 'ratio_error': 9.020114856129169e-05, 'ratio_win': 0.6654138729366488, 'ratio_lost': 0.27787967166781924, 'score': 2.3938345051379124}
+Target model updated for  2
+28500 1 {'n_match': 34741, 'average_len': 11.790103911804497, 'ratio_error': 8.635330013528684e-05, 'ratio_win': 0.7020235456665036, 'ratio_lost': 0.26493192481506, 'score': 2.6489627457369394}
+Target model updated for  1
+28500 2 {'n_match': 38319, 'average_len': 10.689214227928703, 'ratio_error': 0.0, 'ratio_win': 0.6273650147446437, 'ratio_lost': 0.34716459197787, 'score': 1.8071111779297904}
+Target model updated for  2
+29000 1 {'n_match': 34112, 'average_len': 12.007504690431519, 'ratio_error': 0.0, 'ratio_win': 0.6927767354596623, 'ratio_lost': 0.2523159005628518, 'score': 2.745672127338213}
+Target model updated for  1
+29000 2 {'n_match': 31021, 'average_len': 13.20395860868444, 'ratio_error': 9.670868121595048e-05, 'ratio_win': 0.7711227877889172, 'ratio_lost': 0.189452306502047, 'score': 4.068197278911565}
+Target model updated for  2
+29500 1 {'n_match': 29694, 'average_len': 13.794032464470936, 'ratio_error': 0.000134707348285849, 'ratio_win': 0.6194517410924766, 'ratio_lost': 0.2924496531285782, 'score': 2.1171731123388584}
+29500 2 {'n_match': 33220, 'average_len': 12.329921733895244, 'ratio_error': 3.0102347983142685e-05, 'ratio_win': 0.6326008428657435, 'ratio_lost': 0.3357013847080072, 'score': 1.884246391105532}
+Target model updated for  2
+30000 1 {'n_match': 34207, 'average_len': 11.974157336217733, 'ratio_error': 0.00017540269535475195, 'ratio_win': 0.7670359867863303, 'ratio_lost': 0.21659309498055954, 'score': 3.5385030343897506}
+Target model updated for  1
+30000 2 {'n_match': 32371, 'average_len': 12.653300793920485, 'ratio_error': 0.0, 'ratio_win': 0.6944178431311977, 'ratio_lost': 0.26829569676562354, 'score': 2.5882556131260794}
+Target model updated for  2
+30500 1 {'n_match': 35493, 'average_len': 11.54030372186065, 'ratio_error': 0.00011269827853379539, 'ratio_win': 0.8183585495731552, 'ratio_lost': 0.15805933564364805, 'score': 5.173851086569291}
+Target model updated for  1
+30500 2 {'n_match': 33515, 'average_len': 12.22139340593764, 'ratio_error': 0.0001491869312248247, 'ratio_win': 0.5711472475011189, 'ratio_lost': 0.40184991794718783, 'score': 1.420767460847621}
+Target model updated for  2
+31000 1 {'n_match': 31899, 'average_len': 12.840527916235619, 'ratio_error': 0.0006896767923759365, 'ratio_win': 0.7427192074986677, 'ratio_lost': 0.21358036302078434, 'score': 3.466276517922458}
+Target model updated for  1
+31000 2 {'n_match': 29670, 'average_len': 13.805190428041794, 'ratio_error': 0.0, 'ratio_win': 0.5717559824738794, 'ratio_lost': 0.2661948095719582, 'score': 2.147885540643201}
+Target model updated for  2
+31500 1 {'n_match': 35923, 'average_len': 11.402165743395596, 'ratio_error': 0.0, 'ratio_win': 0.7315647356846589, 'ratio_lost': 0.24043092169362246, 'score': 3.0427231677665856}
+Target model updated for  1
+31500 2 {'n_match': 31080, 'average_len': 13.178893178893178, 'ratio_error': 0.0001287001287001287, 'ratio_win': 0.651962676962677, 'ratio_lost': 0.23963963963963963, 'score': 2.7191358024691357}
+Target model updated for  2
+32000 1 {'n_match': 31639, 'average_len': 12.946047599481652, 'ratio_error': 0.00012642624608868801, 'ratio_win': 0.8232561079680142, 'ratio_lost': 0.14994152786118398, 'score': 5.485888795282224}
+Target model updated for  1
+32000 2 {'n_match': 36266, 'average_len': 11.294325263332047, 'ratio_error': 0.0003033143991617493, 'ratio_win': 0.7178900347432857, 'ratio_lost': 0.2502068052721557, 'score': 2.8657127132636213}
+Target model updated for  2
+32500 1 {'n_match': 28793, 'average_len': 14.225679852741987, 'ratio_error': 0.0, 'ratio_win': 0.6293543569617616, 'ratio_lost': 0.17903657138887924, 'score': 3.515227934044617}
+Target model updated for  1
+32500 2 {'n_match': 30541, 'average_len': 13.411479650306147, 'ratio_error': 0.0, 'ratio_win': 0.7009921089682721, 'ratio_lost': 0.17393012671490782, 'score': 4.030308734939759}
+Target model updated for  2
+33000 1 {'n_match': 27482, 'average_len': 14.904300997016229, 'ratio_error': 0.0, 'ratio_win': 0.6075977003129321, 'ratio_lost': 0.30620042209446185, 'score': 1.9843137254901961}
+33000 2 {'n_match': 34129, 'average_len': 12.001523630929707, 'ratio_error': 0.0009962202232705324, 'ratio_win': 0.6991707931671013, 'ratio_lost': 0.2648773770107533, 'score': 2.629711262949085}
+Target model updated for  2
+33500 1 {'n_match': 32509, 'average_len': 12.599587806453597, 'ratio_error': 3.07607124180996e-05, 'ratio_win': 0.7669260820080593, 'ratio_lost': 0.11298409671167985, 'score': 6.786064235166031}
+Target model updated for  1
+33500 2 {'n_match': 29995, 'average_len': 13.655609268211368, 'ratio_error': 0.0013668944824137357, 'ratio_win': 0.6671445240873479, 'ratio_lost': 0.26234372395399236, 'score': 2.529835651074589}
+Target model updated for  2
+34000 1 {'n_match': 37998, 'average_len': 10.779514711300594, 'ratio_error': 0.000842149586820359, 'ratio_win': 0.7275646086636138, 'ratio_lost': 0.24372335386072952, 'score': 2.974927364683095}
+Target model updated for  1
+34000 2 {'n_match': 37806, 'average_len': 10.834259112310216, 'ratio_error': 0.00026450827910913614, 'ratio_win': 0.6487330053430672, 'ratio_lost': 0.32330846955509707, 'score': 2.0049047657974333}
+Target model updated for  2
+34500 1 {'n_match': 35611, 'average_len': 11.502063968998343, 'ratio_error': 8.424363258543709e-05, 'ratio_win': 0.7303361320940159, 'ratio_lost': 0.22771053887843642, 'score': 3.206114398422091}
+Target model updated for  1
+34500 2 {'n_match': 30923, 'average_len': 13.245804094040034, 'ratio_error': 9.701516670439479e-05, 'ratio_win': 0.6110661966820813, 'ratio_lost': 0.36681434530931667, 'score': 1.6654327516305305}
+Target model updated for  2
+35000 1 {'n_match': 36951, 'average_len': 11.084950339638981, 'ratio_error': 0.00021650293632107385, 'ratio_win': 0.7365700522313334, 'ratio_lost': 0.23452680576980325, 'score': 3.13776804242564}
+Target model updated for  1
+35000 2 {'n_match': 30178, 'average_len': 13.57280137848764, 'ratio_error': 0.00043077738750082843, 'ratio_win': 0.6293657631387103, 'ratio_lost': 0.3335873815362184, 'score': 1.8842261904761906}
+Target model updated for  2
+35500 1 {'n_match': 35899, 'average_len': 11.409788573497869, 'ratio_error': 0.00013927964567258142, 'ratio_win': 0.7171508955681217, 'ratio_lost': 0.20813950249310564, 'score': 3.443225892737729}
+Target model updated for  1
+35500 2 {'n_match': 28731, 'average_len': 14.256378128154259, 'ratio_error': 0.00020883366398663465, 'ratio_win': 0.6268490480665483, 'ratio_lost': 0.23114406042254013, 'score': 2.7094930043628707}
+Target model updated for  2
+36000 1 {'n_match': 36907, 'average_len': 11.098165659630965, 'ratio_error': 0.00010838052401983363, 'ratio_win': 0.6678678841412198, 'ratio_lost': 0.3015146178231772, 'score': 2.2142472152353574}
+36000 2 {'n_match': 28201, 'average_len': 14.52430764866494, 'ratio_error': 0.00014183894188149357, 'ratio_win': 0.6307577745470019, 'ratio_lost': 0.3303074359065281, 'score': 1.908788496619809}
+Target model updated for  2
+36500 1 {'n_match': 30702, 'average_len': 13.341150413653834, 'ratio_error': 3.257116800208455e-05, 'ratio_win': 0.7682561396651684, 'ratio_lost': 0.18734935834799035, 'score': 4.0999478532939335}
+Target model updated for  1
+36500 2 {'n_match': 34793, 'average_len': 11.772482970712499, 'ratio_error': 8.62242405081482e-05, 'ratio_win': 0.7156899376311326, 'ratio_lost': 0.24576782686172505, 'score': 2.9110357727379004}
+Target model updated for  2
+37000 1 {'n_match': 35704, 'average_len': 11.47210396594219, 'ratio_error': 0.00016804839793860632, 'ratio_win': 0.675162446784674, 'ratio_lost': 0.30203898722832173, 'score': 2.2341056533827617}
+37000 2 {'n_match': 29475, 'average_len': 13.896522476675148, 'ratio_error': 3.392705682782019e-05, 'ratio_win': 0.575470737913486, 'ratio_lost': 0.38025445292620863, 'score': 1.5132482826300295}
+Target model updated for  2
+37500 1 {'n_match': 31058, 'average_len': 13.18822847575504, 'ratio_error': 0.0002575825874170906, 'ratio_win': 0.7341103741387083, 'ratio_lost': 0.11864897932899736, 'score': 6.173842404549147}
+Target model updated for  1
+37500 2 {'n_match': 33269, 'average_len': 12.311761700081156, 'ratio_error': 0.0014728425861913494, 'ratio_win': 0.7160720189966635, 'ratio_lost': 0.2571162343322613, 'score': 2.7691502964082297}
+Target model updated for  2
+38000 1 {'n_match': 34440, 'average_len': 11.8931475029036, 'ratio_error': 8.710801393728223e-05, 'ratio_win': 0.6556039488966319, 'ratio_lost': 0.29936120789779325, 'score': 2.1893726364782315}
+38000 2 {'n_match': 38032, 'average_len': 10.76987799747581, 'ratio_error': 0.00010517458981909971, 'ratio_win': 0.6720919225915019, 'ratio_lost': 0.2995898190997055, 'score': 2.242586418669942}
+Target model updated for  2
+38500 1 {'n_match': 34516, 'average_len': 11.866960250318693, 'ratio_error': 0.00011588828369451848, 'ratio_win': 0.8018020628114497, 'ratio_lost': 0.16980530768339322, 'score': 4.718670076726343}
+Target model updated for  1
+38500 2 {'n_match': 31582, 'average_len': 12.969412956747515, 'ratio_error': 0.0010132353872458995, 'ratio_win': 0.6850737762016338, 'ratio_lost': 0.21927047052118295, 'score': 3.109961190168176}
+Target model updated for  2
+39000 1 {'n_match': 33030, 'average_len': 12.400847714199212, 'ratio_error': 0.0, 'ratio_win': 0.6659703300030275, 'ratio_lost': 0.21534968210717528, 'score': 3.092506677913679}
+39000 2 {'n_match': 29506, 'average_len': 13.881922320883888, 'ratio_error': 0.00013556564766488172, 'ratio_win': 0.6318375923540974, 'ratio_lost': 0.3056666440723921, 'score': 2.0661642469245263}
+Target model updated for  2
+39500 1 {'n_match': 29745, 'average_len': 13.770381576735586, 'ratio_error': 0.00010085728693898134, 'ratio_win': 0.6117330643805682, 'ratio_lost': 0.2138846865019331, 'score': 2.858758837391987}
+Target model updated for  1
+39500 2 {'n_match': 33882, 'average_len': 12.089014816126557, 'ratio_error': 8.854258898530193e-05, 'ratio_win': 0.7363791983944277, 'ratio_lost': 0.21973319166519095, 'score': 3.3498925886143933}
+Target model updated for  2
+40000 1 {'n_match': 32212, 'average_len': 12.71575810257047, 'ratio_error': 0.007792127157581026, 'ratio_win': 0.7795231590711537, 'ratio_lost': 0.1883770023593692, 'score': 3.9737300205728756}
+Target model updated for  1
+40000 2 {'n_match': 31307, 'average_len': 13.083335995144855, 'ratio_error': 0.0001597086913469831, 'ratio_win': 0.7627048263966525, 'ratio_lost': 0.20311751365509312, 'score': 3.7520427404148333}
+Target model updated for  2
+40500 1 {'n_match': 28155, 'average_len': 14.548037648730244, 'ratio_error': 0.0004972473805718345, 'ratio_win': 0.5863967323743562, 'ratio_lost': 0.2522820103001243, 'score': 2.319797667556555}
+40500 2 {'n_match': 33915, 'average_len': 12.077251953412944, 'ratio_error': 0.0, 'ratio_win': 0.7754680819696299, 'ratio_lost': 0.15140793159369012, 'score': 5.121713729308666}
+Target model updated for  2
+41000 1 {'n_match': 33661, 'average_len': 12.16838477763584, 'ratio_error': 5.9415941297049996e-05, 'ratio_win': 0.7416594872404266, 'ratio_lost': 0.18808116217581178, 'score': 3.942049581556924}
+41000 2 {'n_match': 29577, 'average_len': 13.848598573215675, 'ratio_error': 0.030631909930013187, 'ratio_win': 0.7671839605098556, 'ratio_lost': 0.14000743821212427, 'score': 4.4959381810976815}
+Target model updated for  2
+41500 1 {'n_match': 34095, 'average_len': 12.013491714327614, 'ratio_error': 8.798944126704795e-05, 'ratio_win': 0.6551107200469277, 'ratio_lost': 0.32664613579703766, 'score': 2.0050269299820465}
+41500 2 {'n_match': 31497, 'average_len': 13.004413118709719, 'ratio_error': 0.0006984792202431978, 'ratio_win': 0.8223640346699685, 'ratio_lost': 0.1551576340603867, 'score': 5.276431045019352}
+Target model updated for  2
+42000 1 {'n_match': 31871, 'average_len': 12.85180885444448, 'ratio_error': 0.00012550594584418437, 'ratio_win': 0.7167017037432148, 'ratio_lost': 0.24630541871921183, 'score': 2.9083269671504968}
+42000 2 {'n_match': 31345, 'average_len': 13.067474876375817, 'ratio_error': 0.0008294783857074494, 'ratio_win': 0.6964428138459084, 'ratio_lost': 0.2870633274844473, 'score': 2.419104609929078}
+Target model updated for  2
+42500 1 {'n_match': 35431, 'average_len': 11.560497869097683, 'ratio_error': 8.467161525218029e-05, 'ratio_win': 0.7062741666901866, 'ratio_lost': 0.2541277412435438, 'score': 2.778283557233263}
+Target model updated for  1
+42500 2 {'n_match': 38484, 'average_len': 10.643384263590063, 'ratio_error': 0.00010393929944912172, 'ratio_win': 0.591544537989814, 'ratio_lost': 0.37805321692131794, 'score': 1.5642822785679928}
+Target model updated for  2
+43000 1 {'n_match': 35521, 'average_len': 11.531206891697868, 'ratio_error': 0.000112609442301737, 'ratio_win': 0.699192027251485, 'ratio_lost': 0.23507221080487598, 'score': 2.97294709121379}
+Target model updated for  1
+43000 2 {'n_match': 31822, 'average_len': 12.871598265351015, 'ratio_error': 6.284960090503425e-05, 'ratio_win': 0.7989755515052479, 'ratio_lost': 0.17179938407391113, 'score': 4.648930334613275}
+Target model updated for  2
+43500 1 {'n_match': 31064, 'average_len': 13.18568117434973, 'ratio_error': 0.0, 'ratio_win': 0.7989956219417976, 'ratio_lost': 0.1792750450682462, 'score': 4.45681450888849}
+43500 2 {'n_match': 29462, 'average_len': 13.902654266512796, 'ratio_error': 0.0035978548638924716, 'ratio_win': 0.696015206028104, 'ratio_lost': 0.28239766478854117, 'score': 2.4336577260859245}
+Target model updated for  2
+44000 1 {'n_match': 34976, 'average_len': 11.71088746569076, 'ratio_error': 2.8591033851784082e-05, 'ratio_win': 0.8543858645928637, 'ratio_lost': 0.12814501372369624, 'score': 6.665848761989739}
+Target model updated for  1
+44000 2 {'n_match': 38099, 'average_len': 10.750938344838447, 'ratio_error': 0.0, 'ratio_win': 0.7250584004829523, 'ratio_lost': 0.23953384603270428, 'score': 3.0269559500328733}
+Target model updated for  2
+44500 1 {'n_match': 29461, 'average_len': 13.903126166796783, 'ratio_error': 3.3943179118156203e-05, 'ratio_win': 0.6703099012253487, 'ratio_lost': 0.2549132751773531, 'score': 2.6292104912794567}
+44500 2 {'n_match': 34320, 'average_len': 11.934731934731936, 'ratio_error': 5.8275058275058275e-05, 'ratio_win': 0.6337121212121212, 'ratio_lost': 0.3162004662004662, 'score': 2.003777409250046}
+Target model updated for  2
+45000 1 {'n_match': 36115, 'average_len': 11.341547833310258, 'ratio_error': 8.306797729475288e-05, 'ratio_win': 0.836632977986986, 'ratio_lost': 0.1440952512806313, 'score': 5.80276550797004}
+Target model updated for  1
+45000 2 {'n_match': 32563, 'average_len': 12.57869360931118, 'ratio_error': 0.0001228388047784295, 'ratio_win': 0.7323035346866075, 'ratio_lost': 0.20799680619107577, 'score': 3.5186660764350006}
+Target model updated for  2
+45500 1 {'n_match': 34070, 'average_len': 12.022307014969181, 'ratio_error': 5.870267097152921e-05, 'ratio_win': 0.7532139712356912, 'ratio_lost': 0.21831523334311712, 'score': 3.449193548387097}
+45500 2 {'n_match': 37213, 'average_len': 11.006906188697497, 'ratio_error': 0.000107489318248999, 'ratio_win': 0.6245666836858087, 'ratio_lost': 0.351194475049042, 'score': 1.7778627705958847}
+Target model updated for  2
+46000 1 {'n_match': 30150, 'average_len': 13.585406301824213, 'ratio_error': 0.0, 'ratio_win': 0.6052404643449419, 'ratio_lost': 0.3075290215588723, 'score': 1.9680759275237274}
+Target model updated for  1
+46000 2 {'n_match': 35861, 'average_len': 11.421878921390926, 'ratio_error': 0.0, 'ratio_win': 0.5967485569281392, 'ratio_lost': 0.3612280750676222, 'score': 1.6519993824301373}
+Target model updated for  2
+46500 1 {'n_match': 32070, 'average_len': 12.772061116308077, 'ratio_error': 0.0, 'ratio_win': 0.7445899594636732, 'ratio_lost': 0.21312753352042407, 'score': 3.493635698610095}
+Target model updated for  1
+46500 2 {'n_match': 36561, 'average_len': 11.203194660977545, 'ratio_error': 0.00013675774732638604, 'ratio_win': 0.6029102048631055, 'ratio_lost': 0.3319657558600695, 'score': 1.8154340306374568}
+Target model updated for  2
+47000 1 {'n_match': 36801, 'average_len': 11.130132333360507, 'ratio_error': 5.434634928398685e-05, 'ratio_win': 0.7858753838210918, 'ratio_lost': 0.17817450612755087, 'score': 4.409361183107181}
+Target model updated for  1
+47000 2 {'n_match': 33403, 'average_len': 12.262371643265576, 'ratio_error': 2.9937430769691346e-05, 'ratio_win': 0.6855671646259318, 'ratio_lost': 0.2985659970661318, 'score': 2.2959695207539603}
+Target model updated for  2
+47500 1 {'n_match': 33537, 'average_len': 12.213376270984286, 'ratio_error': 8.94534394847482e-05, 'ratio_win': 0.6851238930136864, 'ratio_lost': 0.27506932641560067, 'score': 2.489921976592978}
+Target model updated for  1
+47500 2 {'n_match': 35814, 'average_len': 11.43686826380745, 'ratio_error': 0.0, 'ratio_win': 0.749287987937678, 'ratio_lost': 0.20952700061428492, 'score': 3.576092750533049}
+Target model updated for  2
+48000 1 {'n_match': 33630, 'average_len': 12.179601546238478, 'ratio_error': 0.0, 'ratio_win': 0.808623253047874, 'ratio_lost': 0.17237585489146595, 'score': 4.6910470933241335}
+Target model updated for  1
+48000 2 {'n_match': 32213, 'average_len': 12.715363362617577, 'ratio_error': 0.00012417347033806227, 'ratio_win': 0.7133455437245833, 'ratio_lost': 0.2504268463042871, 'score': 2.8471069260314708}
+Target model updated for  2
+48500 1 {'n_match': 33307, 'average_len': 12.297715195004054, 'ratio_error': 6.0047437475605725e-05, 'ratio_win': 0.6947788753114961, 'ratio_lost': 0.2653196024859639, 'score': 2.6180563412150697}
+48500 2 {'n_match': 32117, 'average_len': 12.753370489149049, 'ratio_error': 0.00012454463368309618, 'ratio_win': 0.7077871532210356, 'ratio_lost': 0.2750879596475387, 'score': 2.571784138477203}
+Target model updated for  2
+49000 1 {'n_match': 32028, 'average_len': 12.788809791432497, 'ratio_error': 0.0, 'ratio_win': 0.7426626701636069, 'ratio_lost': 0.18717996752841265, 'score': 3.9676396997497916}
+Target model updated for  1
+49000 2 {'n_match': 38224, 'average_len': 10.715780661364589, 'ratio_error': 0.0, 'ratio_win': 0.6012452909167015, 'ratio_lost': 0.31752302218501466, 'score': 1.8935486528796244}
+Target model updated for  2
+49500 1 {'n_match': 28871, 'average_len': 14.187246718160091, 'ratio_error': 0.0, 'ratio_win': 0.6555713345571681, 'ratio_lost': 0.25755948876034773, 'score': 2.545320064550834}
+Target model updated for  1
+49500 2 {'n_match': 35956, 'average_len': 11.391700967849594, 'ratio_error': 0.0002781176994103905, 'ratio_win': 0.7481087996440093, 'ratio_lost': 0.22213260651907887, 'score': 3.3636363636363638}
+Target model updated for  2
+50000 1 {'n_match': 36064, 'average_len': 11.357586512866016, 'ratio_error': 2.7728482697426798e-05, 'ratio_win': 0.8291648181011535, 'ratio_lost': 0.13789374445430347, 'score': 6.011861680739847}
+Target model updated for  1
+50000 2 {'n_match': 36193, 'average_len': 11.317105517641533, 'ratio_error': 0.0002210372171414362, 'ratio_win': 0.7827204155499682, 'ratio_lost': 0.19531401099660156, 'score': 4.002967359050445}
+Target model updated for  2
+50500 1 {'n_match': 31356, 'average_len': 13.062890674830973, 'ratio_error': 0.0002232427605561934, 'ratio_win': 0.7436216354126802, 'ratio_lost': 0.22152060211761704, 'score': 3.353516467711779}
+50500 2 {'n_match': 39602, 'average_len': 10.34291197414272, 'ratio_error': 0.0, 'ratio_win': 0.7119084894702288, 'ratio_lost': 0.2633200343416999, 'score': 2.7035864978902953}
+Target model updated for  2
+51000 1 {'n_match': 32568, 'average_len': 12.576762466224515, 'ratio_error': 0.0, 'ratio_win': 0.6401068533529846, 'ratio_lost': 0.32009948415622697, 'score': 1.9997122302158274}
+51000 2 {'n_match': 29640, 'average_len': 13.819163292847504, 'ratio_error': 0.07729419703103914, 'ratio_win': 0.7288124156545209, 'ratio_lost': 0.14605263157894738, 'score': 3.2631419939577038}
+Target model updated for  2
+51500 1 {'n_match': 30279, 'average_len': 13.527527329172033, 'ratio_error': 9.907856930545922e-05, 'ratio_win': 0.6843026520030384, 'ratio_lost': 0.2135803692328016, 'score': 3.2024729520865534}
+51500 2 {'n_match': 31209, 'average_len': 13.124419238040309, 'ratio_error': 0.0, 'ratio_win': 0.7464193021243872, 'ratio_lost': 0.20872184305809222, 'score': 3.5761436905127417}
+Target model updated for  2
+52000 1 {'n_match': 32457, 'average_len': 12.619773854638444, 'ratio_error': 0.0006778198847706196, 'ratio_win': 0.7962535046369043, 'ratio_lost': 0.16227624241303878, 'score': 4.886367933446777}
+Target model updated for  1
+52000 2 {'n_match': 31629, 'average_len': 12.950140693667205, 'ratio_error': 9.484966328369534e-05, 'ratio_win': 0.8166239843181891, 'ratio_lost': 0.15024186664137343, 'score': 5.431966351209254}
+Target model updated for  2
+52500 1 {'n_match': 34733, 'average_len': 11.792819508824461, 'ratio_error': 0.00011516425301586387, 'ratio_win': 0.7886160135893818, 'ratio_lost': 0.19079837618403248, 'score': 4.130749509877846}
+52500 2 {'n_match': 30704, 'average_len': 13.340281396560709, 'ratio_error': 0.0, 'ratio_win': 0.770941896821261, 'ratio_lost': 0.178804064616988, 'score': 4.311657559198543}
+Target model updated for  2
+53000 1 {'n_match': 32934, 'average_len': 12.436995202526264, 'ratio_error': 0.00012145503127467055, 'ratio_win': 0.8372198943341228, 'ratio_lost': 0.14948077974130078, 'score': 5.596306068601583}
+Target model updated for  1
+53000 2 {'n_match': 31682, 'average_len': 12.928476737579699, 'ratio_error': 0.0, 'ratio_win': 0.6997348652231551, 'ratio_lost': 0.17647244492140648, 'score': 3.965122518333035}
+Target model updated for  2
+53500 1 {'n_match': 29595, 'average_len': 13.840175705355634, 'ratio_error': 6.75789829363068e-05, 'ratio_win': 0.6245311708058794, 'ratio_lost': 0.18817367798614631, 'score': 3.3177167474421108}
+53500 2 {'n_match': 29458, 'average_len': 13.904542059881866, 'ratio_error': 6.789327177676693e-05, 'ratio_win': 0.6867404440219974, 'ratio_lost': 0.2150858849887976, 'score': 3.1918586304828023}
+Target model updated for  2
+54000 1 {'n_match': 32519, 'average_len': 12.595713275315969, 'ratio_error': 0.0, 'ratio_win': 0.8335127156431624, 'ratio_lost': 0.1205141609520588, 'score': 6.91630517989283}
+Target model updated for  1
+54000 2 {'n_match': 32318, 'average_len': 12.674051612104709, 'ratio_error': 0.0, 'ratio_win': 0.7249210966025126, 'ratio_lost': 0.23377065412463643, 'score': 3.100992720052945}
+Target model updated for  2
+54500 1 {'n_match': 36033, 'average_len': 11.367357699886215, 'ratio_error': 0.0, 'ratio_win': 0.6430216745760831, 'ratio_lost': 0.31526656120778174, 'score': 2.039612676056338}
+54500 2 {'n_match': 35782, 'average_len': 11.447096305404953, 'ratio_error': 2.794701246436756e-05, 'ratio_win': 0.7160304063495613, 'ratio_lost': 0.26004695098094016, 'score': 2.753169997850849}
+Target model updated for  2
+55000 1 {'n_match': 30472, 'average_len': 13.441848254134944, 'ratio_error': 0.00026253609871357313, 'ratio_win': 0.6790168023103177, 'ratio_lost': 0.2871816749803098, 'score': 2.3622559652928414}
+55000 2 {'n_match': 31158, 'average_len': 13.145901534116438, 'ratio_error': 3.209448616727646e-05, 'ratio_win': 0.7215482380127094, 'ratio_lost': 0.22803132421849925, 'score': 3.1638052350126653}
+Target model updated for  2
+55500 1 {'n_match': 37327, 'average_len': 10.97329011171538, 'ratio_error': 2.679025906180513e-05, 'ratio_win': 0.584134808583599, 'ratio_lost': 0.3601682428269081, 'score': 1.6217181108218668}
+55500 2 {'n_match': 29994, 'average_len': 13.656064546242582, 'ratio_error': 0.0, 'ratio_win': 0.7448156297926252, 'ratio_lost': 0.16933386677335466, 'score': 4.398503642449301}
+Target model updated for  2
+56000 1 {'n_match': 30629, 'average_len': 13.372947206895425, 'ratio_error': 0.0, 'ratio_win': 0.7686506252244605, 'ratio_lost': 0.16556204903849292, 'score': 4.642674028791165}
+Target model updated for  1
+56000 2 {'n_match': 31541, 'average_len': 12.98627183665705, 'ratio_error': 3.17047652262135e-05, 'ratio_win': 0.7958213119431851, 'ratio_lost': 0.1566849497479471, 'score': 5.07809022860611}
+Target model updated for  2
+56500 1 {'n_match': 32558, 'average_len': 12.580625345537195, 'ratio_error': 0.0002764297561275263, 'ratio_win': 0.7355488666379999, 'ratio_lost': 0.136740586031083, 'score': 5.368303071060301}
+Target model updated for  1
+56500 2 {'n_match': 35020, 'average_len': 11.696173615077099, 'ratio_error': 0.00019988577955454027, 'ratio_win': 0.7638492290119931, 'ratio_lost': 0.20711022272986865, 'score': 3.684573002754821}
+Target model updated for  2
+57000 1 {'n_match': 30865, 'average_len': 13.27069496193099, 'ratio_error': 0.00012959663048760732, 'ratio_win': 0.6513202656730925, 'ratio_lost': 0.29946541389923864, 'score': 2.1740023791499947}
+57000 2 {'n_match': 31595, 'average_len': 12.964076594397847, 'ratio_error': 0.0, 'ratio_win': 0.7408767210001582, 'ratio_lost': 0.17699003006804875, 'score': 4.185979971387697}
+Target model updated for  2
+57500 1 {'n_match': 37486, 'average_len': 10.926745985167797, 'ratio_error': 2.6676625940351065e-05, 'ratio_win': 0.6969268526916715, 'ratio_lost': 0.27298191324761245, 'score': 2.552765292163377}
+57500 2 {'n_match': 30127, 'average_len': 13.595777873668139, 'ratio_error': 9.95784512231553e-05, 'ratio_win': 0.7015301888671291, 'ratio_lost': 0.1447870680784678, 'score': 4.841924398625429}
+Target model updated for  2
+58000 1 {'n_match': 32873, 'average_len': 12.460073616645879, 'ratio_error': 0.00018252060961883613, 'ratio_win': 0.783226355976029, 'ratio_lost': 0.1886958902442734, 'score': 4.146722499597359}
+58000 2 {'n_match': 31877, 'average_len': 12.84938984220598, 'ratio_error': 6.274116133889639e-05, 'ratio_win': 0.7322207234055902, 'ratio_lost': 0.21366502493961162, 'score': 3.425950388962278}
+Target model updated for  2
+58500 1 {'n_match': 33506, 'average_len': 12.224676177401063, 'ratio_error': 0.00020891780576613145, 'ratio_win': 0.7886050259654988, 'ratio_lost': 0.18310153405360233, 'score': 4.302018886356236}
+Target model updated for  1
+58500 2 {'n_match': 29458, 'average_len': 13.904542059881866, 'ratio_error': 0.0011541856202050378, 'ratio_win': 0.694751850091656, 'ratio_lost': 0.25955597800257996, 'score': 2.66484375}
+Target model updated for  2
+59000 1 {'n_match': 34233, 'average_len': 11.965062950953758, 'ratio_error': 0.0010224052814535682, 'ratio_win': 0.75070838080215, 'ratio_lost': 0.171063009376917, 'score': 4.3624172466474285}
+Target model updated for  1
+59000 2 {'n_match': 29319, 'average_len': 13.970462839796719, 'ratio_error': 0.00013643030116988983, 'ratio_win': 0.7177598144547904, 'ratio_lost': 0.1328490057641802, 'score': 5.397281354193383}
+Target model updated for  2
+59500 1 {'n_match': 32866, 'average_len': 12.46272743869044, 'ratio_error': 0.0, 'ratio_win': 0.8178360615833993, 'ratio_lost': 0.15891803079169964, 'score': 5.146276086540302}
+59500 2 {'n_match': 32344, 'average_len': 12.663863467721988, 'ratio_error': 9.27529062577294e-05, 'ratio_win': 0.7980769230769231, 'ratio_lost': 0.1766942864209745, 'score': 4.514340678558937}
+Target model updated for  2
+60000 1 {'n_match': 36691, 'average_len': 11.163500585974763, 'ratio_error': 0.0, 'ratio_win': 0.6293914038865117, 'ratio_lost': 0.3239213976179445, 'score': 1.9430374421539756}
+60000 2 {'n_match': 36646, 'average_len': 11.177208972329858, 'ratio_error': 5.457621568520439e-05, 'ratio_win': 0.7231894340446433, 'ratio_lost': 0.25705397587731266, 'score': 2.8127786032689452}
+Target model updated for  2
+60500 1 {'n_match': 35065, 'average_len': 11.681163553400827, 'ratio_error': 2.8518465706544987e-05, 'ratio_win': 0.6210751461571368, 'ratio_lost': 0.3354056751746756, 'score': 1.8515558578473048}
+60500 2 {'n_match': 35182, 'average_len': 11.642317093968506, 'ratio_error': 0.00014211812858848274, 'ratio_win': 0.7445284520493434, 'ratio_lost': 0.21601955545449378, 'score': 3.4443129520052596}
+Target model updated for  2
+61000 1 {'n_match': 32544, 'average_len': 12.586037364798427, 'ratio_error': 3.072763028515241e-05, 'ratio_win': 0.7570673549655851, 'ratio_lost': 0.22689282202556538, 'score': 3.3362220717670956}
+61000 2 {'n_match': 31579, 'average_len': 12.970645048924919, 'ratio_error': 3.1666613888976855e-05, 'ratio_win': 0.800341999430001, 'ratio_lost': 0.1731847113588144, 'score': 4.620475319926874}
+Target model updated for  2
+61500 1 {'n_match': 35243, 'average_len': 11.622166103907158, 'ratio_error': 8.512328689385126e-05, 'ratio_win': 0.792441052123826, 'ratio_lost': 0.191328774508413, 'score': 4.139934776163653}
+61500 2 {'n_match': 30510, 'average_len': 13.425106522451655, 'ratio_error': 0.0, 'ratio_win': 0.7195673549655851, 'ratio_lost': 0.2310390036053753, 'score': 3.114484324017591}
+Target model updated for  2
+62000 1 {'n_match': 32818, 'average_len': 12.48095557316107, 'ratio_error': 3.047108294228777e-05, 'ratio_win': 0.6721311475409836, 'ratio_lost': 0.2597355110000609, 'score': 2.587448680351906}
+62000 2 {'n_match': 30085, 'average_len': 13.614758185142097, 'ratio_error': 3.3239155725444575e-05, 'ratio_win': 0.7667608442745554, 'ratio_lost': 0.1941166694365963, 'score': 3.949323745933915}
+Target model updated for  2
+62500 1 {'n_match': 30785, 'average_len': 13.305181094688972, 'ratio_error': 0.000584700341075199, 'ratio_win': 0.7214552541822316, 'ratio_lost': 0.2264089654052298, 'score': 3.17830566685747}
+62500 2 {'n_match': 32581, 'average_len': 12.571744268131733, 'ratio_error': 0.0007673183757404622, 'ratio_win': 0.8124060034989717, 'ratio_lost': 0.14450139651944385, 'score': 5.592436087048384}
+Target model updated for  2
+63000 1 {'n_match': 34860, 'average_len': 11.749856569133678, 'ratio_error': 0.00017211703958691912, 'ratio_win': 0.7871772805507745, 'ratio_lost': 0.19093516924842227, 'score': 4.119033323326328}
+63000 2 {'n_match': 28998, 'average_len': 14.125112076694945, 'ratio_error': 0.00010345541071798055, 'ratio_win': 0.7070832471204911, 'ratio_lost': 0.20742809848955102, 'score': 3.4071119973413095}
+Target model updated for  2
+63500 1 {'n_match': 29412, 'average_len': 13.926288589691282, 'ratio_error': 0.0, 'ratio_win': 0.711546307629539, 'ratio_lost': 0.2350061199510404, 'score': 3.0277777777777777}
+63500 2 {'n_match': 30624, 'average_len': 13.375130616509926, 'ratio_error': 0.0, 'ratio_win': 0.7920585161964472, 'ratio_lost': 0.14054336468129572, 'score': 5.635687732342007}
+Target model updated for  2
+64000 1 {'n_match': 32771, 'average_len': 12.49885569558451, 'ratio_error': 0.0, 'ratio_win': 0.6914955295840834, 'ratio_lost': 0.1885813676726374, 'score': 3.6668284789644012}
+64000 2 {'n_match': 35712, 'average_len': 11.469534050179211, 'ratio_error': 0.0, 'ratio_win': 0.6336525537634409, 'ratio_lost': 0.33064516129032256, 'score': 1.9164126016260163}
+Target model updated for  2
+64500 1 {'n_match': 28257, 'average_len': 14.495523233181158, 'ratio_error': 0.001132462752592278, 'ratio_win': 0.5974448809144637, 'ratio_lost': 0.2916091587925116, 'score': 2.0408607350096712}
+Target model updated for  1
+64500 2 {'n_match': 30585, 'average_len': 13.392185711950303, 'ratio_error': 3.269576589831617e-05, 'ratio_win': 0.6734346902076181, 'ratio_lost': 0.258329246362596, 'score': 2.6065553024550745}
+Target model updated for  2
+65000 1 {'n_match': 34110, 'average_len': 12.008208736440926, 'ratio_error': 5.8633831720902964e-05, 'ratio_win': 0.8204045734388742, 'ratio_lost': 0.1567868660216945, 'score': 5.230654205607476}
+Target model updated for  1
+65000 2 {'n_match': 31451, 'average_len': 13.023433277161299, 'ratio_error': 0.0, 'ratio_win': 0.7553018981908365, 'ratio_lost': 0.20606657975899018, 'score': 3.665329424471532}
+Target model updated for  2
+65500 1 {'n_match': 34470, 'average_len': 11.88279663475486, 'ratio_error': 2.901073397156948e-05, 'ratio_win': 0.7253843922251233, 'ratio_lost': 0.2357412242529736, 'score': 3.0766580534022396}
+65500 2 {'n_match': 37886, 'average_len': 10.811381512959933, 'ratio_error': 0.0, 'ratio_win': 0.6078762603600274, 'ratio_lost': 0.36240299846909146, 'score': 1.677348871085215}
+Target model updated for  2
+66000 1 {'n_match': 28795, 'average_len': 14.224691786768537, 'ratio_error': 0.0, 'ratio_win': 0.6762979683972912, 'ratio_lost': 0.2439659663135961, 'score': 2.772099644128114}
+Target model updated for  1
+66000 2 {'n_match': 34567, 'average_len': 11.849451789278792, 'ratio_error': 0.000376081233546446, 'ratio_win': 0.794138918621807, 'ratio_lost': 0.16521537882951948, 'score': 4.795772187281621}
+Target model updated for  2
+66500 1 {'n_match': 31624, 'average_len': 12.952188211484948, 'ratio_error': 3.162155325069567e-05, 'ratio_win': 0.7272324816594992, 'ratio_lost': 0.21373007842145206, 'score': 3.40207100591716}
+66500 2 {'n_match': 39192, 'average_len': 10.451112471933047, 'ratio_error': 0.0, 'ratio_win': 0.7372422943457848, 'ratio_lost': 0.24584098795672588, 'score': 2.998858329008822}
+Target model updated for  2
+67000 1 {'n_match': 31177, 'average_len': 13.137890111299997, 'ratio_error': 9.622478108862303e-05, 'ratio_win': 0.6704621996984956, 'ratio_lost': 0.13683163870802195, 'score': 4.896462871866948}
+Target model updated for  1
+67000 2 {'n_match': 31592, 'average_len': 12.965307672828564, 'ratio_error': 3.165358318561661e-05, 'ratio_win': 0.7151177513294505, 'ratio_lost': 0.2461699164345404, 'score': 2.90460272563641}
+Target model updated for  2
+67500 1 {'n_match': 31154, 'average_len': 13.147589394620274, 'ratio_error': 0.00016049303460229826, 'ratio_win': 0.7641715349553829, 'ratio_lost': 0.18636451178018873, 'score': 4.096885217690587}
+Target model updated for  1
+67500 2 {'n_match': 34232, 'average_len': 11.965412479551297, 'ratio_error': 0.0, 'ratio_win': 0.6968041598504323, 'ratio_lost': 0.2740418322037859, 'score': 2.5426926766869204}
+Target model updated for  2
+68000 1 {'n_match': 30552, 'average_len': 13.406650955747578, 'ratio_error': 3.273108143493061e-05, 'ratio_win': 0.7423081958627913, 'ratio_lost': 0.19929955485729248, 'score': 3.7239737274220035}
+Target model updated for  1
+68000 2 {'n_match': 29289, 'average_len': 13.98477244016525, 'ratio_error': 0.0, 'ratio_win': 0.6423571989484107, 'ratio_lost': 0.26552630680460243, 'score': 2.419184775620419}
+Target model updated for  2
+68500 1 {'n_match': 32592, 'average_len': 12.567501227295041, 'ratio_error': 0.0, 'ratio_win': 0.7790868924889544, 'ratio_lost': 0.16280068728522337, 'score': 4.785525819826612}
+Target model updated for  1
+68500 2 {'n_match': 31839, 'average_len': 12.864725650931248, 'ratio_error': 3.1408021608718864e-05, 'ratio_win': 0.6832815100976789, 'ratio_lost': 0.28571877257451556, 'score': 2.3911848757968786}
+Target model updated for  2
+69000 1 {'n_match': 29851, 'average_len': 13.721483367391377, 'ratio_error': 0.0002679977220193628, 'ratio_win': 0.6887541455897624, 'ratio_lost': 0.2398244614920773, 'score': 2.868703781219478}
+Target model updated for  1
+69000 2 {'n_match': 31027, 'average_len': 13.201405227704901, 'ratio_error': 0.0, 'ratio_win': 0.714055500048345, 'ratio_lost': 0.2539723466658072, 'score': 2.811548223350254}
+Target model updated for  2
+69500 1 {'n_match': 32112, 'average_len': 12.755356253114101, 'ratio_error': 6.228201295465869e-05, 'ratio_win': 0.7189212755356253, 'ratio_lost': 0.2459516691579472, 'score': 2.922278481012658}
+Target model updated for  1
+69500 2 {'n_match': 37392, 'average_len': 10.954214805305948, 'ratio_error': 0.0, 'ratio_win': 0.727936456996149, 'ratio_lost': 0.24462451861360718, 'score': 2.975729747458183}
+Target model updated for  2
+70000 1 {'n_match': 36137, 'average_len': 11.334643163516617, 'ratio_error': 0.00011068987464371696, 'ratio_win': 0.6092093975703573, 'ratio_lost': 0.3562000166034812, 'score': 1.7097701149425288}
+70000 2 {'n_match': 30585, 'average_len': 13.392185711950303, 'ratio_error': 0.0, 'ratio_win': 0.5969265980055583, 'ratio_lost': 0.24858590812489784, 'score': 2.4012889648822835}
+Target model updated for  2
+70500 1 {'n_match': 27790, 'average_len': 14.739114789492623, 'ratio_error': 0.0014033825116948544, 'ratio_win': 0.6261245052177042, 'ratio_lost': 0.27506297229219145, 'score': 2.2647403358063256}
+70500 2 {'n_match': 28583, 'average_len': 14.330196270510443, 'ratio_error': 0.0, 'ratio_win': 0.5930098310184375, 'ratio_lost': 0.17314487632508835, 'score': 3.4249343301677104}
+Target model updated for  2
+71000 1 {'n_match': 29758, 'average_len': 13.764365884804086, 'ratio_error': 0.0, 'ratio_win': 0.6822703138651791, 'ratio_lost': 0.24524497614086968, 'score': 2.7819950671416827}
+71000 2 {'n_match': 31340, 'average_len': 13.069559668155712, 'ratio_error': 0.0001595405232929164, 'ratio_win': 0.7864390555201021, 'ratio_lost': 0.17351627313337586, 'score': 4.528201359544369}
+Target model updated for  2
+71500 1 {'n_match': 31578, 'average_len': 12.971055798340617, 'ratio_error': 6.333523339033504e-05, 'ratio_win': 0.7314902780416745, 'ratio_lost': 0.2484641205902844, 'score': 2.9432976554536188}
+71500 2 {'n_match': 34449, 'average_len': 11.890040349502163, 'ratio_error': 0.0, 'ratio_win': 0.7311968417080321, 'ratio_lost': 0.2540567215303782, 'score': 2.8780850091407677}
+Target model updated for  2
+72000 1 {'n_match': 31557, 'average_len': 12.979687549513578, 'ratio_error': 0.0001901321418385778, 'ratio_win': 0.5896631492220427, 'ratio_lost': 0.34027315651044143, 'score': 1.7319434102755027}
+72000 2 {'n_match': 33132, 'average_len': 12.362670530001207, 'ratio_error': 0.0001509115054931788, 'ratio_win': 0.7626463841603284, 'ratio_lost': 0.20569238198720272, 'score': 3.704985337243402}
+Target model updated for  2
+72500 1 {'n_match': 31575, 'average_len': 12.972288202692003, 'ratio_error': 3.1670625494853524e-05, 'ratio_win': 0.7709897070467142, 'ratio_lost': 0.1883452098178939, 'score': 4.09280430396772}
+Target model updated for  1
+72500 2 {'n_match': 32865, 'average_len': 12.463106648410163, 'ratio_error': 6.085501293169025e-05, 'ratio_win': 0.7664993153811045, 'ratio_lost': 0.22053856686444545, 'score': 3.4746206896551723}
+Target model updated for  2
+73000 1 {'n_match': 27916, 'average_len': 14.672589196159908, 'ratio_error': 0.0, 'ratio_win': 0.5785212781200745, 'ratio_lost': 0.33762000286574007, 'score': 1.7135278514588859}
+73000 2 {'n_match': 36005, 'average_len': 11.376197750312457, 'ratio_error': 5.5547840577697544e-05, 'ratio_win': 0.7527010137480905, 'ratio_lost': 0.22782946812942648, 'score': 3.3029859841560025}
+Target model updated for  2
+73500 1 {'n_match': 35233, 'average_len': 11.625464763148186, 'ratio_error': 0.0002838248233190475, 'ratio_win': 0.7461754605057759, 'ratio_lost': 0.23949138591661226, 'score': 3.1119791666666665}
+73500 2 {'n_match': 38768, 'average_len': 10.565414775072224, 'ratio_error': 0.0, 'ratio_win': 0.8299370614940157, 'ratio_lost': 0.1557470078415188, 'score': 5.328751242133157}
+Target model updated for  2
+74000 1 {'n_match': 35221, 'average_len': 11.629425626756765, 'ratio_error': 5.6784304818148265e-05, 'ratio_win': 0.7865194060361717, 'ratio_lost': 0.1837256182391187, 'score': 4.279623049590607}
+74000 2 {'n_match': 33951, 'average_len': 12.064445818974404, 'ratio_error': 0.0, 'ratio_win': 0.7544402226738535, 'ratio_lost': 0.19958175016936172, 'score': 3.7801062573789848}
+Target model updated for  2
+74500 1 {'n_match': 31214, 'average_len': 13.12231690907926, 'ratio_error': 0.0, 'ratio_win': 0.6352598193118473, 'ratio_lost': 0.2875312359838534, 'score': 2.209359331476323}
+74500 2 {'n_match': 30755, 'average_len': 13.318159648837588, 'ratio_error': 0.0, 'ratio_win': 0.8429523654690294, 'ratio_lost': 0.119427735327589, 'score': 7.058263000272257}
+Target model updated for  2
+75000 1 {'n_match': 38863, 'average_len': 10.539587782723927, 'ratio_error': 0.00018011990839616088, 'ratio_win': 0.6872346447778093, 'ratio_lost': 0.29382703342510874, 'score': 2.337475932084719}
+75000 2 {'n_match': 33562, 'average_len': 12.204278648471485, 'ratio_error': 8.938680650735951e-05, 'ratio_win': 0.774745247601454, 'ratio_lost': 0.18264704129670462, 'score': 4.239686939507582}
+Target model updated for  2
+75500 1 {'n_match': 34455, 'average_len': 11.88796981570164, 'ratio_error': 0.00011609345523146132, 'ratio_win': 0.8814395588448701, 'ratio_lost': 0.10105935277898709, 'score': 8.711990820424555}
+Target model updated for  1
+75500 2 {'n_match': 32062, 'average_len': 12.77524795708315, 'ratio_error': 6.237914041544508e-05, 'ratio_win': 0.8036616555423867, 'ratio_lost': 0.15301603143908676, 'score': 5.25}
+Target model updated for  2
+76000 1 {'n_match': 35566, 'average_len': 11.516616993758083, 'ratio_error': 0.00016870044424450317, 'ratio_win': 0.8258730247989653, 'ratio_lost': 0.14910307597143338, 'score': 5.532680354115652}
+Target model updated for  1
+76000 2 {'n_match': 30747, 'average_len': 13.321624873971444, 'ratio_error': 9.757049468240804e-05, 'ratio_win': 0.7245910170097896, 'ratio_lost': 0.19071779360588026, 'score': 3.797341060167036}
+Target model updated for  2
+76500 1 {'n_match': 31170, 'average_len': 13.14084055181264, 'ratio_error': 0.0, 'ratio_win': 0.7812640359319859, 'ratio_lost': 0.1709015078601219, 'score': 4.571428571428571}
+Target model updated for  1
+76500 2 {'n_match': 30563, 'average_len': 13.401825737002257, 'ratio_error': 0.0002944737100415535, 'ratio_win': 0.7267283970814383, 'ratio_lost': 0.1984098419657756, 'score': 3.6573357483945332}
+Target model updated for  2
+77000 1 {'n_match': 33674, 'average_len': 12.16368711765754, 'ratio_error': 0.00017817901051256162, 'ratio_win': 0.7682485003266615, 'ratio_lost': 0.18043594464572074, 'score': 4.253535021374548}
+Target model updated for  1
+77000 2 {'n_match': 33333, 'average_len': 12.288122881228812, 'ratio_error': 3.000030000300003e-05, 'ratio_win': 0.7974979749797498, 'ratio_lost': 0.15747157471574716, 'score': 5.063428571428571}
+Target model updated for  2
+77500 1 {'n_match': 30726, 'average_len': 13.330729675193647, 'ratio_error': 0.0, 'ratio_win': 0.7514808305669466, 'ratio_lost': 0.17343617782985093, 'score': 4.33289547757553}
+77500 2 {'n_match': 30851, 'average_len': 13.276717124242326, 'ratio_error': 0.0016531068684969693, 'ratio_win': 0.6601082622929565, 'ratio_lost': 0.30802891316326864, 'score': 2.1315679296629684}
+Target model updated for  2
+78000 1 {'n_match': 30458, 'average_len': 13.448026790990873, 'ratio_error': 0.0, 'ratio_win': 0.7615076498785213, 'ratio_lost': 0.17676800840501675, 'score': 4.307949479940564}
+Target model updated for  1
+78000 2 {'n_match': 29566, 'average_len': 13.853750930122438, 'ratio_error': 0.0, 'ratio_win': 0.7589460867212339, 'ratio_lost': 0.20604748697828587, 'score': 3.683355219960604}
+Target model updated for  2
+78500 1 {'n_match': 31632, 'average_len': 12.94891249367729, 'ratio_error': 3.161355589276682e-05, 'ratio_win': 0.6758345978755691, 'ratio_lost': 0.2853439554881133, 'score': 2.36822864739116}
+78500 2 {'n_match': 30824, 'average_len': 13.28834674279782, 'ratio_error': 0.001751881650661822, 'ratio_win': 0.7436737607059434, 'ratio_lost': 0.19724889696340514, 'score': 3.7370394522334527}
+Target model updated for  2
+79000 1 {'n_match': 31622, 'average_len': 12.953007399911455, 'ratio_error': 0.0003478590854468408, 'ratio_win': 0.7248118398583265, 'ratio_lost': 0.23297071658971602, 'score': 3.106532935754947}
+79000 2 {'n_match': 31174, 'average_len': 13.139154423558093, 'ratio_error': 0.002117148906139732, 'ratio_win': 0.7176172451401809, 'ratio_lost': 0.2543786488740617, 'score': 2.797773886943472}
+Target model updated for  2
+79500 1 {'n_match': 31174, 'average_len': 13.139154423558093, 'ratio_error': 0.0, 'ratio_win': 0.6737986783858344, 'ratio_lost': 0.2440495284531982, 'score': 2.7609095688748684}
+79500 2 {'n_match': 35224, 'average_len': 11.628435157846923, 'ratio_error': 2.8389734272087213e-05, 'ratio_win': 0.8657449466272996, 'ratio_lost': 0.11370088575970928, 'score': 7.6123315027458816}
+Target model updated for  2
+80000 1 {'n_match': 29824, 'average_len': 13.733905579399142, 'ratio_error': 3.3530042918454936e-05, 'ratio_win': 0.6257041309012875, 'ratio_lost': 0.312131169527897, 'score': 2.004403866809882}
+80000 2 {'n_match': 32062, 'average_len': 12.77524795708315, 'ratio_error': 3.118957020772254e-05, 'ratio_win': 0.6686420061131557, 'ratio_lost': 0.2268105545505583, 'score': 2.947614464457583}
+Target model updated for  2
+80500 1 {'n_match': 29085, 'average_len': 14.082860581055527, 'ratio_error': 0.003059996561801616, 'ratio_win': 0.6405707409317518, 'ratio_lost': 0.31356369262506445, 'score': 2.0231295471821045}
+80500 2 {'n_match': 29716, 'average_len': 13.783820164221295, 'ratio_error': 3.3651904697805894e-05, 'ratio_win': 0.7206218871988155, 'ratio_lost': 0.09920581504913178, 'score': 7.261444557477111}
+Target model updated for  2
+81000 1 {'n_match': 36395, 'average_len': 11.25429317213903, 'ratio_error': 0.0, 'ratio_win': 0.7246599807665888, 'ratio_lost': 0.23931858771809314, 'score': 3.0280137772675086}
+81000 2 {'n_match': 28155, 'average_len': 14.548037648730244, 'ratio_error': 0.0001775883502042266, 'ratio_win': 0.743065174924525, 'ratio_lost': 0.18906055762741963, 'score': 3.926614114114114}
+Target model updated for  2
+81500 1 {'n_match': 28995, 'average_len': 14.126573547163304, 'ratio_error': 0.007966890843248836, 'ratio_win': 0.6365580272460769, 'ratio_lost': 0.29622348680807037, 'score': 2.0926303854875283}
+81500 2 {'n_match': 31353, 'average_len': 13.064140592606767, 'ratio_error': 0.0, 'ratio_win': 0.6941281536057156, 'ratio_lost': 0.22240295984435302, 'score': 3.1210382905492615}
+Target model updated for  2
+82000 1 {'n_match': 29317, 'average_len': 13.97141590203636, 'ratio_error': 0.0, 'ratio_win': 0.6576730224784255, 'ratio_lost': 0.2757103387113279, 'score': 2.3853767165656317}
+82000 2 {'n_match': 31759, 'average_len': 12.897131521773355, 'ratio_error': 0.00018892282502597688, 'ratio_win': 0.7311313328505306, 'ratio_lost': 0.25148776724707955, 'score': 2.9050419116727135}
+Target model updated for  2
+82500 1 {'n_match': 29963, 'average_len': 13.67019323832727, 'ratio_error': 0.0, 'ratio_win': 0.7594366385208424, 'ratio_lost': 0.1919367219570804, 'score': 3.956703182055295}
+Target model updated for  1
+82500 2 {'n_match': 34173, 'average_len': 11.986070874667135, 'ratio_error': 0.0, 'ratio_win': 0.8227840692944722, 'ratio_lost': 0.14359289497556552, 'score': 5.72997758304463}
+Target model updated for  2
+83000 1 {'n_match': 33967, 'average_len': 12.058762916948803, 'ratio_error': 0.0, 'ratio_win': 0.7982453557864987, 'ratio_lost': 0.15158830629728853, 'score': 5.265876869295009}
+83000 2 {'n_match': 30277, 'average_len': 13.528420913564752, 'ratio_error': 0.0, 'ratio_win': 0.6683290946923407, 'ratio_lost': 0.1811275885986062, 'score': 3.689824945295405}
+Target model updated for  2
+83500 1 {'n_match': 33045, 'average_len': 12.395218641246785, 'ratio_error': 9.078529278256922e-05, 'ratio_win': 0.6680587078226661, 'ratio_lost': 0.2914813133605689, 'score': 2.2912298910223146}
+83500 2 {'n_match': 31587, 'average_len': 12.96735998986925, 'ratio_error': 3.1658593725266726e-05, 'ratio_win': 0.7317567353658151, 'ratio_lost': 0.21084623421027637, 'score': 3.470049542110794}
+Target model updated for  2
+84000 1 {'n_match': 33780, 'average_len': 12.125518058022498, 'ratio_error': 8.880994671403197e-05, 'ratio_win': 0.8107756068679692, 'ratio_lost': 0.1547069271758437, 'score': 5.237712755785045}
+Target model updated for  1
+84000 2 {'n_match': 33724, 'average_len': 12.145652947455817, 'ratio_error': 0.0, 'ratio_win': 0.7743150278733246, 'ratio_lost': 0.18761119677381094, 'score': 4.127232495653549}
+Target model updated for  2
+84500 1 {'n_match': 30126, 'average_len': 13.596229170815906, 'ratio_error': 0.0, 'ratio_win': 0.6533559051981677, 'ratio_lost': 0.2572860651928567, 'score': 2.5394142691265644}
+84500 2 {'n_match': 27822, 'average_len': 14.722162317590396, 'ratio_error': 0.0, 'ratio_win': 0.6469700237222342, 'ratio_lost': 0.22467831212709366, 'score': 2.8795392737162055}
+Target model updated for  2
+85000 1 {'n_match': 34425, 'average_len': 11.89832970225127, 'ratio_error': 0.00017429193899782134, 'ratio_win': 0.6726797385620915, 'ratio_lost': 0.28287581699346404, 'score': 2.376539408866995}
+85000 2 {'n_match': 35255, 'average_len': 11.618210182952772, 'ratio_error': 0.0, 'ratio_win': 0.7026804708551978, 'ratio_lost': 0.2721032477662743, 'score': 2.5824038361305117}
+Target model updated for  2
+85500 1 {'n_match': 30736, 'average_len': 13.326392503904216, 'ratio_error': 3.25351379489849e-05, 'ratio_win': 0.6536309213951067, 'ratio_lost': 0.23314679854242581, 'score': 2.803125436026231}
+Target model updated for  1
+85500 2 {'n_match': 36021, 'average_len': 11.37114461008856, 'ratio_error': 0.0, 'ratio_win': 0.6068126925959857, 'ratio_lost': 0.32328364009883126, 'score': 1.877028767711464}
+Target model updated for  2
+86000 1 {'n_match': 32786, 'average_len': 12.493137314707496, 'ratio_error': 0.0, 'ratio_win': 0.7805160739339962, 'ratio_lost': 0.17202464466540596, 'score': 4.537234042553192}
+Target model updated for  1
+86000 2 {'n_match': 37914, 'average_len': 10.803397161998207, 'ratio_error': 2.6375481352534682e-05, 'ratio_win': 0.7044891069262014, 'ratio_lost': 0.25950836102758873, 'score': 2.714430894308943}
+Target model updated for  2
+86500 1 {'n_match': 37631, 'average_len': 10.88464298052138, 'ratio_error': 2.6573835401663524e-05, 'ratio_win': 0.6021631102016954, 'ratio_lost': 0.36892455688129466, 'score': 1.6320944972630367}
+86500 2 {'n_match': 32996, 'average_len': 12.413625894047764, 'ratio_error': 0.0, 'ratio_win': 0.6779912716692933, 'ratio_lost': 0.2643653776215299, 'score': 2.5645993350911382}
+Target model updated for  2
+87000 1 {'n_match': 30260, 'average_len': 13.536021150033047, 'ratio_error': 0.0, 'ratio_win': 0.7778255122273628, 'ratio_lost': 0.16883674818241903, 'score': 4.606968095517714}
+Target model updated for  1
+87000 2 {'n_match': 29101, 'average_len': 14.07511769355005, 'ratio_error': 3.4363080306518674e-05, 'ratio_win': 0.617264011545995, 'ratio_lost': 0.181196522456273, 'score': 3.405953735305271}
+Target model updated for  2
+87500 1 {'n_match': 32168, 'average_len': 12.733150957473265, 'ratio_error': 9.326038298930615e-05, 'ratio_win': 0.7241047003233027, 'ratio_lost': 0.2406739617010694, 'score': 3.007488702388638}
+87500 2 {'n_match': 34657, 'average_len': 11.818680208904405, 'ratio_error': 0.0, 'ratio_win': 0.8895749776379952, 'ratio_lost': 0.08376374181262082, 'score': 10.62004822597313}
+Target model updated for  2
+88000 1 {'n_match': 29572, 'average_len': 13.85094007845259, 'ratio_error': 0.00010144731502772894, 'ratio_win': 0.6316447991343163, 'ratio_lost': 0.3271675909644258, 'score': 1.9300475304815043}
+88000 2 {'n_match': 35038, 'average_len': 11.69016496375364, 'ratio_error': 0.0, 'ratio_win': 0.6969290484616701, 'ratio_lost': 0.2721045721787773, 'score': 2.5612544577302288}
+Target model updated for  2
+88500 1 {'n_match': 30493, 'average_len': 13.432591086478864, 'ratio_error': 6.558882366444758e-05, 'ratio_win': 0.6995703932049979, 'ratio_lost': 0.24769619256878628, 'score': 2.8235605559232297}
+Target model updated for  1
+88500 2 {'n_match': 30117, 'average_len': 13.600292193777602, 'ratio_error': 0.0, 'ratio_win': 0.6819404323139755, 'ratio_lost': 0.21662184148487565, 'score': 3.148068669527897}
+Target model updated for  2
+89000 1 {'n_match': 37907, 'average_len': 10.8053921439312, 'ratio_error': 5.276070382778906e-05, 'ratio_win': 0.674835782309336, 'ratio_lost': 0.28000105521407653, 'score': 2.4096646571213265}
+89000 2 {'n_match': 34895, 'average_len': 11.738071356927927, 'ratio_error': 0.0, 'ratio_win': 0.8589196159908297, 'ratio_lost': 0.12001719444046426, 'score': 7.156638013371538}
+Target model updated for  2
+89500 1 {'n_match': 31268, 'average_len': 13.099654598951004, 'ratio_error': 6.396315722144045e-05, 'ratio_win': 0.6792567481130869, 'ratio_lost': 0.2672380708711782, 'score': 2.541158171811438}
+89500 2 {'n_match': 34435, 'average_len': 11.894874401045447, 'ratio_error': 5.8080441411354726e-05, 'ratio_win': 0.7687527225206912, 'ratio_lost': 0.19369827210686802, 'score': 3.9676258992805757}
+Target model updated for  2
+90000 1 {'n_match': 30840, 'average_len': 13.281452658884566, 'ratio_error': 0.0011997405966277562, 'ratio_win': 0.8139105058365759, 'ratio_lost': 0.16572632944228274, 'score': 4.875874125874126}
+Target model updated for  1
+90000 2 {'n_match': 35606, 'average_len': 11.503679155198562, 'ratio_error': 0.0, 'ratio_win': 0.6625007021288547, 'ratio_lost': 0.2894736842105263, 'score': 2.288638789172407}
+Target model updated for  2
+90500 1 {'n_match': 27843, 'average_len': 14.7110584347951, 'ratio_error': 0.00010774701002047193, 'ratio_win': 0.5948712423230256, 'ratio_lost': 0.22702295011313436, 'score': 2.619070208728653}
+Target model updated for  1
+90500 2 {'n_match': 30122, 'average_len': 13.598034659053184, 'ratio_error': 3.3198326804329064e-05, 'ratio_win': 0.7080871124095346, 'ratio_lost': 0.21393001792709648, 'score': 3.309387121799845}
+Target model updated for  2
+91000 1 {'n_match': 27968, 'average_len': 14.645308924485127, 'ratio_error': 0.0, 'ratio_win': 0.5960025743707094, 'ratio_lost': 0.2391304347826087, 'score': 2.4923744019138754}
+91000 2 {'n_match': 29453, 'average_len': 13.906902522663227, 'ratio_error': 0.0005092859810545615, 'ratio_win': 0.7730961192408243, 'ratio_lost': 0.19142362407904118, 'score': 4.027949761188749}
+Target model updated for  2
+91500 1 {'n_match': 30536, 'average_len': 13.413675661514278, 'ratio_error': 0.0002947340843594446, 'ratio_win': 0.704709195703432, 'ratio_lost': 0.1457296305999476, 'score': 4.825969948418928}
+Target model updated for  1
+91500 2 {'n_match': 41280, 'average_len': 9.922480620155039, 'ratio_error': 0.0, 'ratio_win': 0.6354893410852713, 'ratio_lost': 0.33243701550387594, 'score': 1.9116082489251622}
+Target model updated for  2
+92000 1 {'n_match': 32604, 'average_len': 12.562875720770458, 'ratio_error': 0.00021469758311863576, 'ratio_win': 0.5958164642375169, 'ratio_lost': 0.31772175193227825, 'score': 1.8740111904302528}
+92000 2 {'n_match': 28543, 'average_len': 14.350278527134499, 'ratio_error': 3.503485968538696e-05, 'ratio_win': 0.7669130785131205, 'ratio_lost': 0.14465893564096277, 'score': 5.300242130750605}
+Target model updated for  2
+92500 1 {'n_match': 33791, 'average_len': 12.121570832470184, 'ratio_error': 0.0, 'ratio_win': 0.6700008878103637, 'ratio_lost': 0.24618981385576041, 'score': 2.7214809472292343}
+92500 2 {'n_match': 36987, 'average_len': 11.07416119177008, 'ratio_error': 0.0, 'ratio_win': 0.7626192986725066, 'ratio_lost': 0.19988103928407278, 'score': 3.8153658866495332}
+Target model updated for  2
+93000 1 {'n_match': 30495, 'average_len': 13.431710116412527, 'ratio_error': 0.00019675356615838662, 'ratio_win': 0.6884735202492211, 'ratio_lost': 0.2028529267092966, 'score': 3.3906653746770026}
+93000 2 {'n_match': 32316, 'average_len': 12.674835994553781, 'ratio_error': 0.0, 'ratio_win': 0.8111461814581012, 'ratio_lost': 0.16264389157073894, 'score': 4.9872526636225265}
+Target model updated for  2
+93500 1 {'n_match': 30280, 'average_len': 13.527080581241744, 'ratio_error': 0.0, 'ratio_win': 0.7610964332892999, 'ratio_lost': 0.17589167767503303, 'score': 4.327074727750657}
+93500 2 {'n_match': 32704, 'average_len': 12.524461839530332, 'ratio_error': 0.0, 'ratio_win': 0.776877446183953, 'ratio_lost': 0.16585127201565558, 'score': 4.684181415929204}
+Target model updated for  2
+94000 1 {'n_match': 33989, 'average_len': 12.05095766277325, 'ratio_error': 0.0, 'ratio_win': 0.7178793138956722, 'ratio_lost': 0.22804436729530142, 'score': 3.1479809056895887}
+94000 2 {'n_match': 34883, 'average_len': 11.742109336926296, 'ratio_error': 0.00022933807298684174, 'ratio_win': 0.7172548232663475, 'ratio_lost': 0.24765645156666571, 'score': 2.8934890713542267}
+Target model updated for  2
+94500 1 {'n_match': 31030, 'average_len': 13.200128907508862, 'ratio_error': 3.222687721559781e-05, 'ratio_win': 0.6252980986142442, 'ratio_lost': 0.3179825974863036, 'score': 1.9662545601945682}
+94500 2 {'n_match': 33174, 'average_len': 12.3470187496232, 'ratio_error': 0.00012057635497678906, 'ratio_win': 0.799360945318623, 'ratio_lost': 0.1484596370651715, 'score': 5.3799959423818215}
+Target model updated for  2
+95000 1 {'n_match': 29387, 'average_len': 13.938135910436587, 'ratio_error': 0.0031646646476333074, 'ratio_win': 0.6851328818865485, 'ratio_lost': 0.1763024466600878, 'score': 3.8175957527493365}
+95000 2 {'n_match': 33157, 'average_len': 12.353349217359833, 'ratio_error': 0.0, 'ratio_win': 0.7735621437403867, 'ratio_lost': 0.17956992490273546, 'score': 4.307860262008734}
+Target model updated for  2
+95500 1 {'n_match': 30456, 'average_len': 13.448909902810612, 'ratio_error': 0.0002626740215392698, 'ratio_win': 0.7351589177830312, 'ratio_lost': 0.2014381402679275, 'score': 3.6447989581637636}
+95500 2 {'n_match': 32213, 'average_len': 12.715363362617577, 'ratio_error': 0.0, 'ratio_win': 0.767826653835408, 'ratio_lost': 0.19929841989258995, 'score': 3.8526479750778817}
+Target model updated for  2
+96000 1 {'n_match': 29447, 'average_len': 13.909736136108942, 'ratio_error': 6.791863347709444e-05, 'ratio_win': 0.6859102794851768, 'ratio_lost': 0.2071178727883995, 'score': 3.3106048188821506}
+96000 2 {'n_match': 30379, 'average_len': 13.482998123703874, 'ratio_error': 3.291747588794891e-05, 'ratio_win': 0.7560815036702986, 'ratio_lost': 0.1767997629941736, 'score': 4.275688756515264}
+Target model updated for  2
+96500 1 {'n_match': 33793, 'average_len': 12.120853431183972, 'ratio_error': 0.0, 'ratio_win': 0.8190749563519072, 'ratio_lost': 0.1332524487319859, 'score': 6.14679102820342}
+Target model updated for  1
+96500 2 {'n_match': 33975, 'average_len': 12.055923473142016, 'ratio_error': 2.9433406916850625e-05, 'ratio_win': 0.6538337012509198, 'ratio_lost': 0.30066225165562915, 'score': 2.17443226311668}
+Target model updated for  2
+97000 1 {'n_match': 29116, 'average_len': 14.067866465173788, 'ratio_error': 3.434537711224069e-05, 'ratio_win': 0.6765008929798049, 'ratio_lost': 0.10379172963319137, 'score': 6.515712868011908}
+Target model updated for  1
+97000 2 {'n_match': 30060, 'average_len': 13.62608117099135, 'ratio_error': 0.0001330671989354624, 'ratio_win': 0.690352628077179, 'ratio_lost': 0.19387890884896872, 'score': 3.5582990397805214}
+Target model updated for  2
+97500 1 {'n_match': 30793, 'average_len': 13.301724417887183, 'ratio_error': 0.0003572240444256812, 'ratio_win': 0.7274705290163349, 'ratio_lost': 0.20546877537102587, 'score': 3.5343957084253708}
+97500 2 {'n_match': 32699, 'average_len': 12.526376953423652, 'ratio_error': 0.0, 'ratio_win': 0.7558029297532035, 'ratio_lost': 0.21379858711275573, 'score': 3.5351165784580174}
+Target model updated for  2
+98000 1 {'n_match': 29425, 'average_len': 13.920135938827528, 'ratio_error': 3.398470688190314e-05, 'ratio_win': 0.678266779949023, 'ratio_lost': 0.12802039082412914, 'score': 5.296709129511678}
+Target model updated for  1
+98000 2 {'n_match': 38304, 'average_len': 10.693400167084377, 'ratio_error': 2.6106934001670842e-05, 'ratio_win': 0.7003707184628237, 'ratio_lost': 0.27028508771929827, 'score': 2.590979331659262}
+Target model updated for  2
+98500 1 {'n_match': 35299, 'average_len': 11.60372815093912, 'ratio_error': 2.832941443100371e-05, 'ratio_win': 0.7194821383042013, 'ratio_lost': 0.21807983228986658, 'score': 3.298740096116379}
+Target model updated for  1
+98500 2 {'n_match': 35217, 'average_len': 11.630746514467445, 'ratio_error': 0.0, 'ratio_win': 0.8312178777295056, 'ratio_lost': 0.14027316352897748, 'score': 5.925708502024292}
+Target model updated for  2
+99000 1 {'n_match': 28641, 'average_len': 14.301176634894032, 'ratio_error': 0.00010474494605635278, 'ratio_win': 0.736217310848085, 'ratio_lost': 0.16808072343842742, 'score': 4.377413327797385}
+99000 2 {'n_match': 33910, 'average_len': 12.079032733706871, 'ratio_error': 2.948982601002654e-05, 'ratio_win': 0.6986434680035388, 'ratio_lost': 0.23058094957239753, 'score': 3.029539641943734}
+Target model updated for  2
+99500 1 {'n_match': 30459, 'average_len': 13.447585278571195, 'ratio_error': 0.00013132407498604682, 'ratio_win': 0.5417774713549361, 'ratio_lost': 0.2846449325322565, 'score': 1.9024671431865345}
+99500 2 {'n_match': 31332, 'average_len': 13.07289671900932, 'ratio_error': 0.0, 'ratio_win': 0.6771032809906804, 'ratio_lost': 0.2690859185497255, 'score': 2.5163088601589374}
+Target model updated for  2
+100000 1 {'n_match': 32060, 'average_len': 12.776044915782908, 'ratio_error': 3.1191515907673116e-05, 'ratio_win': 0.7174048658764816, 'ratio_lost': 0.1753898939488459, 'score': 4.089615931721195}
+Target model updated for  1
+100000 2 {'n_match': 28946, 'average_len': 14.150487113936295, 'ratio_error': 0.0, 'ratio_win': 0.6080978373523112, 'ratio_lost': 0.1777102190285359, 'score': 3.421850699844479}
+Target model updated for  2
+100500 1 {'n_match': 29959, 'average_len': 13.672018425181081, 'ratio_error': 0.0005674421709669882, 'ratio_win': 0.6945158383123602, 'ratio_lost': 0.1410594479121466, 'score': 4.903841621494226}
+Target model updated for  1
+100500 2 {'n_match': 30339, 'average_len': 13.50077458057286, 'ratio_error': 0.0, 'ratio_win': 0.7026929035235175, 'ratio_lost': 0.1321401496423745, 'score': 5.31778498378648}
+Target model updated for  2
+101000 1 {'n_match': 31922, 'average_len': 12.831276235824824, 'ratio_error': 3.13263579976192e-05, 'ratio_win': 0.743499780715494, 'ratio_lost': 0.20525029760040098, 'score': 3.6218525866015567}
+101000 2 {'n_match': 31172, 'average_len': 13.139997433594251, 'ratio_error': 0.0, 'ratio_win': 0.7549082509944822, 'ratio_lost': 0.20720518413961247, 'score': 3.64328843474222}
+Target model updated for  2
+101500 1 {'n_match': 32479, 'average_len': 12.611225715077435, 'ratio_error': 0.0, 'ratio_win': 0.7980233381569629, 'ratio_lost': 0.14218418054743065, 'score': 5.612602858380251}
+Target model updated for  1
+101500 2 {'n_match': 31828, 'average_len': 12.869171798416488, 'ratio_error': 0.0, 'ratio_win': 0.8006786477315572, 'ratio_lost': 0.1676511247957773, 'score': 4.775862068965517}
+Target model updated for  2
+102000 1 {'n_match': 29459, 'average_len': 13.904070063478054, 'ratio_error': 0.00013578193421365288, 'ratio_win': 0.6124783597542347, 'ratio_lost': 0.2141281102549306, 'score': 2.858523447401774}
+102000 2 {'n_match': 29670, 'average_len': 13.805190428041794, 'ratio_error': 0.0, 'ratio_win': 0.7162453656892483, 'ratio_lost': 0.2130097741826761, 'score': 3.3625}
+Target model updated for  2
+102500 1 {'n_match': 33763, 'average_len': 12.131623374700116, 'ratio_error': 0.0, 'ratio_win': 0.7346503568995646, 'ratio_lost': 0.21325119213340046, 'score': 3.445}
+Target model updated for  1
+102500 2 {'n_match': 31909, 'average_len': 12.836503807703156, 'ratio_error': 0.0, 'ratio_win': 0.7171957754865399, 'ratio_lost': 0.14666708452160832, 'score': 4.889957264957265}
+Target model updated for  2
+103000 1 {'n_match': 29108, 'average_len': 14.071732856946545, 'ratio_error': 0.0006183866978150337, 'ratio_win': 0.6439466813247218, 'ratio_lost': 0.24752645320873987, 'score': 2.5950436106880796}
+103000 2 {'n_match': 31074, 'average_len': 13.181437858016348, 'ratio_error': 3.2181244770547725e-05, 'ratio_win': 0.7329278496492244, 'ratio_lost': 0.2135547402973547, 'score': 3.431520265180051}
+Target model updated for  2
+103500 1 {'n_match': 29908, 'average_len': 13.695332352547814, 'ratio_error': 0.0005349739200213989, 'ratio_win': 0.6856025143774241, 'ratio_lost': 0.24635549016985422, 'score': 2.776950162513543}
+103500 2 {'n_match': 28337, 'average_len': 14.45459999294209, 'ratio_error': 0.0, 'ratio_win': 0.6693369093411441, 'ratio_lost': 0.15703850089988355, 'score': 4.262247191011236}
+Target model updated for  2
+104000 1 {'n_match': 29399, 'average_len': 13.932446681859927, 'ratio_error': 0.0, 'ratio_win': 0.6594782135446784, 'ratio_lost': 0.21116364502193952, 'score': 3.123067010309278}
+104000 2 {'n_match': 27526, 'average_len': 14.880476640267384, 'ratio_error': 0.0, 'ratio_win': 0.6504759136816101, 'ratio_lost': 0.25274286129477586, 'score': 2.5736668104067846}
+Target model updated for  2
+104500 1 {'n_match': 31101, 'average_len': 13.169994533937816, 'ratio_error': 9.645992090286486e-05, 'ratio_win': 0.6787563100864924, 'ratio_lost': 0.21812803446834506, 'score': 3.110358037424488}
+Target model updated for  1
+104500 2 {'n_match': 33845, 'average_len': 12.102230757866746, 'ratio_error': 5.909292362239622e-05, 'ratio_win': 0.6308169596690796, 'ratio_lost': 0.27271384251735853, 'score': 2.3126083188908146}
+Target model updated for  2
+105000 1 {'n_match': 32766, 'average_len': 12.500762986022096, 'ratio_error': 0.0, 'ratio_win': 0.7968015625953733, 'ratio_lost': 0.14344137215406214, 'score': 5.554893617021277}
+Target model updated for  1
+105000 2 {'n_match': 37774, 'average_len': 10.843437284904962, 'ratio_error': 5.2946471117700005e-05, 'ratio_win': 0.6001217768835707, 'ratio_lost': 0.339916344575634, 'score': 1.7652234854384052}
+Target model updated for  2
+105500 1 {'n_match': 26199, 'average_len': 15.634184510859193, 'ratio_error': 0.0, 'ratio_win': 0.53605099431276, 'ratio_lost': 0.18817512118783158, 'score': 2.8486815415821503}
+Target model updated for  1
+105500 2 {'n_match': 29304, 'average_len': 13.977613977613977, 'ratio_error': 0.0, 'ratio_win': 0.7067635817635818, 'ratio_lost': 0.20133770133770135, 'score': 3.5103389830508474}
+Target model updated for  2
+106000 1 {'n_match': 30448, 'average_len': 13.452443510246978, 'ratio_error': 0.0, 'ratio_win': 0.8081647398843931, 'ratio_lost': 0.14848265895953758, 'score': 5.442822384428224}
+Target model updated for  1
+106000 2 {'n_match': 33312, 'average_len': 12.295869356388089, 'ratio_error': 0.0, 'ratio_win': 0.8158321325648416, 'ratio_lost': 0.1408801633045149, 'score': 5.790965267419561}
+Target model updated for  2
+106500 1 {'n_match': 28052, 'average_len': 14.601454441751034, 'ratio_error': 0.0, 'ratio_win': 0.6389562241551404, 'ratio_lost': 0.12576643376586338, 'score': 5.080498866213152}
+106500 2 {'n_match': 30127, 'average_len': 13.595777873668139, 'ratio_error': 0.0, 'ratio_win': 0.7878978988946792, 'ratio_lost': 0.13738506987087995, 'score': 5.7349601352983814}
+Target model updated for  2
+107000 1 {'n_match': 32400, 'average_len': 12.641975308641975, 'ratio_error': 0.0, 'ratio_win': 0.7143827160493827, 'ratio_lost': 0.2017283950617284, 'score': 3.541309669522644}
+107000 2 {'n_match': 32070, 'average_len': 12.772061116308077, 'ratio_error': 6.236357966947302e-05, 'ratio_win': 0.7781727471156844, 'ratio_lost': 0.12257561584034923, 'score': 6.345283498601576}
+Target model updated for  2
+107500 1 {'n_match': 31975, 'average_len': 12.810007818608288, 'ratio_error': 0.0011884284597341672, 'ratio_win': 0.6735887412040656, 'ratio_lost': 0.24803752931978107, 'score': 2.702723051825825}
+107500 2 {'n_match': 32709, 'average_len': 12.522547311137608, 'ratio_error': 0.0, 'ratio_win': 0.7361276712831331, 'ratio_lost': 0.11510593414656517, 'score': 6.395219123505976}
+Target model updated for  2
+108000 1 {'n_match': 29683, 'average_len': 13.799144291345215, 'ratio_error': 0.00010106795135262609, 'ratio_win': 0.5790519826163124, 'ratio_lost': 0.3470336556278004, 'score': 1.6680900621118013}
+108000 2 {'n_match': 31340, 'average_len': 13.069559668155712, 'ratio_error': 0.0, 'ratio_win': 0.7431716656030631, 'ratio_lost': 0.16710274409700063, 'score': 4.447393545923238}
+Target model updated for  2
+108500 1 {'n_match': 31172, 'average_len': 13.139997433594251, 'ratio_error': 3.208007185936096e-05, 'ratio_win': 0.6714679840882843, 'ratio_lost': 0.27502245605030157, 'score': 2.441217634709587}
+108500 2 {'n_match': 32756, 'average_len': 12.504579313713519, 'ratio_error': 0.0007021614360727805, 'ratio_win': 0.8007693247038711, 'ratio_lost': 0.13744046892172426, 'score': 5.796685082872928}
+Target model updated for  2
+109000 1 {'n_match': 33266, 'average_len': 12.312872001442914, 'ratio_error': 0.0, 'ratio_win': 0.7250646305537185, 'ratio_lost': 0.23176817170684783, 'score': 3.1284046692607004}
+109000 2 {'n_match': 33064, 'average_len': 12.388095814178563, 'ratio_error': 0.0, 'ratio_win': 0.7530849262037261, 'ratio_lost': 0.22432252601016212, 'score': 3.3571524875286505}
+Target model updated for  2
+109500 1 {'n_match': 33954, 'average_len': 12.063379866878718, 'ratio_error': 2.945161100312187e-05, 'ratio_win': 0.6147434764681629, 'ratio_lost': 0.31021381869588266, 'score': 1.9814885133852287}
+109500 2 {'n_match': 36508, 'average_len': 11.219458748767394, 'ratio_error': 0.0, 'ratio_win': 0.6686205763120412, 'ratio_lost': 0.2806234250027391, 'score': 2.382625671059053}
+Target model updated for  2
+110000 1 {'n_match': 35054, 'average_len': 11.684829120785075, 'ratio_error': 0.0, 'ratio_win': 0.5868374507902094, 'ratio_lost': 0.33921948992982254, 'score': 1.7299638381969558}
+110000 2 {'n_match': 31094, 'average_len': 13.17295941339165, 'ratio_error': 0.0, 'ratio_win': 0.7424583520936515, 'ratio_lost': 0.20116421174503119, 'score': 3.6908073541167066}
+Target model updated for  2
+110500 1 {'n_match': 40774, 'average_len': 10.045617305145436, 'ratio_error': 0.0, 'ratio_win': 0.7595036052386325, 'ratio_lost': 0.2178103693530191, 'score': 3.4869947078031753}
+110500 2 {'n_match': 34838, 'average_len': 11.757276537114645, 'ratio_error': 0.0, 'ratio_win': 0.6496641598254779, 'ratio_lost': 0.3162064412423216, 'score': 2.0545570079883806}
+Target model updated for  2
+111000 1 {'n_match': 29874, 'average_len': 13.710919193947914, 'ratio_error': 3.34739238133494e-05, 'ratio_win': 0.6804244493539533, 'ratio_lost': 0.24091182968467564, 'score': 2.823978883023062}
+Target model updated for  1
+111000 2 {'n_match': 31312, 'average_len': 13.081246806336228, 'ratio_error': 0.0, 'ratio_win': 0.7749425140521206, 'ratio_lost': 0.17517245784363822, 'score': 4.4238833181403825}
+Target model updated for  2
+111500 1 {'n_match': 36318, 'average_len': 11.278154083374636, 'ratio_error': 0.00035794922627898013, 'ratio_win': 0.776309268131505, 'ratio_lost': 0.18877691502836058, 'score': 4.104527587712913}
+111500 2 {'n_match': 32706, 'average_len': 12.52369595792821, 'ratio_error': 0.0, 'ratio_win': 0.78673637864612, 'ratio_lost': 0.1698159359138996, 'score': 4.632877205617573}
+Target model updated for  2
+112000 1 {'n_match': 29601, 'average_len': 13.837370359109489, 'ratio_error': 0.0, 'ratio_win': 0.7073071855680552, 'ratio_lost': 0.20820242559372995, 'score': 3.3972091513873113}
+112000 2 {'n_match': 32820, 'average_len': 12.480195003046923, 'ratio_error': 0.0016453382084095063, 'ratio_win': 0.8426569165143205, 'ratio_lost': 0.13692870201096893, 'score': 6.080914687774846}
+Target model updated for  2
+112500 1 {'n_match': 29019, 'average_len': 14.114890244322686, 'ratio_error': 3.4460181260553434e-05, 'ratio_win': 0.706847238016472, 'ratio_lost': 0.17240428684654882, 'score': 4.09912070343725}
+112500 2 {'n_match': 31838, 'average_len': 12.865129719203468, 'ratio_error': 0.0, 'ratio_win': 0.7395565048055782, 'ratio_lost': 0.2250141340536466, 'score': 3.286711334450028}
+Target model updated for  2
+113000 1 {'n_match': 34402, 'average_len': 11.906284518341957, 'ratio_error': 0.0, 'ratio_win': 0.7514098017557119, 'ratio_lost': 0.14167780942968433, 'score': 5.303652031185885}
+Target model updated for  1
+113000 2 {'n_match': 33465, 'average_len': 12.239653369191693, 'ratio_error': 2.9881966233378156e-05, 'ratio_win': 0.7596593455849395, 'ratio_lost': 0.1997011803376662, 'score': 3.8034111310592458}
+Target model updated for  2
+113500 1 {'n_match': 32644, 'average_len': 12.54748192623453, 'ratio_error': 0.0, 'ratio_win': 0.7217252787648573, 'ratio_lost': 0.17310991300085773, 'score': 4.169173597593346}
+Target model updated for  1
+113500 2 {'n_match': 36018, 'average_len': 11.372091731911821, 'ratio_error': 0.0, 'ratio_win': 0.6451774112943528, 'ratio_lost': 0.3115109112110611, 'score': 2.0711229946524066}
+Target model updated for  2
+114000 1 {'n_match': 31017, 'average_len': 13.205661411484025, 'ratio_error': 0.0, 'ratio_win': 0.7032272624689686, 'ratio_lost': 0.20314666150820518, 'score': 3.4616727503570863}
+Target model updated for  1
+114000 2 {'n_match': 33996, 'average_len': 12.048476291328392, 'ratio_error': 8.824567596187787e-05, 'ratio_win': 0.7002000235321802, 'ratio_lost': 0.2438816331333098, 'score': 2.870026525198939}
+Target model updated for  2
+114500 1 {'n_match': 26940, 'average_len': 15.204157386785448, 'ratio_error': 0.00025983667409057166, 'ratio_win': 0.6155530809205643, 'ratio_lost': 0.13693392724573125, 'score': 4.486742424242424}
+Target model updated for  1
+114500 2 {'n_match': 33505, 'average_len': 12.225041038650948, 'ratio_error': 0.0, 'ratio_win': 0.8074317266079689, 'ratio_lost': 0.17078048052529474, 'score': 4.7278923453337995}
+Target model updated for  2
+115000 1 {'n_match': 32165, 'average_len': 12.734338566765118, 'ratio_error': 9.32690812995492e-05, 'ratio_win': 0.7361728586973418, 'ratio_lost': 0.13866003419866316, 'score': 5.305624019717679}
+Target model updated for  1
+115000 2 {'n_match': 32121, 'average_len': 12.751782323090813, 'ratio_error': 9.33968431867003e-05, 'ratio_win': 0.7160113321503067, 'ratio_lost': 0.2571837738551104, 'score': 2.7830348499515973}
+Target model updated for  2
+115500 1 {'n_match': 36918, 'average_len': 11.094858876428843, 'ratio_error': 0.0, 'ratio_win': 0.8053253155642234, 'ratio_lost': 0.17070263827943008, 'score': 4.717708663916217}
+Target model updated for  1
+115500 2 {'n_match': 29928, 'average_len': 13.686180165731088, 'ratio_error': 0.0, 'ratio_win': 0.6879176690724406, 'ratio_lost': 0.16115343491045175, 'score': 4.268712419655816}
+Target model updated for  2
+116000 1 {'n_match': 38731, 'average_len': 10.57550799101495, 'ratio_error': 0.0012909555653094422, 'ratio_win': 0.7404404740388836, 'ratio_lost': 0.22052102966615889, 'score': 3.338144569898731}
+116000 2 {'n_match': 29863, 'average_len': 13.715969594481466, 'ratio_error': 0.0, 'ratio_win': 0.6833874694437934, 'ratio_lost': 0.2705354451997455, 'score': 2.5260552048520855}
+Target model updated for  2
+116500 1 {'n_match': 36730, 'average_len': 11.151647154914238, 'ratio_error': 5.445140212360468e-05, 'ratio_win': 0.6263272529267628, 'ratio_lost': 0.32692621835012253, 'score': 1.9154870940882598}
+116500 2 {'n_match': 34332, 'average_len': 11.930560410113014, 'ratio_error': 0.0, 'ratio_win': 0.8354305021554235, 'ratio_lost': 0.12845159035302342, 'score': 6.503854875283447}
+Target model updated for  2
+117000 1 {'n_match': 31012, 'average_len': 13.20779053269702, 'ratio_error': 0.0, 'ratio_win': 0.7639623371598091, 'ratio_lost': 0.20240552044369922, 'score': 3.7744145292337103}
+117000 2 {'n_match': 31930, 'average_len': 12.828061384278108, 'ratio_error': 0.0, 'ratio_win': 0.8057312871907297, 'ratio_lost': 0.1632320701534607, 'score': 4.936108979278588}
+Target model updated for  2
+117500 1 {'n_match': 30440, 'average_len': 13.455978975032851, 'ratio_error': 0.00013140604467805518, 'ratio_win': 0.7765768725361366, 'ratio_lost': 0.18005913272010513, 'score': 4.30975387420237}
+117500 2 {'n_match': 32025, 'average_len': 12.790007806401249, 'ratio_error': 0.0, 'ratio_win': 0.8249492583918814, 'ratio_lost': 0.149352068696331, 'score': 5.523520802843404}
+Target model updated for  2
+118000 1 {'n_match': 34270, 'average_len': 11.952144733002626, 'ratio_error': 8.754012255617158e-05, 'ratio_win': 0.6103005544207762, 'ratio_lost': 0.3033265246571345, 'score': 2.011444508559338}
+118000 2 {'n_match': 34389, 'average_len': 11.910785425572131, 'ratio_error': 2.907906598040071e-05, 'ratio_win': 0.8425077786501498, 'ratio_lost': 0.11794469161650528, 'score': 7.141483855065319}
+Target model updated for  2
+118500 1 {'n_match': 36137, 'average_len': 11.334643163516617, 'ratio_error': 0.0, 'ratio_win': 0.7853169881285109, 'ratio_lost': 0.16044497329606774, 'score': 4.894618834080718}
+118500 2 {'n_match': 31226, 'average_len': 13.11727406648306, 'ratio_error': 0.0, 'ratio_win': 0.8352975084865176, 'ratio_lost': 0.11538461538461539, 'score': 7.23924507354982}
+Target model updated for  2
+119000 1 {'n_match': 35220, 'average_len': 11.629755820556502, 'ratio_error': 2.8392958546280522e-05, 'ratio_win': 0.6347245883021011, 'ratio_lost': 0.31507666098807496, 'score': 2.0143269057487836}
+119000 2 {'n_match': 29685, 'average_len': 13.798214586491493, 'ratio_error': 0.0, 'ratio_win': 0.7177025433720734, 'ratio_lost': 0.21411487283139632, 'score': 3.3519509125236}
+Target model updated for  2
+119500 1 {'n_match': 32016, 'average_len': 12.793603198400799, 'ratio_error': 6.24687656171914e-05, 'ratio_win': 0.6828148425787106, 'ratio_lost': 0.17285107446276862, 'score': 3.948880057803468}
+Target model updated for  1
+119500 2 {'n_match': 32482, 'average_len': 12.610060956837634, 'ratio_error': 0.0, 'ratio_win': 0.7228618927405948, 'ratio_lost': 0.26189889785111753, 'score': 2.7600799341718583}
+Target model updated for  2
+120000 1 {'n_match': 34080, 'average_len': 12.018779342723004, 'ratio_error': 2.9342723004694835e-05, 'ratio_win': 0.6908744131455399, 'ratio_lost': 0.24008215962441315, 'score': 2.8773066112672616}
+Target model updated for  1
+120000 2 {'n_match': 36002, 'average_len': 11.377145714126993, 'ratio_error': 0.0, 'ratio_win': 0.7862618743403145, 'ratio_lost': 0.16082439864451975, 'score': 4.8889464594127805}
+Target model updated for  2
+120500 1 {'n_match': 32052, 'average_len': 12.779233745164108, 'ratio_error': 0.0007175839261200549, 'ratio_win': 0.7690627729938849, 'ratio_lost': 0.19034693622862847, 'score': 4.025146962769432}
+120500 2 {'n_match': 31966, 'average_len': 12.813614465369454, 'ratio_error': 0.0, 'ratio_win': 0.7418819996246011, 'ratio_lost': 0.22921228805605956, 'score': 3.2366589327146174}
+Target model updated for  2
+121000 1 {'n_match': 36096, 'average_len': 11.347517730496454, 'ratio_error': 5.5407801418439715e-05, 'ratio_win': 0.6825410017730497, 'ratio_lost': 0.27072251773049644, 'score': 2.5206670759156946}
+121000 2 {'n_match': 33633, 'average_len': 12.178515148812178, 'ratio_error': 0.0, 'ratio_win': 0.8721493770998722, 'ratio_lost': 0.11491689709511492, 'score': 7.589391979301423}
+Target model updated for  2
+121500 1 {'n_match': 28371, 'average_len': 14.437277501674245, 'ratio_error': 7.049451905114377e-05, 'ratio_win': 0.6911282647774135, 'ratio_lost': 0.2394698812167354, 'score': 2.885226603884638}
+121500 2 {'n_match': 32920, 'average_len': 12.44228432563791, 'ratio_error': 0.0, 'ratio_win': 0.7095990279465371, 'ratio_lost': 0.24565613608748482, 'score': 2.8885866205020405}
+Target model updated for  2
+122000 1 {'n_match': 31410, 'average_len': 13.040432983126394, 'ratio_error': 6.367398917542184e-05, 'ratio_win': 0.7856415154409424, 'ratio_lost': 0.15224450811843362, 'score': 5.1582357859531776}
+Target model updated for  1
+122000 2 {'n_match': 31693, 'average_len': 12.923989524500678, 'ratio_error': 0.0, 'ratio_win': 0.7725680749692361, 'ratio_lost': 0.17761019783548418, 'score': 4.349795700834962}
+Target model updated for  2
+122500 1 {'n_match': 31029, 'average_len': 13.200554320152115, 'ratio_error': 6.445583164136776e-05, 'ratio_win': 0.7211318444036224, 'ratio_lost': 0.10448290309065712, 'score': 6.897657213316893}
+Target model updated for  1
+122500 2 {'n_match': 33023, 'average_len': 12.403476364957756, 'ratio_error': 3.0281924719135148e-05, 'ratio_win': 0.7187112012839536, 'ratio_lost': 0.2410744026890349, 'score': 2.980909319266516}
+Target model updated for  2
+123000 1 {'n_match': 31189, 'average_len': 13.132835294494853, 'ratio_error': 3.206258616820033e-05, 'ratio_win': 0.813684311776588, 'ratio_lost': 0.14899483792362692, 'score': 5.459982788296041}
+Target model updated for  1
+123000 2 {'n_match': 30555, 'average_len': 13.405334642448045, 'ratio_error': 0.0, 'ratio_win': 0.7237113402061855, 'ratio_lost': 0.1547373588610702, 'score': 4.677030456852792}
+Target model updated for  2
+123500 1 {'n_match': 28650, 'average_len': 14.296684118673648, 'ratio_error': 0.00017452006980802793, 'ratio_win': 0.7957417102966842, 'ratio_lost': 0.15643979057591623, 'score': 5.080900378872298}
+Target model updated for  1
+123500 2 {'n_match': 30675, 'average_len': 13.352893235533822, 'ratio_error': 0.0, 'ratio_win': 0.8192339038304809, 'ratio_lost': 0.12400977995110024, 'score': 6.606203995793901}
+Target model updated for  2
+124000 1 {'n_match': 33586, 'average_len': 12.195557672839874, 'ratio_error': 8.932293217412017e-05, 'ratio_win': 0.7208956112665992, 'ratio_lost': 0.225480855118204, 'score': 3.1958817317845827}
+124000 2 {'n_match': 33236, 'average_len': 12.323986039234565, 'ratio_error': 0.0005415814177398002, 'ratio_win': 0.7374834516789024, 'ratio_lost': 0.22319171982187988, 'score': 3.2962614308768154}
+Target model updated for  2
+124500 1 {'n_match': 31001, 'average_len': 13.212477016870423, 'ratio_error': 0.0, 'ratio_win': 0.7338795522725073, 'ratio_lost': 0.2259604528886165, 'score': 3.2478229835831547}
+124500 2 {'n_match': 32929, 'average_len': 12.438883658781014, 'ratio_error': 0.0, 'ratio_win': 0.8117464848613684, 'ratio_lost': 0.14646664034741413, 'score': 5.542193655401203}
+Target model updated for  2
+125000 1 {'n_match': 35035, 'average_len': 11.691165976880262, 'ratio_error': 0.0, 'ratio_win': 0.6235478806907379, 'ratio_lost': 0.318424432710147, 'score': 1.958228755826461}
+125000 2 {'n_match': 31300, 'average_len': 13.08626198083067, 'ratio_error': 9.584664536741214e-05, 'ratio_win': 0.7351757188498402, 'ratio_lost': 0.2356230031948882, 'score': 3.1188669015993495}
+Target model updated for  2
+125500 1 {'n_match': 31325, 'average_len': 13.075818036711892, 'ratio_error': 0.00019154030327214684, 'ratio_win': 0.7443575418994414, 'ratio_lost': 0.2007661612130886, 'score': 3.7040508339952343}
+Target model updated for  1
+125500 2 {'n_match': 31295, 'average_len': 13.088352772008308, 'ratio_error': 0.00028758587633807316, 'ratio_win': 0.7204345742131331, 'ratio_lost': 0.23936731107205625, 'score': 3.0061333333333335}
+Target model updated for  2
+126000 1 {'n_match': 35621, 'average_len': 11.498834956907443, 'ratio_error': 0.0, 'ratio_win': 0.6450408466915584, 'ratio_lost': 0.3009741444653435, 'score': 2.1431769424493985}
+126000 2 {'n_match': 32301, 'average_len': 12.680721959072475, 'ratio_error': 0.0, 'ratio_win': 0.7863224048791059, 'ratio_lost': 0.11030618247113093, 'score': 7.128543362335111}
+Target model updated for  2
+126500 1 {'n_match': 32079, 'average_len': 12.768477820380934, 'ratio_error': 0.0003117304155366439, 'ratio_win': 0.7186632999781789, 'ratio_lost': 0.11602606066273886, 'score': 6.177384780278671}
+126500 2 {'n_match': 29306, 'average_len': 13.976660069610318, 'ratio_error': 0.0002047362314884324, 'ratio_win': 0.6037330239541391, 'ratio_lost': 0.20088036579540025, 'score': 3.002375699983031}
+Target model updated for  2
+127000 1 {'n_match': 29846, 'average_len': 13.723782081350935, 'ratio_error': 6.701065469409636e-05, 'ratio_win': 0.7659317831535214, 'ratio_lost': 0.1932587281377739, 'score': 3.9618717504332754}
+Target model updated for  1
+127000 2 {'n_match': 29348, 'average_len': 13.956658034619053, 'ratio_error': 0.0, 'ratio_win': 0.7274090227613466, 'ratio_lost': 0.08804688564808505, 'score': 8.261609907120743}
+Target model updated for  2
+127500 1 {'n_match': 34255, 'average_len': 11.957378484892716, 'ratio_error': 0.0, 'ratio_win': 0.7049773755656109, 'ratio_lost': 0.24122025981608525, 'score': 2.922546290693453}
+127500 2 {'n_match': 36147, 'average_len': 11.331507455667136, 'ratio_error': 0.0, 'ratio_win': 0.808172185796885, 'ratio_lost': 0.14789609096190556, 'score': 5.464459408903854}
+Target model updated for  2
+128000 1 {'n_match': 31086, 'average_len': 13.176349482081966, 'ratio_error': 3.216882197773918e-05, 'ratio_win': 0.8255484784147205, 'ratio_lost': 0.13501254584057132, 'score': 6.113149118627918}
+Target model updated for  1
+128000 2 {'n_match': 36262, 'average_len': 11.295571121283988, 'ratio_error': 0.0, 'ratio_win': 0.8133859136285919, 'ratio_lost': 0.1557829132425128, 'score': 5.221278102318995}
+Target model updated for  2
+128500 1 {'n_match': 28218, 'average_len': 14.515557445602099, 'ratio_error': 0.0, 'ratio_win': 0.7096179743426182, 'ratio_lost': 0.1873272379332341, 'score': 3.7881195611048053}
+128500 2 {'n_match': 32781, 'average_len': 12.495042860193404, 'ratio_error': 0.0, 'ratio_win': 0.6575760348982642, 'ratio_lost': 0.2771117415576096, 'score': 2.37296345222369}
+Target model updated for  2
+129000 1 {'n_match': 33379, 'average_len': 12.271188471793643, 'ratio_error': 2.9958956229964948e-05, 'ratio_win': 0.7736001677701548, 'ratio_lost': 0.1730728901405075, 'score': 4.46902042229145}
+Target model updated for  1
+129000 2 {'n_match': 33630, 'average_len': 12.179601546238478, 'ratio_error': 0.0, 'ratio_win': 0.784597085935177, 'ratio_lost': 0.11757359500446031, 'score': 6.673242286292362}
+Target model updated for  2
+129500 1 {'n_match': 32721, 'average_len': 12.51795483023135, 'ratio_error': 0.00021392989211821154, 'ratio_win': 0.7376302680235934, 'ratio_lost': 0.18700528712447664, 'score': 3.939928174991838}
+129500 2 {'n_match': 32699, 'average_len': 12.526376953423652, 'ratio_error': 0.0, 'ratio_win': 0.8221963974433469, 'ratio_lost': 0.13465243585430747, 'score': 6.106064047240518}
+Target model updated for  2
+130000 1 {'n_match': 34783, 'average_len': 11.775867521490383, 'ratio_error': 0.0004887445016243567, 'ratio_win': 0.6100393870568956, 'ratio_lost': 0.3093752695282178, 'score': 1.9687326034514752}
+130000 2 {'n_match': 33625, 'average_len': 12.181412639405204, 'ratio_error': 0.0, 'ratio_win': 0.8498438661710037, 'ratio_lost': 0.11223791821561338, 'score': 7.571807101218866}
+Target model updated for  2
+130500 1 {'n_match': 33221, 'average_len': 12.329550585473044, 'ratio_error': 0.0, 'ratio_win': 0.801932512567352, 'ratio_lost': 0.14776797808615033, 'score': 5.426970869830923}
+130500 2 {'n_match': 32932, 'average_len': 12.437750516215232, 'ratio_error': 9.109680553868577e-05, 'ratio_win': 0.7697376412000486, 'ratio_lost': 0.14271832867727438, 'score': 5.389963852859877}
+Target model updated for  2
+131000 1 {'n_match': 32062, 'average_len': 12.77524795708315, 'ratio_error': 0.0, 'ratio_win': 0.7345767575322812, 'ratio_lost': 0.15753851911920655, 'score': 4.662839041773906}
+131000 2 {'n_match': 32601, 'average_len': 12.564031778166314, 'ratio_error': 0.0, 'ratio_win': 0.7544860587098555, 'ratio_lost': 0.18671206404711513, 'score': 4.040906850665352}
+Target model updated for  2
+131500 1 {'n_match': 31505, 'average_len': 13.001110934772258, 'ratio_error': 0.0, 'ratio_win': 0.7748611331534677, 'ratio_lost': 0.15984764323123313, 'score': 4.847498014297061}
+Target model updated for  1
+131500 2 {'n_match': 29900, 'average_len': 13.698996655518394, 'ratio_error': 0.0, 'ratio_win': 0.6730769230769231, 'ratio_lost': 0.19050167224080267, 'score': 3.533181179775281}
+Target model updated for  2
+132000 1 {'n_match': 35032, 'average_len': 11.692167161452387, 'ratio_error': 5.709065996802923e-05, 'ratio_win': 0.6775519525005709, 'ratio_lost': 0.2899920073076045, 'score': 2.3359905521110127}
+132000 2 {'n_match': 31284, 'average_len': 13.092954865106764, 'ratio_error': 3.196522183863956e-05, 'ratio_win': 0.8040851553509781, 'ratio_lost': 0.16292673571154584, 'score': 4.9342879560612}
+Target model updated for  2
+132500 1 {'n_match': 31943, 'average_len': 12.822840684970103, 'ratio_error': 6.261152678208058e-05, 'ratio_win': 0.7636414863976458, 'ratio_lost': 0.13680618601884606, 'score': 5.579368709972552}
+Target model updated for  1
+132500 2 {'n_match': 36109, 'average_len': 11.343432385277909, 'ratio_error': 8.308178016560969e-05, 'ratio_win': 0.6547398155584481, 'ratio_lost': 0.3195879143703786, 'score': 2.048167720696526}
+Target model updated for  2
+133000 1 {'n_match': 32196, 'average_len': 12.722077276680333, 'ratio_error': 0.00015529879488135172, 'ratio_win': 0.7284134675114922, 'ratio_lost': 0.2129146477823332, 'score': 3.41865889212828}
+Target model updated for  1
+133000 2 {'n_match': 35520, 'average_len': 11.531531531531531, 'ratio_error': 0.0, 'ratio_win': 0.7636542792792793, 'ratio_lost': 0.17474662162162163, 'score': 4.370066054454648}
+Target model updated for  2
+133500 1 {'n_match': 31510, 'average_len': 12.999047921294826, 'ratio_error': 9.520787051729609e-05, 'ratio_win': 0.7531259917486512, 'ratio_lost': 0.11380514122500793, 'score': 6.612148230704932}
+Target model updated for  1
+133500 2 {'n_match': 29649, 'average_len': 13.814968464366421, 'ratio_error': 6.745590070491416e-05, 'ratio_win': 0.7512563661506291, 'ratio_lost': 0.1844244325272353, 'score': 4.072029250457039}
+Target model updated for  2
+134000 1 {'n_match': 28978, 'average_len': 14.134860928980606, 'ratio_error': 0.00010352681344468218, 'ratio_win': 0.7462212713092691, 'ratio_lost': 0.19666643660708125, 'score': 3.7923535601543317}
+134000 2 {'n_match': 35167, 'average_len': 11.64728296414252, 'ratio_error': 0.0, 'ratio_win': 0.7397560212699406, 'ratio_lost': 0.21548610913640628, 'score': 3.43296384270256}
+Target model updated for  2
+134500 1 {'n_match': 31191, 'average_len': 13.13199320316758, 'ratio_error': 0.002148055528838447, 'ratio_win': 0.7606360809207784, 'ratio_lost': 0.19111282100605945, 'score': 3.935799601857996}
+Target model updated for  1
+134500 2 {'n_match': 36960, 'average_len': 11.082251082251082, 'ratio_error': 0.0, 'ratio_win': 0.6771645021645022, 'ratio_lost': 0.2943452380952381, 'score': 2.3005790973435056}
+Target model updated for  2
+135000 1 {'n_match': 33024, 'average_len': 12.4031007751938, 'ratio_error': 0.00024224806201550387, 'ratio_win': 0.688983769379845, 'ratio_lost': 0.267078488372093, 'score': 2.5773674671499776}
+Target model updated for  1
+135000 2 {'n_match': 30099, 'average_len': 13.608425529087345, 'ratio_error': 0.0, 'ratio_win': 0.7200571447556398, 'ratio_lost': 0.15734742018007242, 'score': 4.576224662162162}
+Target model updated for  2
+135500 1 {'n_match': 32297, 'average_len': 12.682292472985107, 'ratio_error': 0.0, 'ratio_win': 0.7120165959686658, 'ratio_lost': 0.21568566739944886, 'score': 3.3011771461383863}
+135500 2 {'n_match': 32469, 'average_len': 12.615109797037174, 'ratio_error': 0.0, 'ratio_win': 0.7864116541932304, 'ratio_lost': 0.17872432166066093, 'score': 4.400137859727727}
+Target model updated for  2
+136000 1 {'n_match': 36002, 'average_len': 11.377145714126993, 'ratio_error': 0.0, 'ratio_win': 0.7937614576967946, 'ratio_lost': 0.17010166101883228, 'score': 4.666394513389942}
+Target model updated for  1
+136000 2 {'n_match': 30300, 'average_len': 13.518151815181518, 'ratio_error': 0.0, 'ratio_win': 0.7141254125412542, 'ratio_lost': 0.2329042904290429, 'score': 3.066175428652402}
+Target model updated for  2
+136500 1 {'n_match': 31009, 'average_len': 13.209068334999516, 'ratio_error': 0.0, 'ratio_win': 0.7641974910509852, 'ratio_lost': 0.1759166693540585, 'score': 4.344087992667277}
+Target model updated for  1
+136500 2 {'n_match': 36837, 'average_len': 11.119255096777696, 'ratio_error': 0.0, 'ratio_win': 0.7747373564622526, 'ratio_lost': 0.1967586937046991, 'score': 3.9375}
+Target model updated for  2
+137000 1 {'n_match': 36195, 'average_len': 11.316480176820003, 'ratio_error': 0.0, 'ratio_win': 0.721619008150297, 'ratio_lost': 0.2055256250863379, 'score': 3.5110902002957385}
+137000 2 {'n_match': 30869, 'average_len': 13.268975347435939, 'ratio_error': 6.478991868865204e-05, 'ratio_win': 0.6535359098124331, 'ratio_lost': 0.152223913958988, 'score': 4.291427355881727}
+Target model updated for  2
+137500 1 {'n_match': 29416, 'average_len': 13.924394887136252, 'ratio_error': 0.0, 'ratio_win': 0.7878705466412836, 'ratio_lost': 0.15607152570029917, 'score': 5.048137660640383}
+Target model updated for  1
+137500 2 {'n_match': 32420, 'average_len': 12.634176434299816, 'ratio_error': 0.0, 'ratio_win': 0.7988278840222085, 'ratio_lost': 0.14654534238124614, 'score': 5.451062934119133}
+Target model updated for  2
+138000 1 {'n_match': 31939, 'average_len': 12.824446601333792, 'ratio_error': 0.0002817871567675882, 'ratio_win': 0.7076301700115846, 'ratio_lost': 0.20573593412442467, 'score': 3.4348024316109425}
+138000 2 {'n_match': 31299, 'average_len': 13.086680085625739, 'ratio_error': 0.0, 'ratio_win': 0.770280200645388, 'ratio_lost': 0.08929997763506821, 'score': 8.625760286225402}
+Target model updated for  2
+138500 1 {'n_match': 33279, 'average_len': 12.308062141290304, 'ratio_error': 0.0, 'ratio_win': 0.7557919408636077, 'ratio_lost': 0.13308693169866884, 'score': 5.678934296680966}
+138500 2 {'n_match': 32396, 'average_len': 12.643536239041858, 'ratio_error': 0.0, 'ratio_win': 0.7416965057414495, 'ratio_lost': 0.24120261760711198, 'score': 3.074993601228564}
+Target model updated for  2
+139000 1 {'n_match': 33090, 'average_len': 12.378362042913267, 'ratio_error': 0.0, 'ratio_win': 0.6903596252644303, 'ratio_lost': 0.2376548806285887, 'score': 2.904883011190234}
+139000 2 {'n_match': 34719, 'average_len': 11.797574814942827, 'ratio_error': 2.880267288804401e-05, 'ratio_win': 0.8120049540597367, 'ratio_lost': 0.16751634551686395, 'score': 4.846484442152312}
+Target model updated for  2
+139500 1 {'n_match': 32179, 'average_len': 12.728798284595543, 'ratio_error': 3.107616768700084e-05, 'ratio_win': 0.7241990117778676, 'ratio_lost': 0.20814817116753162, 'score': 3.478728168383341}
+139500 2 {'n_match': 32306, 'average_len': 12.678759363585712, 'ratio_error': 0.0, 'ratio_win': 0.8509874326750448, 'ratio_lost': 0.11839905899832849, 'score': 7.187450980392157}
+Target model updated for  2
+140000 1 {'n_match': 34702, 'average_len': 11.803354273528903, 'ratio_error': 0.0, 'ratio_win': 0.690219583885655, 'ratio_lost': 0.2657195550688721, 'score': 2.5975490727686803}
+140000 2 {'n_match': 30339, 'average_len': 13.50077458057286, 'ratio_error': 0.0, 'ratio_win': 0.679719173341244, 'ratio_lost': 0.27515738818023006, 'score': 2.4702922855773837}
+Target model updated for  2
+140500 1 {'n_match': 30807, 'average_len': 13.295679553348265, 'ratio_error': 0.0002596812412763333, 'ratio_win': 0.6914662252085565, 'ratio_lost': 0.1199078131593469, 'score': 5.7541869259859535}
+Target model updated for  1
+140500 2 {'n_match': 30890, 'average_len': 13.259954677889285, 'ratio_error': 3.237293622531564e-05, 'ratio_win': 0.7677565555195857, 'ratio_lost': 0.2037228876659113, 'score': 3.7680330473466794}
+Target model updated for  2
+141000 1 {'n_match': 31145, 'average_len': 13.151388665917482, 'ratio_error': 0.00019264729491090063, 'ratio_win': 0.7405683095199872, 'ratio_lost': 0.1441322844758388, 'score': 5.1312569521690765}
+Target model updated for  1
+141000 2 {'n_match': 37116, 'average_len': 11.035671947408126, 'ratio_error': 0.0, 'ratio_win': 0.6734023062830047, 'ratio_lost': 0.2854564069404031, 'score': 2.359037281736668}
+Target model updated for  2
+141500 1 {'n_match': 33984, 'average_len': 12.052730696798493, 'ratio_error': 0.0, 'ratio_win': 0.7678319209039548, 'ratio_lost': 0.1534839924670433, 'score': 5.002684049079755}
+Target model updated for  1
+141500 2 {'n_match': 33793, 'average_len': 12.120853431183972, 'ratio_error': 0.0, 'ratio_win': 0.656260172225017, 'ratio_lost': 0.2916876276151866, 'score': 2.249873186567921}
+Target model updated for  2
+142000 1 {'n_match': 32548, 'average_len': 12.584490598500675, 'ratio_error': 0.0, 'ratio_win': 0.76874155094015, 'ratio_lost': 0.19288435541354307, 'score': 3.9855049378783054}
+Target model updated for  1
+142000 2 {'n_match': 31439, 'average_len': 13.028404211329876, 'ratio_error': 0.0, 'ratio_win': 0.6953783517287445, 'ratio_lost': 0.1530583033811508, 'score': 4.543225270157938}
+Target model updated for  2
+142500 1 {'n_match': 36958, 'average_len': 11.082850803614914, 'ratio_error': 0.00035175063585691867, 'ratio_win': 0.6782834568970182, 'ratio_lost': 0.29103306455977057, 'score': 2.3277927384158232}
+142500 2 {'n_match': 35086, 'average_len': 11.674172034429686, 'ratio_error': 0.0, 'ratio_win': 0.7674286040015961, 'ratio_lost': 0.20005130251382316, 'score': 3.8361589970081207}
+Target model updated for  2
+143000 1 {'n_match': 33059, 'average_len': 12.389969448561663, 'ratio_error': 0.0, 'ratio_win': 0.818566804803533, 'ratio_lost': 0.14350101333978643, 'score': 5.704258010118044}
+Target model updated for  1
+143000 2 {'n_match': 31573, 'average_len': 12.973109935704558, 'ratio_error': 0.0, 'ratio_win': 0.7233078896525512, 'ratio_lost': 0.17685997529534728, 'score': 4.089720630372493}
+Target model updated for  2
+143500 1 {'n_match': 39422, 'average_len': 10.390137486682564, 'ratio_error': 0.0, 'ratio_win': 0.767591700065953, 'ratio_lost': 0.20016741920754907, 'score': 3.83474844759853}
+143500 2 {'n_match': 31823, 'average_len': 12.871193790654559, 'ratio_error': 0.0, 'ratio_win': 0.6760519121390189, 'ratio_lost': 0.16862018037268642, 'score': 4.009317927692881}
+Target model updated for  2
+144000 1 {'n_match': 33813, 'average_len': 12.113684086002426, 'ratio_error': 0.000207020968266643, 'ratio_win': 0.7469908023541242, 'ratio_lost': 0.2012835300032532, 'score': 3.7073242330838103}
+144000 2 {'n_match': 32470, 'average_len': 12.61472128118263, 'ratio_error': 0.0, 'ratio_win': 0.8290421927933477, 'ratio_lost': 0.1416692331382815, 'score': 5.8519565217391305}
+Target model updated for  2
+144500 1 {'n_match': 28947, 'average_len': 14.14999827270529, 'ratio_error': 0.00038000483642519086, 'ratio_win': 0.703216222751926, 'ratio_lost': 0.15773655301067468, 'score': 4.447454664627485}
+144500 2 {'n_match': 32369, 'average_len': 12.654082609904538, 'ratio_error': 0.0, 'ratio_win': 0.8135561802959622, 'ratio_lost': 0.13920726621149865, 'score': 5.844207723035952}
+Target model updated for  2
+145000 1 {'n_match': 28152, 'average_len': 14.549587951122477, 'ratio_error': 0.00010656436487638534, 'ratio_win': 0.6658141517476556, 'ratio_lost': 0.15281329923273657, 'score': 4.354006968641115}
+145000 2 {'n_match': 32507, 'average_len': 12.600362998738733, 'ratio_error': 3.076260497738949e-05, 'ratio_win': 0.8509859414895253, 'ratio_lost': 0.12391177284892485, 'score': 6.865971705137751}
+Target model updated for  2
+145500 1 {'n_match': 32147, 'average_len': 12.741468877344698, 'ratio_error': 0.0, 'ratio_win': 0.8561607615018508, 'ratio_lost': 0.11606059663421159, 'score': 7.376842669525597}
+Target model updated for  1
+145500 2 {'n_match': 33939, 'average_len': 12.068711511830047, 'ratio_error': 0.0, 'ratio_win': 0.761572232534842, 'ratio_lost': 0.17596275671056896, 'score': 4.328030810448761}
+Target model updated for  2
+146000 1 {'n_match': 35342, 'average_len': 11.58961009563692, 'ratio_error': 0.0, 'ratio_win': 0.7496463131684681, 'ratio_lost': 0.21311753720785467, 'score': 3.517525225703664}
+146000 2 {'n_match': 32084, 'average_len': 12.766487969081162, 'ratio_error': 0.0, 'ratio_win': 0.8250218177284628, 'ratio_lost': 0.1346153846153846, 'score': 6.128733503125724}
+Target model updated for  2
+146500 1 {'n_match': 32700, 'average_len': 12.525993883792049, 'ratio_error': 0.0007951070336391437, 'ratio_win': 0.7645565749235474, 'ratio_lost': 0.19321100917431192, 'score': 3.9408890290037832}
+146500 2 {'n_match': 30277, 'average_len': 13.528420913564752, 'ratio_error': 0.0, 'ratio_win': 0.7379198731710539, 'ratio_lost': 0.21131552003170723, 'score': 3.4920287589871837}
+Target model updated for  2

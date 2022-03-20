@@ -1,5 +1,5 @@
 from game.board import BatchBoard
-from model.model import AIPlayer
+from model.model_helper import AIPlayer
 import torch
 from copy import deepcopy
 
@@ -17,7 +17,7 @@ class GreedyModel(AIPlayer):
         all_rewards = []
         for i, batch_board in enumerate(all_test):
             played_cols = torch.ones([batch_board.nbatch], device=device) * i
-            _, rewards, _, _, _ = batch_board.get_reward_v2(played_cols)
+            rewards = batch_board.get_reward_v2(played_cols)["rewards"]
             all_rewards.append(rewards)
         # For each board in the batch, keep the column associated to the best reward
         all_rewards = torch.stack(all_rewards)

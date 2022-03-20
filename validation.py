@@ -1,4 +1,4 @@
-from model.model import AIPlayer
+from model.model_helper import AIPlayer
 from model.greedy_model import GreedyModel
 from game.board import BatchBoard
 import torch
@@ -12,13 +12,12 @@ def mirror_score(player: AIPlayer, nbatch=1, n_iter=200, rand_ratio=0.2, cols=7,
     for i in range(n_iter):
         # Not randomized player
         move = player.play(batch_board)
-        is_final, rewards, adv_rewards, has_win, is_valid = batch_board.get_reward(move)
-        n_match += is_final.sum().item()
-        win += has_win.sum().item()
-        error += (~is_valid).sum().item()
+        summary = batch_board.get_reward(move)
+        n_match += summary["is_final"].sum().item()
+        win += summary["has_win"].sum().item()
+        error += (~summary["is_valid"]).sum().item()
 
         # Randomized player
-
         move = player.play(batch_board)
         # Choose a random move or a greedy move with rand_ratio probability
         #rand_move = torch.randint(0, cols, [nbatch], device=device)
@@ -28,10 +27,10 @@ def mirror_score(player: AIPlayer, nbatch=1, n_iter=200, rand_ratio=0.2, cols=7,
 
         move[rand_choice < rand_ratio] = greedy_move[rand_choice < rand_ratio]
         # play the move
-        is_final, rewards, adv_rewards, has_win, is_valid = batch_board.get_reward(move)
-        n_match += is_final.sum().item()
-        lost += has_win.sum().item()
-    summary = {
+        summary = batch_board.get_reward(move)
+        n_match += summary["is_final"].sum().item()
+        lost += summary["has_win"].sum().item()
+    tot_summary = {
         "n_match": n_match,
         "average_len": (nbatch * n_iter) / n_match,
         "ratio_error": error / n_match,
@@ -39,11 +38,7 @@ def mirror_score(player: AIPlayer, nbatch=1, n_iter=200, rand_ratio=0.2, cols=7,
         "ratio_lost": lost / n_match,
         "score": win / (lost + error)
     }
-
-
-
-
-    return summary
+    return tot_summary
 
 
 

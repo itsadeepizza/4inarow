@@ -106,7 +106,10 @@ class Trainer():
         M[where_play_greedy] = greedy_M[where_play_greedy]
         # The move is played
         self.list_M.append(M)
-        F, R, R_adv, _, _ = self.board.get_reward(M)
+        summary = self.board.get_reward(M)
+        F = summary["is_final"]
+        R = summary["rewards"]
+        R_adv = summary["adv_rewards"]
 
         if len(self.list_S) >= 2:
             # update rewards and final state using data from opponent play
@@ -167,8 +170,7 @@ class Trainer():
 
             # if i % 10_000 > 9_900:
             #         print(board.state[0])
-            if i % self.savefreq == 0:
-                self.save_model(i)
+
 
             # if i % 1_000 == 0:
             #     torch.cuda.empty_cache()
@@ -232,7 +234,8 @@ class Trainer():
             if j == 1:
                 self.max_score1 = max(summary["score"], max_score)
             else:
-                self.max_score1 = max(summary["score"], max_score)
+                self.max_score2 = max(summary["score"], max_score)
+        self.save_model(i)
 
 
 
@@ -250,7 +253,6 @@ if __name__ == "__main__":
         "ratio_greedy": 0.8,
         "lr": 0.001,
         "interval_tensorboard": 50,
-        "savefreq": 1000,
         "validation_interval": 500
     }
     model = ConvNet
