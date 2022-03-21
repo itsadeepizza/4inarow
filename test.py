@@ -73,8 +73,8 @@ if __name__ == "__main__":
 
 
     from game.board import BatchBoard
-    tP = TreePlayer(AIplayer3)
+    tP = TreePlayer(AIplayer)
     #tP = TreePlayer(tP)
-    res = play_until_end(AIplayer, tP,  BatchBoard(1), True)
+    res = play_until_end(AIplayer3, tP,  BatchBoard(1), True)
     print(res)
     play_hvsm_game(tP, verbose=True)
