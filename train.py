@@ -11,7 +11,7 @@ from torch.utils.tensorboard import SummaryWriter
 from torchsummary import summary
 from validation import mirror_score
 from model.model_helper import NNPlayer
-
+import time
 
 
 
@@ -20,7 +20,7 @@ class Trainer():
 
     def do_each_n(self, i, n):
         """Execute the event each n moves"""
-        return abs(i - n - 0.5) < 0.5 * self.batch_size
+        return abs(i % n - 0.5 * n) < 0.5 * self.batch_size
 
     def init_models(self):
         # INITIALISING MODELS
@@ -57,6 +57,7 @@ class Trainer():
         # variable to store the mean number of invalid moves (this value need to reduce)
         self.mean_error_game = torch.zeros([1], device=self.device)
         self.mean_loss = 0
+        self.timer = 0
 
 
     def __init__(self, batch_size, hyperparams, model, target_player, rows=6, cols=7, device=None):
@@ -226,6 +227,11 @@ class Trainer():
         self.writer.add_scalar("loss",
                                self.mean_loss / self.interval_tensorboard,
                                i)
+        tot_time = time.time() - self.timer
+        self.timer = time.time()
+        self.writer.add_scalar("moves_for_second",
+                               self.interval_tensorboard / tot_time,
+                               i)
         #     mean_ratio_board *= 0
         #     mean_error_game *= 0
         self.mean_loss = 0
@@ -267,15 +273,15 @@ if __name__ == "__main__":
         "GAMMA": 0.9,
         "EPS_START": 0.9,
         "EPS_END": 0.2,
-        "EPS_DECAY": 300_000_000,
+        "EPS_DECAY": 100_000_000,
         "TARGET_UPDATE": 10,
         "start_random": 0.9,
         "end_random": 0.5,
         "decay_random": 10,
         "ratio_greedy": 0.8,
         "lr": 0.001,
-        "interval_tensorboard": 50,
-        "validation_interval": 500,
+        "interval_tensorboard": 20_000,
+        "validation_interval": 250_000,
         "replace_target_if_better": True,
     }
     target_player = GreedyModel()
@@ -285,3 +291,4 @@ if __name__ == "__main__":
 
 
 #type "tensorboard --logdir=runs" in terminal
+# 192.1.10.235
