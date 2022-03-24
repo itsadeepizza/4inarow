@@ -85,31 +85,33 @@ def get_players(models_list):
 # Paolo
 # Far giocare delle coppie di modelli scelti a caso tra loro
 
-def hunger_games(models_list, n_match=10):
-
+def hunger_games(models_list, n_match=10, device=torch.device("cpu")):
+    from tqdm import tqdm
     n_models = len(models_list)
     score_matrix = torch.zeros([n_models, n_models])
+    time_played = torch.zeros([n_models])
     if n_models < 2:
         raise Exception("not enough models")
     n_match = min(n_match, 2 * n_models * (n_models - 1))
     already_played = {(0,0)}
     i1 = i2 = 0
-    for i in range(n_match):
+    for i in tqdm(range(n_match)):
         while (i1, i2) in already_played:
             i1, player1, i2, player2 = get_players(models_list)
         already_played.add((i1, i2))
-        score_matrix[i1, i2] = AIvsAI(player1, player2)
-    return score_matrix
+        score_matrix[i1, i2] = AIvsAI(player1, player2, device=device)
+        time_played[i1] += 1
+    return score_matrix, time_played
 
 
-def leader_board(input_list, n_match=10):
+def leader_board(input_list, n_match=10, device=torch.device("cpu")):
     """Make a leader bord starting from a list of directories and associated models in the form:
     [{"dir": "runs/fit/23984298/models", "model": ConvNet}, {"dir": "runs/fit/98624986/models", "model": SmallDQN}]
    the output is a dictionary with all scores related to each model"""
     models_list = models_in_all_directories(input_list)
-    score_matrix = hunger_games(models_list, n_match)
-    scores = score_matrix.mean(axis=0)
-    leader_board = {model["filepath"]: score for model, score in zip(models_list, scores) if score.item() > 0}
+    score_matrix, time_played = hunger_games(models_list, n_match, device=device)
+    scores = score_matrix.sum(axis=1) / time_played
+    leader_board = {model["filepath"]: score.item() for model, score in zip(models_list, scores) if score.item() > 0}
     return leader_board
 
 
@@ -149,8 +151,8 @@ def load_model(path, model_class):
     return NNPlayer(model)
 
 if __name__ == "__main__":
-    # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     from model.model import ConvNet, ConvNetNoMem
     input = [{"dir": "./saves/ConvNet", "model": ConvNetNoMem}, {"dir": "./saves/ConvNetMem", "model": ConvNet}]
-    input = [{"dir": "./runs/fit/20220317-234443/models", "model": ConvNetNoMem}]
-    print(leader_board(input))
+    input = [{"dir": "runs/fit/20220320-004727/models", "model": ConvNetNoMem}]
+    print(leader_board(input, 20, device=device))
