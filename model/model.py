@@ -11,10 +11,34 @@ class ConvNet(nn.Module):
         self.l1 = nn.Conv2d(3, out_channels=ch1, kernel_size=5, groups=3, padding=2)
         self.l2 = nn.Conv2d(ch1, out_channels=120, kernel_size=3, padding=1)
         self.l3 = nn.Conv2d(120, 60, kernel_size=1)
+        self.l4 = nn.Linear(60 * rows * cols + 7, cols * 2)
+
+    def forward(self, x, memory=None):
+        if memory is None:
+            memory = torch.zeros((x.size(0), 7), device=x.device)
+        x = torch.stack([x < 0, x == 0, x > 0], dim=1).float()
+        x = self.l1(x)
+        x = torch.relu(x)
+        x = self.l2(x)
+        x = torch.relu(x)
+        x = self.l3(x)
+        x = torch.relu(x)
+        cat = torch.cat([x.flatten(1), memory], dim=1)
+        out = self.l4(cat)
+        x, memory = out.split(out.size(1) // 2, dim=1)
+        return x, torch.sigmoid(memory)
+
+
+class ConvNetNoMem(nn.Module):
+    def __init__(self, rows=6, cols=7):
+        ch1 = 60
+        super(ConvNetNoMem, self).__init__()
+        self.l1 = nn.Conv2d(3, out_channels=ch1, kernel_size=5, groups=3, padding=2)
+        self.l2 = nn.Conv2d(ch1, out_channels=120, kernel_size=3, padding=1)
+        self.l3 = nn.Conv2d(120, 60, kernel_size=1)
         self.l4 = nn.Linear(60 * rows * cols, cols)
 
-
-    def forward(self, x):
+    def forward(self, x, _):
         x = torch.stack([x < 0, x == 0, x > 0], dim=1).float()
         x = self.l1(x)
         x = torch.relu(x)
@@ -23,7 +47,7 @@ class ConvNet(nn.Module):
         x = self.l3(x)
         x = torch.relu(x)
         x = self.l4(x.flatten(1))
-        return x
+        return x, None
 
 
 class smallDQN(nn.Module):

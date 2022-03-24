@@ -79,6 +79,9 @@ class Trainer():
         self.target_player = target_player
         self.init_logger()
 
+        self.cum_loss1 = 0
+        self.cum_loss2 = 0
+
 
         # VARIABLES FOR TRAINING
         self.board = BatchBoard(nbatch=self.batch_size, device=self.device)
@@ -90,11 +93,17 @@ class Trainer():
         self.max_score2 = 0
 
     def train(self):
+        memory1 = torch.zeros((self.batch_size, 7), device=self.device)
+        memory2 = memory1.clone()
         for i in range(10_000_000):
-            self.train_move(i * self.batch_size)
+            memory1, memory2 = self.train_move(i * self.batch_size, memory1, memory2)
+
+            if i % 17 == 0:
+                print('mem1', memory1)
+                print('mem2', memory2)
 
 
-    def choose_move(self, i):
+    def choose_move(self, i, memory=None):
         # Update threeshold
         eps_threshold = self.EPS_END + (self.EPS_START - self.EPS_END) * math.exp(-1. * i / self.EPS_DECAY)
         # Choose next move
@@ -102,9 +111,9 @@ class Trainer():
         with torch.no_grad():
             if self.board.player == 1:
                 # Q is the long term reward for each move
-                Q = self.target_net1.forward(S).detach()
+                Q = self.target_net1.forward(S)[0].detach()
             else:
-                Q = self.target_net2.forward(S).detach()
+                Q = self.target_net2.forward(S)[0].detach()
         # Long term reward associated to the best move
         pi = Q.max(dim=1).values
         # take the best move
@@ -129,7 +138,7 @@ class Trainer():
         M[where_play_greedy] = greedy_M[where_play_greedy]
         return M, pi, S
 
-    def train_move(self, i):
+    def train_move(self, i, memory1, memory2):
         self.policy_net1.train()
         self.policy_net2.train()
         # The move is chosen (target network + greedy + random)
@@ -155,10 +164,10 @@ class Trainer():
 
             if self.board.player == -1:
                 self.optimizer1.zero_grad()
-                Q_old = self.policy_net1.forward(S_old)
+                Q_old, memory1 = self.policy_net1.forward(S_old, memory1)
             else:
                 self.optimizer2.zero_grad()
-                Q_old = self.policy_net2.forward(S_old)
+                Q_old, memory2 = self.policy_net2.forward(S_old, memory2)
 
             # PAY ATTENTION to gather method, it is a bit tricky !
             state_action_values = Q_old.gather(1, M_old.unsqueeze(1))
@@ -167,16 +176,27 @@ class Trainer():
             expected_state_action_values = expected_state_action_values.unsqueeze(1)
 
             loss = self.criterion(state_action_values, expected_state_action_values)
-            loss.backward()
 
             if self.board.player == -1:
-                # for param in policy_net1.parameters():
-                #   param.grad.data.clamp_(-1, 1)
-                self.optimizer1.step()
+                self.cum_loss1 += loss
             else:
-                # for param in policy_net2.parameters():
-                #    param.grad.data.clamp_(-1, 1)
-                self.optimizer2.step()
+                self.cum_loss2 += loss
+
+            if i % 5 == 0 or i % 5 == 1:
+                if self.board.player == -1:
+                    self.cum_loss1.backward()
+                    # for param in policy_net1.parameters():
+                    #   param.grad.data.clamp_(-1, 1)
+                    self.optimizer1.step()
+                    self.cum_loss1 = 0
+                    memory1 = memory1.detach()
+                else:
+                    self.cum_loss2.backward()
+                    # for param in policy_net2.parameters():
+                    #    param.grad.data.clamp_(-1, 1)
+                    self.optimizer2.step()
+                    self.cum_loss2 = 0
+                    memory2 = memory2.detach()
 
             # VALIDATION AND LOGGING
             if self.do_each_n(i, self.validation_interval):
@@ -193,6 +213,7 @@ class Trainer():
         self.list_S.append(S)
         self.list_R.append(R)
         self.list_F.append(F)
+        return memory1, memory2
 
     def save_model(self, i):
         path1 = f"{self.models_dir}/model_{i}.pth"

@@ -4,7 +4,7 @@ from copy import deepcopy
 #from ..game.board import BatchBoard
 class AIPlayer():
 
-    def get_scores(self, batch_board):
+    def get_scores(self, batch_board, memory=None):
         return None
 
     def play(self, batch_board, verbose=False):
@@ -19,9 +19,9 @@ class NNPlayer(AIPlayer):
     def __init__(self, model: nn.Module):
         self.model = model
 
-    def get_scores(self, batch_board):
+    def get_scores(self, batch_board, memory=None):
         with torch.no_grad():
-            Q = self.model.forward(batch_board.state)
+            Q, _ = self.model.forward(batch_board.state, memory)
         return Q
 
 class TreePlayer(AIPlayer):
@@ -31,7 +31,7 @@ class TreePlayer(AIPlayer):
         self.base_player = base_player
 
 
-    def get_scores(self, batch_board):
+    def get_scores(self, batch_board, memory=None):
         """Test all alternatives for each column, simulating the game"""
         # Step 1: Test all columns
         # Step 2: For each column, calculate the reward
