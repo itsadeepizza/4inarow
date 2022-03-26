@@ -61,11 +61,12 @@ class Trainer():
         self.timer = 0
         # LOG hyperparams
         import inspect
+        import tabulate
         self.writer.add_text("Time", now.strftime("%a %d %b %y - %H:%M"))
         self.writer.add_text("Model name", str(self.model.__name__))
-        self.writer.add_text("Model code", inspect.getsource(self.model))
-        for param, value in self.hparams.items():
-            self.writer.add_text(str(param), str(value))
+        self.writer.add_text("Model code", "```  \n" + inspect.getsource(self.model)+"  \n```")
+        log_hparams = tabulate.tabulate([[param, value] for param, value in self.hparams.items()], headers=["NAME", "VALUE"], tablefmt="pipe")
+        self.writer.add_text("Hyperparameters", log_hparams)
 
 
 
