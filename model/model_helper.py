@@ -69,3 +69,10 @@ def play_until_end(player1: AIPlayer, player2: AIPlayer, batch_board, verbose=Fa
         results[~summary["is_valid"] & ~ all_finished] = batch_board.player
         all_finished[summary["is_final"]] = True
     return results
+
+
+def load_model(path, model_class):
+    model = model_class()
+    model.load_state_dict(torch.load(path))
+    model.eval()
+    return NNPlayer(model)
