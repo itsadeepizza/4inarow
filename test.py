@@ -67,3 +67,5 @@ if __name__ == "__main__":
 
 
     play_hvsm_game(AIplayer, verbose=True)
+    from validation import mirror_score
+

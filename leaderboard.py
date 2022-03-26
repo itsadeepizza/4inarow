@@ -101,6 +101,8 @@ def hunger_games(models_list, n_match=10, device=torch.device("cpu")):
         already_played.add((i1, i2))
         score_matrix[i1, i2] = AIvsAI(player1, player2, device=device)
         time_played[i1] += 1
+    print(score_matrix)
+    print(time_played)
     return score_matrix, time_played
 
 
@@ -111,7 +113,7 @@ def leader_board(input_list, n_match=10, device=torch.device("cpu")):
     models_list = models_in_all_directories(input_list)
     score_matrix, time_played = hunger_games(models_list, n_match, device=device)
     scores = score_matrix.sum(axis=1) / time_played
-    leader_board = {model["filepath"]: score.item() for model, score in zip(models_list, scores) if score.item() > 0}
+    leader_board = {model["filepath"]: score.item() for model, score in zip(models_list, scores) if not torch.isnan(score)}
     return leader_board
 
 
@@ -155,8 +157,8 @@ if __name__ == "__main__":
     from model.model import ConvNet, ConvNetNoMem
     input = [{"dir": "./saves/ConvNet", "model": ConvNetNoMem}, {"dir": "./saves/ConvNetMem", "model": ConvNet}]
     input = [{"dir": "runs/fit/20220320-004727/models", "model": ConvNetNoMem}]
-    lb = leader_board(input, 10_000, device=device)
+    lb = leader_board(input, 10, device=device)
     import pickle
     print(lb)
-    with open("leaderboard.txt", "w") as f:
+    with open("leaderboard2.txt", "w") as f:
         f.write(str(lb))

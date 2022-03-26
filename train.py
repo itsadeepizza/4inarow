@@ -24,10 +24,10 @@ class Trainer():
 
     def init_models(self):
         # INITIALISING MODELS
-        self.policy_net1 = model(self.rows, self.cols).to(self.device)
-        self.target_net1 = model(self.rows, self.cols).to(self.device)
-        self.policy_net2 = model(self.rows, self.cols).to(self.device)
-        self.target_net2 = model(self.rows, self.cols).to(self.device)
+        self.policy_net1 = self.model(self.rows, self.cols).to(self.device)
+        self.target_net1 = self.model(self.rows, self.cols).to(self.device)
+        self.policy_net2 = self.model(self.rows, self.cols).to(self.device)
+        self.target_net2 = self.model(self.rows, self.cols).to(self.device)
         # SET TARGET MODEL
         self.target_net1.load_state_dict(self.policy_net1.state_dict())
         self.target_net1.eval()
@@ -42,7 +42,8 @@ class Trainer():
     def init_logger(self):
         # TENSORBOARD AND LOGGING
         # Create directories for logs
-        now_str = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+        now = datetime.datetime.now()
+        now_str = now.strftime("%Y%m%d-%H%M%S")
         self.log_dir = "runs/fit/" + now_str
         self.summary_dir = self.log_dir + "/summary"
         self.models_dir = self.log_dir + "/models"
@@ -58,22 +59,32 @@ class Trainer():
         self.mean_error_game = torch.zeros([1], device=self.device)
         self.mean_loss = 0
         self.timer = 0
+        # LOG hyperparams
+        import inspect
+        self.writer.add_text("Time", now.strftime("%a %d %b %y - %H:%M"))
+        self.writer.add_text("Model name", str(self.model.__name__))
+        self.writer.add_text("Model code", inspect.getsource(self.model))
+        for param, value in self.hparams.items():
+            self.writer.add_text(str(param), str(value))
 
 
-    def __init__(self, batch_size, hyperparams, model, target_player, rows=6, cols=7, device=None):
+
+    def __init__(self, batch_size, hyperparams: dict, model, target_player, rows=6, cols=7, device=None):
         # if gpu is to be used
         # SETTING PARAMETERS
         if device is None:
             self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         else:
             self.device = device
-        for key in hyperparams:
-            setattr(self, key, hyperparams[key])
+        self.hparams = hyperparams
+        for key, value in self.hparams.items():
+            setattr(self, key, value)
 
         self.rows = rows
         self.cols = cols
         self.batch_size = batch_size
         print("BATCH SIZE:", batch_size)
+        self.model = model
         self.init_models()
         # GREEDY MODEL
         self.target_player = target_player
@@ -253,6 +264,7 @@ class Trainer():
         self.writer.add_scalar("moves_for_second",
                                self.interval_tensorboard / tot_time,
                                i)
+
         #     mean_ratio_board *= 0
         #     mean_error_game *= 0
         self.mean_loss = 0
