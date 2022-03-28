@@ -71,8 +71,8 @@ def play_until_end(player1: AIPlayer, player2: AIPlayer, batch_board, verbose=Fa
     return results
 
 
-def load_model(path, model_class):
-    model = model_class()
+def load_model(path, model_class, device=torch.device("cpu")):
+    model = model_class().to(device)
     model.load_state_dict(torch.load(path))
     model.eval()
     return NNPlayer(model)

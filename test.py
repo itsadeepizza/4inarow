@@ -55,7 +55,9 @@ def play_hvsm_game(AIplayer, verbose=False):
 if __name__ == "__main__":
     # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     from model.model import DQN, smallDQN, channel_DQN, full_channel_DQN, ConvNetNoMem
+    from model.model_helper import TreePlayer
     from model.greedy_model import GreedyModel
+    from validation import mirror_score
 
 
     path = f"runs/fit/20220320-001710/models/model_8000.pth"
@@ -63,9 +65,10 @@ if __name__ == "__main__":
     path = "runs/models/model_926000.pth"
     # path = "runs/fit/20220320-004727/models/model_127000.pth"
     path = "runs/fit/20220320-004727/models/model_208000.pth"
-    AIplayer = load_model(path, ConvNetNoMem)
+    frank_path = "frank/models/model_793620001.pth"
+    AIplayer = TreePlayer(load_model(frank_path, ConvNetNoMem))
 
-
+    #print(mirror_score(AIplayer, nbatch=1000))
     play_hvsm_game(AIplayer, verbose=True)
     from validation import mirror_score
 
