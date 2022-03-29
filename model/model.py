@@ -38,7 +38,7 @@ class ConvNetNoMem(nn.Module):
         self.l3 = nn.Conv2d(120, 60, kernel_size=1)
         self.l4 = nn.Linear(60 * rows * cols, cols)
 
-    def forward(self, x, _):
+    def forward(self, x):
         x = torch.stack([x < 0, x == 0, x > 0], dim=1).float()
         x = self.l1(x)
         x = torch.relu(x)
@@ -47,7 +47,7 @@ class ConvNetNoMem(nn.Module):
         x = self.l3(x)
         x = torch.relu(x)
         x = self.l4(x.flatten(1))
-        return x, None
+        return x
 
 
 class smallDQN(nn.Module):

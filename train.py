@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 from game.board import BatchBoard
-from model.model import DQN, smallDQN, conv_DQN, channel_DQN, full_channel_DQN, full_channel_DQN_v2, ConvNet
+from model.model import DQN, smallDQN, conv_DQN, channel_DQN, full_channel_DQN, full_channel_DQN_v2, ConvNet, ConvNetNoMem
 from model.greedy_model import GreedyModel
 import random
 import math
@@ -104,18 +104,19 @@ class Trainer():
         self.max_score1 = 0
         self.max_score2 = 0
 
+        # Memory
+        if self.use_memory:
+            self.memory1 : torch.TensorType = torch.zeros((self.batch_size, 7), device=self.device)
+            self.memory2 : torch.TensorType = torch.zeros((self.batch_size, 7), device=self.device)
+
     def train(self):
-        memory1 = torch.zeros((self.batch_size, 7), device=self.device)
-        memory2 = memory1.clone()
+
         for i in range(10_000_000):
-            memory1, memory2 = self.train_move(i * self.batch_size, memory1, memory2)
-
-            if i % 17 == 0:
-                print('mem1', memory1)
-                print('mem2', memory2)
+            self.train_move(i * self.batch_size)
 
 
-    def choose_move(self, i, memory=None):
+
+    def choose_move(self, i):
         # Update threeshold
         eps_threshold = self.EPS_END + (self.EPS_START - self.EPS_END) * math.exp(-1. * i / self.EPS_DECAY)
         # Choose next move
@@ -123,9 +124,13 @@ class Trainer():
         with torch.no_grad():
             if self.board.player == 1:
                 # Q is the long term reward for each move
-                Q = self.target_net1.forward(S)[0].detach()
+                out = self.target_net1.forward(S)
             else:
-                Q = self.target_net2.forward(S)[0].detach()
+                out = self.target_net2.forward(S)
+        if self.use_memory:
+            Q = out[0].detach()
+        else:
+            Q = out.detach()
         # Long term reward associated to the best move
         pi = Q.max(dim=1).values
         # take the best move
@@ -150,7 +155,7 @@ class Trainer():
         M[where_play_greedy] = greedy_M[where_play_greedy]
         return M, pi, S
 
-    def train_move(self, i, memory1, memory2):
+    def train_move(self, i):
         self.policy_net1.train()
         self.policy_net2.train()
         # The move is chosen (target network + greedy + random)
@@ -176,10 +181,16 @@ class Trainer():
 
             if self.board.player == -1:
                 self.optimizer1.zero_grad()
-                Q_old, memory1 = self.policy_net1.forward(S_old, memory1)
+                if self.use_memory:
+                    Q_old, self.memory1 = self.policy_net1.forward(S_old, self.memory1)
+                else:
+                    Q_old = self.policy_net1.forward(S_old)
             else:
                 self.optimizer2.zero_grad()
-                Q_old, memory2 = self.policy_net2.forward(S_old, memory2)
+                if self.use_memory:
+                    Q_old, self.memory2 = self.policy_net2.forward(S_old, self.memory2)
+                else:
+                    Q_old = self.policy_net2.forward(S_old)
 
             # PAY ATTENTION to gather method, it is a bit tricky !
             state_action_values = Q_old.gather(1, M_old.unsqueeze(1))
@@ -194,21 +205,23 @@ class Trainer():
             else:
                 self.cum_loss2 += loss
 
-            if i % 5 == 0 or i % 5 == 1:
+            if i % self.gradient_interval == 0 or i % self.gradient_interval == 1:
                 if self.board.player == -1:
                     self.cum_loss1.backward()
                     # for param in policy_net1.parameters():
                     #   param.grad.data.clamp_(-1, 1)
                     self.optimizer1.step()
                     self.cum_loss1 = 0
-                    memory1 = memory1.detach()
+                    if self.use_memory:
+                        self.memory1 = self.memory1.detach()
                 else:
                     self.cum_loss2.backward()
                     # for param in policy_net2.parameters():
                     #    param.grad.data.clamp_(-1, 1)
                     self.optimizer2.step()
                     self.cum_loss2 = 0
-                    memory2 = memory2.detach()
+                    if self.use_memory:
+                        self.memory2 = self.memory2.detach()
 
             # VALIDATION AND LOGGING
             if self.do_each_n(i, self.validation_interval):
@@ -225,7 +238,7 @@ class Trainer():
         self.list_S.append(S)
         self.list_R.append(R)
         self.list_F.append(F)
-        return memory1, memory2
+
 
     def save_model(self, i):
         path1 = f"{self.models_dir}/model_{i}.pth"
@@ -269,6 +282,9 @@ class Trainer():
         #     mean_ratio_board *= 0
         #     mean_error_game *= 0
         self.mean_loss = 0
+        if self.use_memory:
+            print('mem1', self.memory1)
+            print('mem2', self.memory2)
 
 
     def update_target(self, i):
@@ -278,7 +294,7 @@ class Trainer():
                                                     [self.target_net1, self.target_net2],
                                                     [self.max_score1, self.max_score2]):
                 policy.eval()
-                player = NNPlayer(policy)
+                player = NNPlayer(policy, use_memory=self.use_memory)
                 summary = mirror_score(player, nbatch=self.batch_size, n_iter=200, device=self.device)
                 print(i, j, summary)
                 for key, value in summary.items():
@@ -308,15 +324,17 @@ if __name__ == "__main__":
         "EPS_START": 0.9,
         "EPS_END": 0.2,
         "EPS_DECAY": 100_000_000,
-        "TARGET_UPDATE": 10,
-        "start_random": 0.9,
-        "end_random": 0.5,
-        "decay_random": 10,
-        "ratio_greedy": 0.8,
+        "TARGET_UPDATE": 10, # no more used
+        "start_random": 0.9, # randomness modifier at the beginning of each match
+        "end_random": 0.5, # randomness modifier at the end of each match
+        "decay_random": 10, # randomness modifier decay
+        "ratio_greedy": 0.8, #ratio of greedy moves respect to random moves
         "lr": 0.001,
-        "interval_tensorboard": 20_000,
-        "validation_interval": 250_000,
-        "replace_target_if_better": True,
+        "interval_tensorboard": 20_000, # every each moves does it pllot to tensorboard
+        "validation_interval": 250_000, # every each moves policies are validated
+        "replace_target_if_better": True, # Target model is replaced by current policy onli if the score is higher
+        "use_memory": True,    # The model use memory (output is a tuple Q, memory)
+        "gradient_interval" : 5 # Every each moves gradients are calculated (for memory model otherwise 1)
     }
     target_player = GreedyModel()
     model = ConvNet

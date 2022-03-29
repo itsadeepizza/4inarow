@@ -4,7 +4,7 @@ from copy import deepcopy
 #from ..game.board import BatchBoard
 class AIPlayer():
 
-    def get_scores(self, batch_board, memory=None):
+    def get_scores(self, batch_board):
         return None
 
     def play(self, batch_board, verbose=False):
@@ -16,13 +16,18 @@ class AIPlayer():
 
 
 class NNPlayer(AIPlayer):
-    def __init__(self, model: nn.Module):
+    def __init__(self, model: nn.Module, use_memory=False):
         self.model = model
+        self.use_memory = use_memory
 
     def get_scores(self, batch_board, memory=None):
         with torch.no_grad():
-            Q, _ = self.model.forward(batch_board.state, memory)
+            if self.use_memory:
+                Q, _ = self.model.forward(batch_board.state, memory)
+            else:
+                Q = self.model.forward(batch_board.state)
         return Q
+
 
 class TreePlayer(AIPlayer):
     """Convert a base player to a tree player"""
