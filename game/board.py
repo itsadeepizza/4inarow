@@ -1,5 +1,5 @@
 import torch
-
+from typing import Optional, List, Dict
 
 class BatchBoard:
     def __init__(self, nbatch=1, nrows=6, ncols=7, device=torch.device("cpu")):
@@ -9,17 +9,27 @@ class BatchBoard:
         self.nbatch = nbatch
         self.device = device
         self.reinitialize()
+        # Tensor for model with memory
+        self.memory = None
+
+    def init_memory(self, memory_size: List[int]):
+        """initialize batch memory using size as parameter"""
+        memory = torch.zeros([self.nbatch, *memory_size], device=self.device)
+        self.memory: Optional[Dict[int: torch.Tensor]] = {
+            1: memory.clone(),
+            -1: memory.clone()
+        }
 
 
     def reinitialize(self):
         """Reinitialise the grid"""
         self.board = torch.zeros([self.nbatch, self.nrows, self.ncols], device=self.device)
         # row level for each col
-        self.cols = torch.zeros([self.nbatch, self.ncols], dtype=int, device=self.device)
+        self.cols = torch.zeros([self.nbatch, self.ncols], dtype=torch.int, device=self.device)
         # player are 1 and -1
         self.player = 1
         # number og moves already played
-        self.n_moves = torch.zeros([self.nbatch], dtype=int, device=self.device)
+        self.n_moves = torch.zeros([self.nbatch], dtype=torch.int, device=self.device)
 
 
 

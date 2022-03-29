@@ -5,6 +5,7 @@ import torch.nn.functional as F
 
 
 class ConvNet(nn.Module):
+    memory_size = [7]
     def __init__(self, rows=6, cols=7):
         ch1 = 60
         super(ConvNet, self).__init__()
@@ -15,7 +16,7 @@ class ConvNet(nn.Module):
 
     def forward(self, x, memory=None):
         if memory is None:
-            memory = torch.zeros((x.size(0), 7), device=x.device)
+            memory = torch.zeros((x.size(0), *self.memory_size), device=x.device)
         x = torch.stack([x < 0, x == 0, x > 0], dim=1).float()
         x = self.l1(x)
         x = torch.relu(x)

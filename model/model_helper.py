@@ -16,14 +16,29 @@ class AIPlayer():
 
 
 class NNPlayer(AIPlayer):
-    def __init__(self, model: nn.Module, use_memory=False):
+    def __init__(self, model: nn.Module):
+        try:
+            model.memory_size
+        except:
+            # The model do not use memory
+            use_memory = False
+        else:
+            # the model use memory
+            use_memory = True
         self.model = model
+
         self.use_memory = use_memory
 
-    def get_scores(self, batch_board, memory=None):
+    def get_scores(self, batch_board):
         with torch.no_grad():
             if self.use_memory:
-                Q, _ = self.model.forward(batch_board.state, memory)
+                old_memory = batch_board.memory
+                if old_memory is None:
+                    batch_board.init_memory(self.model.memory_size)
+                    old_memory = batch_board.memory
+                old_memory_player = old_memory[batch_board.player]
+                Q, new_memory = self.model.forward(batch_board.state, old_memory_player)
+                batch_board.memory[batch_board.player] = new_memory
             else:
                 Q = self.model.forward(batch_board.state)
         return Q

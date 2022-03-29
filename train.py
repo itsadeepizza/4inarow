@@ -70,7 +70,11 @@ class Trainer():
 
 
 
-    def __init__(self, batch_size, hyperparams: dict, model, target_player, rows=6, cols=7, device=None):
+    def __init__(self, batch_size, hyperparams: dict, model, target_player, rows=6, cols=7, device=None, random_seed=None):
+        # TODO: Add initialisation of random seed
+        if random_seed is None:
+            import random
+            random_seed = random.random()
         # if gpu is to be used
         # SETTING PARAMETERS
         if device is None:
@@ -105,9 +109,17 @@ class Trainer():
         self.max_score2 = 0
 
         # Memory
+        try:
+            self.model.memory_size
+        except:
+            # The model do not use memory
+            self.use_memory = False
+        else:
+            # the model use memory
+            self.use_memory = True
         if self.use_memory:
-            self.memory1 : torch.TensorType = torch.zeros((self.batch_size, 7), device=self.device)
-            self.memory2 : torch.TensorType = torch.zeros((self.batch_size, 7), device=self.device)
+            self.memory1 : torch.Tensor = torch.zeros((self.batch_size, *self.model.memory_size), device=self.device)
+            self.memory2 : torch.Tensor = self.memory1.clone()
 
     def train(self):
 
@@ -294,7 +306,7 @@ class Trainer():
                                                     [self.target_net1, self.target_net2],
                                                     [self.max_score1, self.max_score2]):
                 policy.eval()
-                player = NNPlayer(policy, use_memory=self.use_memory)
+                player = NNPlayer(policy)
                 summary = mirror_score(player, nbatch=self.batch_size, n_iter=200, device=self.device)
                 print(i, j, summary)
                 for key, value in summary.items():
@@ -333,7 +345,6 @@ if __name__ == "__main__":
         "interval_tensorboard": 20_000, # every each moves does it pllot to tensorboard
         "validation_interval": 250_000, # every each moves policies are validated
         "replace_target_if_better": True, # Target model is replaced by current policy onli if the score is higher
-        "use_memory": True,    # The model use memory (output is a tuple Q, memory)
         "gradient_interval" : 5 # Every each moves gradients are calculated (for memory model otherwise 1)
     }
     target_player = GreedyModel()
