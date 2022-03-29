@@ -13,33 +13,6 @@ from base_trainer import BaseTrainer
 
 class Trainer(BaseTrainer):
 
-
-    def init_models(self):
-        # INITIALISING MODELS
-        self.policy_net1 = self.model(self.rows, self.cols).to(self.device)
-        self.target_net1 = self.model(self.rows, self.cols).to(self.device)
-        self.policy_net2 = self.model(self.rows, self.cols).to(self.device)
-        self.target_net2 = self.model(self.rows, self.cols).to(self.device)
-        # SET TARGET MODEL
-        self.target_net1.load_state_dict(self.policy_net1.state_dict())
-        self.target_net1.eval()
-        self.target_net2.load_state_dict(self.policy_net2.state_dict())
-        self.target_net2.eval()
-        # OPTIMIZER AND CRITERION
-        self.optimizer1 = optim.Adam(self.policy_net1.parameters(), lr=self.lr)
-        self.optimizer2 = optim.Adam(self.policy_net2.parameters(), lr=self.lr)
-        self.criterion = nn.SmoothL1Loss()
-
-
-    def init_logger(self):
-        # TENSORBOARD AND LOGGING
-        super().init_logger()
-        self.mean_ratio_board = torch.zeros([1], device=self.device)
-        # variable to store the mean number of invalid moves (this value need to reduce)
-        self.mean_error_game = torch.zeros([1], device=self.device)
-
-
-
     def __init__(self,  batch_size, hyperparams: dict, model, trainer_player, rows=6, cols=7, device=None, seed=None):
         super().__init__(batch_size, hyperparams, model, device=device, seed=seed)
         self.rows = rows
@@ -74,15 +47,30 @@ class Trainer(BaseTrainer):
             self.memory1 : torch.Tensor = torch.zeros((self.batch_size, *self.model.memory_size), device=self.device)
             self.memory2 : torch.Tensor = self.memory1.clone()
 
-    def train(self):
-        for i in range(0, 10_000_000, self.batch_size):
-            self.train_move(i)
-            if self.do_each_n(i, self.interval_tensorboard):
-                self.report(i)
-            if self.do_each_n(i, self.validation_interval):
-                self.update_target(i)
+
+    def init_models(self):
+        # INITIALISING MODELS
+        self.policy_net1 = self.model(self.rows, self.cols).to(self.device)
+        self.target_net1 = self.model(self.rows, self.cols).to(self.device)
+        self.policy_net2 = self.model(self.rows, self.cols).to(self.device)
+        self.target_net2 = self.model(self.rows, self.cols).to(self.device)
+        # SET TARGET MODEL
+        self.target_net1.load_state_dict(self.policy_net1.state_dict())
+        self.target_net1.eval()
+        self.target_net2.load_state_dict(self.policy_net2.state_dict())
+        self.target_net2.eval()
+        # OPTIMIZER AND CRITERION
+        self.optimizer1 = optim.Adam(self.policy_net1.parameters(), lr=self.lr)
+        self.optimizer2 = optim.Adam(self.policy_net2.parameters(), lr=self.lr)
+        self.criterion = nn.SmoothL1Loss()
 
 
+    def init_logger(self):
+        # TENSORBOARD AND LOGGING
+        super().init_logger()
+        self.mean_ratio_board = torch.zeros([1], device=self.device)
+        # variable to store the mean number of invalid moves (this value need to reduce)
+        self.mean_error_game = torch.zeros([1], device=self.device)
 
     def choose_move(self, i):
         # Update threeshold
@@ -205,6 +193,18 @@ class Trainer(BaseTrainer):
         self.list_R.append(R)
         self.list_F.append(F)
 
+    def train(self):
+        for i in range(0, 1_000_000_000, self.batch_size):
+            self.train_move(i)
+            if self.do_each_n(i, self.interval_tensorboard):
+                self.report(i)
+            if self.do_each_n(i, self.validation_interval):
+                self.update_target(i)
+
+
+
+
+
 
     def save_models(self, i):
         self.save_model(self.policy_net1, "model", i)
@@ -248,8 +248,6 @@ class Trainer(BaseTrainer):
             self.target_net1.load_state_dict(self.policy_net1.state_dict())
             self.target_net2.load_state_dict(self.policy_net2.state_dict())
         self.save_models(i)
-
-
 
 
 if __name__ == "__main__":
