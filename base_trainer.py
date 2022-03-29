@@ -1,27 +1,25 @@
 import torch
-import torch.nn as nn
-import torch.optim as optim
-from game.board import BatchBoard
-from model.model import DQN, smallDQN, conv_DQN, channel_DQN, full_channel_DQN, full_channel_DQN_v2, ConvNet, ConvNetNoMem
-from model.greedy_model import GreedyModel
 import random
 import math
 import os, datetime
 from torch.utils.tensorboard import SummaryWriter
 import torchsummary
-from validation import mirror_score
-from model.model_helper import NNPlayer
 import time
 import inspect
 import tabulate
+import numpy.random
+
 
 class BaseTrainer():
 
-    def __init__(self, batch_size, hyperparams: dict, model, device=None, random_seed=None):
-        # TODO: Add initialisation of random seed
-        if random_seed is None:
-            import random
-            random_seed = random.random()
+    def __init__(self, batch_size, hyperparams: dict, model, device=None, seed=None):
+        if seed is None:
+            seed = random.randint(0, 9999999)
+        self.seed = seed
+        torch.manual_seed(self.seed)
+        random.seed(self.seed)
+        numpy.random.seed(self.seed)
+
         # if gpu is to be used
 
         if device is None:

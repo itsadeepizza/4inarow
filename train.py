@@ -4,14 +4,9 @@ import torch.optim as optim
 from game.board import BatchBoard
 from model.model import DQN, smallDQN, conv_DQN, channel_DQN, full_channel_DQN, full_channel_DQN_v2, ConvNet, ConvNetNoMem
 from model.greedy_model import GreedyModel
-import random
 import math
-import os, datetime
-from torch.utils.tensorboard import SummaryWriter
-import torchsummary
 from validation import mirror_score
 from model.model_helper import NNPlayer
-import time
 from base_trainer import BaseTrainer
 
 
@@ -45,8 +40,8 @@ class Trainer(BaseTrainer):
 
 
 
-    def __init__(self,  batch_size, hyperparams: dict, model, target_player, rows=6, cols=7, device=None, random_seed=None):
-        super().__init__(batch_size, hyperparams, model, device=device, random_seed=random_seed)
+    def __init__(self,  batch_size, hyperparams: dict, model, target_player, rows=6, cols=7, device=None, seed=None):
+        super().__init__(batch_size, hyperparams, model, device=device, seed=seed)
         self.rows = rows
         self.cols = cols
         self.model = model
@@ -276,7 +271,7 @@ if __name__ == "__main__":
     }
     target_player = GreedyModel()
     model = ConvNet
-    trainer = Trainer(batch_size=2048, hyperparams=hyperparams, model=model, target_player=target_player)
+    trainer = Trainer(batch_size=2048, hyperparams=hyperparams, model=model, target_player=target_player, seed=99)
     trainer.train()
 
 
