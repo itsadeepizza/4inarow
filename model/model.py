@@ -4,6 +4,38 @@ import torch.optim as optim
 import torch.nn.functional as F
 
 
+
+class ConvNetNoGroup7(nn.Module):
+    def __init__(self, rows=6, cols=7):
+        ch1 = 60
+        super(ConvNetNoGroup7, self).__init__()
+        self.l1 = nn.Conv2d(3, out_channels=ch1, kernel_size=5, padding=2)
+        self.l2 = nn.Conv2d(ch1, out_channels=120, kernel_size=3, padding=1)
+        self.l3 = nn.Conv2d(120, 60, kernel_size=1)
+        self.l4 = nn.Linear(60 * rows * cols, 500)
+        self.l5 = nn.Linear(500, 200)
+        self.l6 = nn.Linear(200, 50)
+        self.l7 = nn.Linear(50, cols)
+
+
+    def forward(self, x):
+        x = torch.stack([x < 0, x == 0, x > 0], dim=1).float()
+        x = self.l1(x)
+        x = torch.relu(x)
+        x = self.l2(x)
+        x = torch.relu(x)
+        x = self.l3(x)
+        x = torch.relu(x)
+        x = self.l4(x.flatten(1))
+        x = torch.relu(x)
+        x = self.l5(x)
+        x = torch.relu(x)
+        x = self.l6(x)
+        x = torch.relu(x)
+        x = self.l7(x)
+        return x
+
+
 class ConvNet(nn.Module):
     memory_size = [7]
     def __init__(self, rows=6, cols=7):

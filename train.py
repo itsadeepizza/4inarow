@@ -8,7 +8,7 @@ import random
 import math
 import os, datetime
 from torch.utils.tensorboard import SummaryWriter
-from torchsummary import summary
+import torchsummary
 from validation import mirror_score
 from model.model_helper import NNPlayer
 import time
@@ -62,6 +62,8 @@ class Trainer():
         # LOG hyperparams
         import inspect
         import tabulate
+        model_stat = f"```{str(torchsummary.summary(self.model()))}```"
+        self.writer.add_text("Torchsummary", model_stat)
         self.writer.add_text("Time", now.strftime("%a %d %b %y - %H:%M"))
         self.writer.add_text("Model name", str(self.model.__name__))
         self.writer.add_text("Model code", "```  \n" + inspect.getsource(self.model)+"  \n```")
