@@ -40,14 +40,14 @@ class Trainer(BaseTrainer):
 
 
 
-    def __init__(self,  batch_size, hyperparams: dict, model, target_player, rows=6, cols=7, device=None, seed=None):
+    def __init__(self,  batch_size, hyperparams: dict, model, trainer_player, rows=6, cols=7, device=None, seed=None):
         super().__init__(batch_size, hyperparams, model, device=device, seed=seed)
         self.rows = rows
         self.cols = cols
         self.model = model
         self.init_models()
         # GREEDY MODEL
-        self.target_player = target_player
+        self.trainer_player = trainer_player
         self.cum_loss1 = 0
         self.cum_loss2 = 0
 
@@ -105,9 +105,9 @@ class Trainer(BaseTrainer):
         M = Q.argmax(dim=1)
         # Sometime choose a random move, using eps_threshold as threshold
         rand_M = torch.randint(0, self.cols, [self.batch_size], device=self.device)
-        # Choose a move using a greedy algorithm
-        greedy_M = self.target_player.play(self.board)
-        # When choosing a random move (or a greedy move)
+        # Choose a move using the trainer algorithm (ex greedy algorithm)
+        trainer_M = self.trainer_player.play(self.board)
+        # When choosing a random move (or a trainer move)
         rand_choice = torch.rand([self.batch_size], device=self.device)
         # Add more randomness at the beginning of the game
         randomness_multiplier = self.end_random + (self.start_random - self.end_random) * torch.exp(
@@ -115,12 +115,12 @@ class Trainer(BaseTrainer):
         threshold_multiplied = 1 - (1 - eps_threshold) * (1 - randomness_multiplier)
         # where_play_random = rand_choice < threshold_multiplied
         # where_play_random = (eps_threshold * self.ratio_greedy < rand_choice) & (rand_choice < eps_threshold)
-        # where_play_greedy = rand_choice <= eps_threshold * self.ratio_greedy
-        where_play_random = (threshold_multiplied * self.ratio_greedy < rand_choice) & (
+        # where_play_greedy = rand_choice <= eps_threshold * self.ratio_trainer
+        where_play_random = (threshold_multiplied * self.ratio_trainer < rand_choice) & (
                     rand_choice < threshold_multiplied)
-        where_play_greedy = rand_choice <= threshold_multiplied * self.ratio_greedy
+        where_play_greedy = rand_choice <= threshold_multiplied * self.ratio_trainer
         M[where_play_random] = rand_M[where_play_random]
-        M[where_play_greedy] = greedy_M[where_play_greedy]
+        M[where_play_greedy] = trainer_M[where_play_greedy]
         return M, pi, S
 
     def train_move(self, i):
@@ -229,7 +229,7 @@ class Trainer(BaseTrainer):
                                                     [self.max_score1, self.max_score2]):
                 policy.eval()
                 player = NNPlayer(policy)
-                summary = mirror_score(player, nbatch=self.batch_size, n_iter=200, device=self.device)
+                summary = mirror_score(player, nbatch=self.batch_size, n_iter=200, second_player=trainer_player, device=self.device)
                 print(i, j, summary)
                 for key, value in summary.items():
                     self.writer.add_scalar(f"{key}_{j}", value, i)
@@ -253,25 +253,31 @@ class Trainer(BaseTrainer):
 
 
 if __name__ == "__main__":
+    from model.model_helper import load_model
+
     hyperparams = {
         "GAMMA": 0.9,
         "EPS_START": 0.9,
         "EPS_END": 0.2,
-        "EPS_DECAY": 100_000_000,
+        "EPS_DECAY": 30_000_000,
         "TARGET_UPDATE": 10, # no more used
         "start_random": 0.9, # randomness modifier at the beginning of each match
         "end_random": 0.5, # randomness modifier at the end of each match
         "decay_random": 10, # randomness modifier decay
-        "ratio_greedy": 0.8, #ratio of greedy moves respect to random moves
-        "lr": 0.001,
+        "ratio_trainer": 0.5, #ratio of trainer moves respect to random moves
+        "lr": 0.01,
         "interval_tensorboard": 20_000, # every each moves does it pllot to tensorboard
         "validation_interval": 250_000, # every each moves policies are validated
         "replace_target_if_better": True, # Target model is replaced by current policy onli if the score is higher
         "gradient_interval" : 5 # Every each moves gradients are calculated (for memory model otherwise 1)
     }
-    target_player = GreedyModel()
+    device = torch.device("cuda")
+    frank_path = "best_trained/ConvNetNoMem/model_793620001.pth"
+    frank = load_model(frank_path, ConvNetNoMem, device=device)
+    #trainer_player = GreedyModel()
+    trainer_player = frank
     model = ConvNet
-    trainer = Trainer(batch_size=2048, hyperparams=hyperparams, model=model, target_player=target_player, seed=99)
+    trainer = Trainer(batch_size=2048, hyperparams=hyperparams, model=model, trainer_player=trainer_player, seed=99)
     trainer.train()
 
 
