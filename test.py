@@ -67,8 +67,11 @@ if __name__ == "__main__":
     path = "runs/fit/20220320-004727/models/model_208000.pth"
     frank_path = "frank/models/model_793620001.pth"
     big_first = "best_trained/ConvNetNoGroup7/model_339370001.pth"
+    big_2 = "best_trained/ConvNetNoGroup7/model_605120001.pth"
+
     # AIplayer = TreePlayer(load_model(big_first, ConvNetNoGroup7))
     AIplayer = load_model(big_first, ConvNetNoGroup7)
+
 
     #print(mirror_score(AIplayer, nbatch=1000))
     play_hvsm_game(AIplayer, verbose=True)

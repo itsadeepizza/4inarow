@@ -12,15 +12,12 @@ import torchsummary
 from validation import mirror_score
 from model.model_helper import NNPlayer
 import time
+from base_trainer import BaseTrainer
 
 
 
+class Trainer(BaseTrainer):
 
-class Trainer():
-
-    def do_each_n(self, i, n):
-        """Execute the event each n moves"""
-        return abs(i % n - 0.5 * n) < 0.5 * self.batch_size
 
     def init_models(self):
         # INITIALISING MODELS
@@ -41,62 +38,21 @@ class Trainer():
 
     def init_logger(self):
         # TENSORBOARD AND LOGGING
-        # Create directories for logs
-        now = datetime.datetime.now()
-        now_str = now.strftime("%Y%m%d-%H%M%S")
-        self.log_dir = "runs/fit/" + now_str
-        self.summary_dir = self.log_dir + "/summary"
-        self.models_dir = self.log_dir + "/models"
-        self.test_dir = self.log_dir + "/test"
-        os.makedirs(self.log_dir, exist_ok=True)
-        # os.mkdir(summary_dir)
-        os.makedirs(self.models_dir, exist_ok=True)
-        os.makedirs(self.test_dir, exist_ok=True)
-        self.writer = SummaryWriter(self.summary_dir)
-        # variable to store the ratio of board filled with coins (this values need to increase)
+        super().init_logger()
         self.mean_ratio_board = torch.zeros([1], device=self.device)
         # variable to store the mean number of invalid moves (this value need to reduce)
         self.mean_error_game = torch.zeros([1], device=self.device)
-        self.mean_loss = 0
-        self.timer = 0
-        # LOG hyperparams
-        import inspect
-        import tabulate
-        model_stat = f"```{str(torchsummary.summary(self.model()))}```"
-        self.writer.add_text("Torchsummary", model_stat)
-        self.writer.add_text("Time", now.strftime("%a %d %b %y - %H:%M"))
-        self.writer.add_text("Model name", str(self.model.__name__))
-        self.writer.add_text("Model code", "```  \n" + inspect.getsource(self.model)+"  \n```")
-        log_hparams = tabulate.tabulate([[param, value] for param, value in self.hparams.items()], headers=["NAME", "VALUE"], tablefmt="pipe")
-        self.writer.add_text("Hyperparameters", log_hparams)
 
 
 
-    def __init__(self, batch_size, hyperparams: dict, model, target_player, rows=6, cols=7, device=None, random_seed=None):
-        # TODO: Add initialisation of random seed
-        if random_seed is None:
-            import random
-            random_seed = random.random()
-        # if gpu is to be used
-        # SETTING PARAMETERS
-        if device is None:
-            self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        else:
-            self.device = device
-        self.hparams = hyperparams
-        for key, value in self.hparams.items():
-            setattr(self, key, value)
-
+    def __init__(self,  batch_size, hyperparams: dict, model, target_player, rows=6, cols=7, device=None, random_seed=None):
+        super().__init__(batch_size, hyperparams, model, device=device, random_seed=random_seed)
         self.rows = rows
         self.cols = cols
-        self.batch_size = batch_size
-        print("BATCH SIZE:", batch_size)
         self.model = model
         self.init_models()
         # GREEDY MODEL
         self.target_player = target_player
-        self.init_logger()
-
         self.cum_loss1 = 0
         self.cum_loss2 = 0
 
@@ -124,9 +80,12 @@ class Trainer():
             self.memory2 : torch.Tensor = self.memory1.clone()
 
     def train(self):
-
-        for i in range(10_000_000):
-            self.train_move(i * self.batch_size)
+        for i in range(0, 10_000_000, self.batch_size):
+            self.train_move(i)
+            if self.do_each_n(i, self.interval_tensorboard):
+                self.report(i)
+            if self.do_each_n(i, self.validation_interval):
+                self.update_target(i)
 
 
 
@@ -238,11 +197,9 @@ class Trainer():
                         self.memory2 = self.memory2.detach()
 
             # VALIDATION AND LOGGING
-            if self.do_each_n(i, self.validation_interval):
-                self.update_target(i)
+
             self.mean_loss += loss.item()
-            if self.do_each_n(i, self.interval_tensorboard):
-                self.report(i)
+
             # print(board.n_moves)
             # mean_ratio_board += (board.n_moves.float().mean() / 42.0)
             # mean_error_game += (1.0 * (R==-2)).mean()
@@ -254,47 +211,15 @@ class Trainer():
         self.list_F.append(F)
 
 
-    def save_model(self, i):
-        path1 = f"{self.models_dir}/model_{i}.pth"
-        path2 = f"{self.models_dir}/model-adv_{i}.pth"
-        torch.save(self.policy_net1.state_dict(), path1)
-        torch.save(self.policy_net1.state_dict(), path2)
+    def save_models(self, i):
+        self.save_model(self.policy_net1, "model", i)
+        self.save_model(self.policy_net2, "model-adv", i)
+
 
     def report(self, i):
-        #     print(i)
-        #     print("Q_old:", Q_old)
-        #     print(torch.flip(board.state[0:2], dims=(1,)))
-        #     print("M_old:", M_old)
-        #     print("R_old:", R_old)
-        #     print("F:", F_old)
-        #     print("PI:", pi)
-        #     print('est:', state_action_values)
-        #     print("Mean Ratio Board: ", mean_ratio_board.item() / interval_tensorboard)
-        #     print(" Mean error ratio : ", mean_error_game.item() / interval_tensorboard)
-        #     print("Current Loss: ", loss)
-        #
-        #     # TENSOR BOARD
-        #     writer.add_scalar("mean_ratio_board",
-        #                       mean_ratio_board.item() / interval_tensorboard,
-        #                       i)
-        #     writer.add_scalar("mean_error_game",
-        #                       mean_error_game.item() / interval_tensorboard,
-        #                       i)
+        super().report(i)
         eps_threshold = self.EPS_END + (self.EPS_START - self.EPS_END) * math.exp(-1. * i * self.batch_size / self.EPS_DECAY)
-        self.writer.add_scalar("eps_threshold",
-                          eps_threshold,
-                          i)
-        self.writer.add_scalar("loss",
-                               self.mean_loss / self.interval_tensorboard,
-                               i)
-        tot_time = time.time() - self.timer
-        self.timer = time.time()
-        self.writer.add_scalar("moves_for_second",
-                               self.interval_tensorboard / tot_time,
-                               i)
-
-        #     mean_ratio_board *= 0
-        #     mean_error_game *= 0
+        self.writer.add_scalar("eps_threshold", eps_threshold, i)
         self.mean_loss = 0
         if self.use_memory:
             print('mem1', self.memory1)
@@ -327,7 +252,7 @@ class Trainer():
         else:
             self.target_net1.load_state_dict(self.policy_net1.state_dict())
             self.target_net2.load_state_dict(self.policy_net2.state_dict())
-        self.save_model(i)
+        self.save_models(i)
 
 
 
