@@ -69,7 +69,6 @@ class TreePlayer(AIPlayer):
             # TODO: add number of moves before loose
             results = play_until_end(self.base_player, self.base_player, case_batch_board, verbose=False)
             score[:, i] += 10 * results * mult
-
         return score
 
 def play_until_end(player1: AIPlayer, player2: AIPlayer, batch_board, verbose=False):
@@ -92,7 +91,13 @@ def play_until_end(player1: AIPlayer, player2: AIPlayer, batch_board, verbose=Fa
 
 
 def load_model(path, model_class, device=torch.device("cpu")):
-    model = model_class().to(device)
-    model.load_state_dict(torch.load(path))
+    from collections import OrderedDict
+
+    loaded = torch.load(path)
+    if type(loaded) is OrderedDict:
+        model = model_class().to(device)
+        model.load_state_dict(loaded)
+    else:
+        model = loaded.to(device)
     model.eval()
     return NNPlayer(model)

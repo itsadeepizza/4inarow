@@ -14,6 +14,8 @@ if __name__ == "__main__":
     pl3 = load_model(big_2, ConvNetNoGroup7, device=device)
     greedy = GreedyModel()
     little_last = "best_trained/ConvNetNoMem/model_793620001.pth"
+    trained_trainer =  "best_trained/ConvNetNoMem/trained_trainer.pth"
     pl2 = load_model(little_last, ConvNetNoMem, device=device)
+    plt = load_model(trained_trainer, ConvNetNoMem, device=device)
 
-    print(AIvsAI(pl1, pl3, device=device))
+    print(AIvsAI(plt, pl2, device=device))

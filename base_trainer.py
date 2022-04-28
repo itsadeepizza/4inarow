@@ -79,4 +79,4 @@ class BaseTrainer():
         path = os.path.join(self.models_dir, name)
         if not os.path.exists(path):
             os.mkdir(path)
-        torch.save(model, f"{path}/{name}_{i}.pth")
+        torch.save(model.state_dict(), f"{path}/{name}_{i}.pth")

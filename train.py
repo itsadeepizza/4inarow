@@ -275,7 +275,7 @@ if __name__ == "__main__":
     #trainer_player = GreedyModel()
     trainer_player = frank
     model = ConvNet
-    trainer = Trainer(batch_size=2048, hyperparams=hyperparams, model=model, trainer_player=trainer_player, seed=99)
+    trainer = Trainer(batch_size=10000, hyperparams=hyperparams, model=model, trainer_player=trainer_player, seed=99)
     trainer.train()
 
 

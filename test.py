@@ -70,10 +70,13 @@ if __name__ == "__main__":
     big_2 = "best_trained/ConvNetNoGroup7/model_605120001.pth"
 
     # AIplayer = TreePlayer(load_model(big_first, ConvNetNoGroup7))
-    AIplayer = load_model(big_first, ConvNetNoGroup7)
+    AIplayer = load_model(big_2, ConvNetNoGroup7)
+    trained_trainer = "best_trained/ConvNetNoMem/trained_trainer.pth"
+
+    plt = load_model(trained_trainer, ConvNetNoMem)
 
 
     #print(mirror_score(AIplayer, nbatch=1000))
-    play_hvsm_game(AIplayer, verbose=True)
+    play_hvsm_game(plt, verbose=True)
     from validation import mirror_score
 
