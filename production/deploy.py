@@ -10,10 +10,10 @@ def create_tflite():
     """Convert .pth to tflite model"""
     little_last = "model_793620001.pth"
     big_no_group = "big_no_group.pth"
-    player = load_model(big_no_group, ConvNetNoGroup7, device=torch.device("cpu"))
+    player = load_model(little_last, ConvNetNoMem, device=torch.device("cpu"))
     model = player.model
     dummy_input = torch.rand(1, 6, 7)
-    output_path = "./no_group.tflite"
+    output_path = "./little_group.tflite"
     from tinynn.converter import TFLiteConverter
     converter = TFLiteConverter(model, dummy_input, output_path, group_conv_rewrite=True)
     converter.convert()
